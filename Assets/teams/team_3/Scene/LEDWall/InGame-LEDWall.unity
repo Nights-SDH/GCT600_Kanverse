@@ -499,7 +499,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
     darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
   defaultSpeakerSprite: {fileID: 21300000, guid: 1b081373ff7ea5d46a502b6cdc69e518, type: 3}
-  fadeInEffect: {fileID: 0}
+  fadeInEffect: {fileID: 1599561651}
 --- !u!1 &1599561649
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +541,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1599561651
 MonoBehaviour:

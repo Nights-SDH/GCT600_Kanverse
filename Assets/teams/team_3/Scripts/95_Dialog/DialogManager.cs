@@ -41,7 +41,7 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         Initialize();
-        StartDialog(DialogName.Kongjwi_Task_HoeBreaks);
+        StartDialog(DialogName.Kongjwi_Intro_Birth);
     }
 
     private void Update()
@@ -69,12 +69,10 @@ public class DialogManager : MonoBehaviour
         dialogPanel.SetActive(isActive);
         if (isActive)
         {
-            PauseController.Instance.TryPauseGame();
             fadeInEffect.ShowWithFadeIn();
         }
         else
         {
-            PauseController.Instance.TryResumeGame();
             fadeInEffect.HideWithFadeOut();
         }
     }
@@ -174,7 +172,7 @@ public class DialogManager : MonoBehaviour
             }
             else
             {
-                EndDialog();
+                TryGetNextDialog();
             }
         }
     }
@@ -193,12 +191,24 @@ public class DialogManager : MonoBehaviour
         {
             speakerImage1.sprite = FindSpeakerSprite(speaker1 ?? DialogSpeaker.Narration);
             speakerImage2.sprite = FindSpeakerDarkSprite(speaker2 ?? DialogSpeaker.Narration);
+            dialogText.alignment = TextAlignmentOptions.Left;
         }
         else if (speaker == speaker2)
         {
             speakerImage1.sprite = FindSpeakerDarkSprite(speaker1 ?? DialogSpeaker.Narration);
             speakerImage2.sprite = FindSpeakerSprite(speaker2 ?? DialogSpeaker.Narration);
+            dialogText.alignment = TextAlignmentOptions.Right;
         }
+    }
+
+    private void TryGetNextDialog()
+    {
+        if (currentDialogName + 1 == DialogName.End)
+        {
+            EndDialog();
+            return;
+        } 
+        StartDialog(currentDialogName + 1);
     }
 
     private void UpdateSpeakers(DialogSpeaker currentSpeaker)
@@ -230,7 +240,7 @@ public class DialogManager : MonoBehaviour
     {
         if (speaker1.HasValue)
         {
-            speakerName1.text = GetSpeakerDisplayName(speaker1.Value);
+            speakerName1.text = DialogSpeakerExtensions.ToDisplayName(speaker1.Value);
             speakerImage1.sprite = FindSpeakerSprite(speaker1.Value);
             speakerImage1.enabled = true;
         }
@@ -242,7 +252,7 @@ public class DialogManager : MonoBehaviour
 
         if (speaker2.HasValue)
         {
-            speakerName2.text = GetSpeakerDisplayName(speaker2.Value);
+            speakerName2.text = DialogSpeakerExtensions.ToDisplayName(speaker2.Value);
             speakerImage2.sprite = FindSpeakerSprite(speaker2.Value);
             speakerImage2.enabled = true;
         }
@@ -253,20 +263,11 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    private string GetSpeakerDisplayName(DialogSpeaker speaker)
+    private void EndDialog()
     {
-        switch (speaker)
-        {
-            case DialogSpeaker.Narration:
-                return "나레이션";
-            case DialogSpeaker.Stepmother:
-                return "새어머니";
-            case DialogSpeaker.Patjwi:
-                return "팥쥐";
-            case DialogSpeaker.Kongjwi:
-                return "콩쥐";
-        }
-        return speaker.ToString();
+        speaker1 = null;
+        speaker2 = null;
+        lastSpeaker = DialogSpeaker.Narration;
     }
 
     private Sprite FindSpeakerSprite(DialogSpeaker dialogSpeaker)
@@ -291,15 +292,5 @@ public class DialogManager : MonoBehaviour
             }
         }
         return defaultSpeakerSprite;
-    }
-
-    private void EndDialog()
-    {
-        SetActiveDialogPanel(false);
-        PauseController.Instance.TryResumeGame();
-
-        speaker1 = null;
-        speaker2 = null;
-        lastSpeaker = DialogSpeaker.Narration;
     }
 }
