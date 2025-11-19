@@ -36,12 +36,16 @@ public class BrushPose_OpenXR : MonoBehaviour
 
         Quaternion rot = Quaternion.LookRotation(forward, up);
 
+        // Quaternion to Vector3
+        Vector3 newRotation = rot.eulerAngles;
+        newRotation.z += 200f; // Adjust the X axis by 90 degrees
+
         // ===== 5) 위치 계산: pinch point 기준 =====
         Vector3 finalPos = pinch.PinchPosition + forward * 0.01f;
 
         // ===== 6) 적용 =====
         brushModel.position = finalPos;
-        brushModel.rotation = rot;
+        brushModel.rotation = Quaternion.Euler(newRotation);
 
         Debug.Log("indexTip: " + pinch.indexTip.position);
         Debug.Log("wrist: " + pinch.wrist.position);

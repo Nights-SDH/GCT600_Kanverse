@@ -328,10 +328,13 @@ namespace XDPaint.Controllers.InputData.Base
             return result;
         }
         
-        private bool CanProcess(int fingerId, bool printWarnings = false)
+        private bool CanProcess(int fingerId, bool printWarnings = true)
         {
             if (fingerId >= InputDataHistory.Length)
+            {
+                Debug.LogWarning($"FingerId {fingerId} is out of range!");
                 return false;
+            }
             
             if (!PaintManager.IsActive() || !PaintManager.LayersController.ActiveLayer.Enabled)
             {
@@ -342,6 +345,8 @@ namespace XDPaint.Controllers.InputData.Base
                         Debug.LogWarning("Active layer is disabled!");
                     }
                 }
+                Debug.LogWarning($"!PaintManager.IsActive(): {PaintManager.IsActive()}");
+                Debug.LogWarning($"!PaintManager.LayersController.ActiveLayer.Enabled: {!PaintManager.LayersController.ActiveLayer.Enabled}");
                 
                 return false;
             }

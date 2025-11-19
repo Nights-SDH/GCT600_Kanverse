@@ -19,12 +19,7 @@ public class XRHandInputBridge : MonoBehaviour
             Debug.LogError("❌ PaintManager not found in scene!");
             return;
         }
-
-        // inputData private 필드를 Reflection으로 가져오기
-        var field = typeof(PaintManager).GetField("inputData",
-            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-        inputData = field.GetValue(pm) as BaseInputData;
+        inputData = pm.inputData;
 
         if (inputData == null)
         {

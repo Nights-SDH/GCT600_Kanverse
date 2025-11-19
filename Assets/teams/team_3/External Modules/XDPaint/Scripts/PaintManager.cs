@@ -196,7 +196,7 @@ namespace XDPaint
         private IRenderTextureHelper renderTextureHelper;
         private IRenderComponentsHelper renderComponentsHelper;
         private IPaintData paintData;
-        private BaseInputData inputData;
+        public BaseInputData inputData {get; private set;}
         private LayersContainer loadedLayersContainer;
         private bool initialized;
         
@@ -371,6 +371,7 @@ namespace XDPaint
         
         public bool IsActive()
         {
+            Debug.LogWarning($"enabled: {enabled}, activeInHierarchy: {gameObject.activeInHierarchy}, ObjectForPainting != null: {ObjectForPainting != null}, PaintObject != null: {PaintObject != null}, PaintObject.ProcessInput: {PaintObject?.ProcessInput}");
             return enabled && gameObject.activeInHierarchy && ObjectForPainting != null && PaintObject != null && PaintObject.ProcessInput;
         }
 
