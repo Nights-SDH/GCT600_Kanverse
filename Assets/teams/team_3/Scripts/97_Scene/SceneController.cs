@@ -42,7 +42,7 @@ public class SceneController : SingletonObject<SceneController>
 
     public void LoadTitle()
     {
-        StartCoroutine(ChangeSceneWithLoading(SceneName.Title));
+        // StartCoroutine(ChangeSceneWithLoading(SceneName.Title));
     }
 
     public bool GetIsBossStage(SceneName sceneName)
