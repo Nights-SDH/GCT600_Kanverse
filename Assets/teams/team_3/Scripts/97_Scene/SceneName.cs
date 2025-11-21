@@ -1,6 +1,6 @@
 public enum SceneName
 {
-    Title,
+    Title_LEDWall, InGame_LEDWall,
     Setting, Loading,
     HeroBase, BattleRoom, RandomRoom
 }
