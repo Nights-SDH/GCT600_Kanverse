@@ -1314,6 +1314,50 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!21 &187312362
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: XD Paint/Chroma Palette/Slider
+  m_Shader: {fileID: 4800000, guid: 88e60c6a76d1341bc845644775b19f69, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _CheckerSize: 8
+    - _ColorMask: 15
+    - _CurrentValue: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _Type: 1
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _CurrentColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SliderDimensions: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &192882901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,46 +2281,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243913833}
   m_CullTransparentMesh: 0
---- !u!21 &247802425
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: XD Paint/Color Picker/Slider
-  m_Shader: {fileID: 4800000, guid: 88e60c6a76d1341bc845644775b19f69, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _CheckerSize: 8
-    - _ColorMask: 15
-    - _CurrentValue: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _Type: 1
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _CurrentColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SliderDimensions: {r: 1, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &252353527
 GameObject:
   m_ObjectHideFlags: 0
@@ -4453,6 +4457,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482160206}
   m_CullTransparentMesh: 1
+--- !u!21 &486846864
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: XD Paint/Chroma Palette/Slider
+  m_Shader: {fileID: 4800000, guid: 88e60c6a76d1341bc845644775b19f69, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _CheckerSize: 8
+    - _ColorMask: 15
+    - _CurrentValue: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _Type: 0
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _CurrentColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SliderDimensions: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &489799332
 GameObject:
   m_ObjectHideFlags: 0
@@ -6091,6 +6139,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557516135}
   m_CullTransparentMesh: 1
+--- !u!21 &557912502
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: XD Paint/Chroma Palette/Palette
+  m_Shader: {fileID: 4800000, guid: 09a9a850d07a24ff4b139c94cdb5c11b, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PaletteTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Hue: 0
+    - _Mode: 5
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseBicubicSampling: 0
+    - _UseUIAlphaClip: 0
+    - _Value: 1
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &561127533
 GameObject:
   m_ObjectHideFlags: 0
@@ -11005,49 +11100,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047324338}
   m_CullTransparentMesh: 0
---- !u!21 &1052006240
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: XD Paint/Color Picker/Palette
-  m_Shader: {fileID: 4800000, guid: 09a9a850d07a24ff4b139c94cdb5c11b, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _PaletteTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Hue: 0
-    - _Mode: 5
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseBicubicSampling: 0
-    - _UseUIAlphaClip: 0
-    - _Value: 1
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &1055402673
 GameObject:
   m_ObjectHideFlags: 0
@@ -11607,46 +11659,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!21 &1089298386
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: XD Paint/Color Picker/Slider
-  m_Shader: {fileID: 4800000, guid: 88e60c6a76d1341bc845644775b19f69, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _CheckerSize: 16
-    - _ColorMask: 15
-    - _CurrentValue: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _Type: 2
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _CurrentColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SliderDimensions: {r: 190, g: 85, b: 0, a: 0}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &1094632446
 GameObject:
   m_ObjectHideFlags: 0
@@ -12290,7 +12302,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1144616086}
   - component: {fileID: 1144616085}
-  - component: {fileID: 1144616087}
   - component: {fileID: 1144616088}
   m_Layer: 0
   m_Name: Directional light
@@ -12379,18 +12390,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: -35, z: 0}
---- !u!114 &1144616087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144616084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1144616088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12525,6 +12524,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &1156534889
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: XD Paint/Chroma Palette/Slider
+  m_Shader: {fileID: 4800000, guid: 88e60c6a76d1341bc845644775b19f69, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _CheckerSize: 16
+    - _ColorMask: 15
+    - _CurrentValue: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _Type: 2
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _CurrentColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SliderDimensions: {r: 190, g: 85, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &1171751478
 GameObject:
   m_ObjectHideFlags: 0
@@ -21474,46 +21517,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930774528}
   m_CullTransparentMesh: 0
---- !u!21 &1935395298
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: XD Paint/Color Picker/Slider
-  m_Shader: {fileID: 4800000, guid: 88e60c6a76d1341bc845644775b19f69, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _CheckerSize: 8
-    - _ColorMask: 15
-    - _CurrentValue: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _Type: 0
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _CurrentColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SliderDimensions: {r: 1, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &1949664369
 GameObject:
   m_ObjectHideFlags: 0
@@ -22488,7 +22491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: af14d4779ccfa498fa4c6488ea8722ad, type: 3}
+  m_Texture: {fileID: 2800000, guid: 86557a26daa19e140af77854019a933a, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -24291,7 +24294,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2135033916
 Canvas:
   m_ObjectHideFlags: 0
@@ -24773,7 +24776,7 @@ PrefabInstance:
     - target: {fileID: 3611290028038227644, guid: ed56993c140a24344bc9d9e220a89562, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 1089298386}
+      objectReference: {fileID: 0}
     - target: {fileID: 4086089969717842131, guid: ed56993c140a24344bc9d9e220a89562, type: 3}
       propertyPath: m_Texture
       value: 
@@ -24781,7 +24784,7 @@ PrefabInstance:
     - target: {fileID: 4086089969717842131, guid: ed56993c140a24344bc9d9e220a89562, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 1935395298}
+      objectReference: {fileID: 0}
     - target: {fileID: 4148875769589658768, guid: ed56993c140a24344bc9d9e220a89562, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -24837,7 +24840,7 @@ PrefabInstance:
     - target: {fileID: 4768144335875933937, guid: ed56993c140a24344bc9d9e220a89562, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 1052006240}
+      objectReference: {fileID: 0}
     - target: {fileID: 4780799069529821910, guid: ed56993c140a24344bc9d9e220a89562, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -25241,7 +25244,7 @@ PrefabInstance:
     - target: {fileID: 6649146406292409756, guid: ed56993c140a24344bc9d9e220a89562, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 247802425}
+      objectReference: {fileID: 0}
     - target: {fileID: 6666585795446812842, guid: ed56993c140a24344bc9d9e220a89562, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

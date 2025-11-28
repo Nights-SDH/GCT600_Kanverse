@@ -286,6 +286,11 @@ namespace XDPaint.Demo
                 LoadPrefs();
             }
 
+            KanverseCode();
+        }
+
+        private void KanverseCode()
+        {
             SwitchToPreviousPaintManager();
             bottomPanel.gameObject.SetActive(false);
             layersUI.gameObject.SetActive(false);
