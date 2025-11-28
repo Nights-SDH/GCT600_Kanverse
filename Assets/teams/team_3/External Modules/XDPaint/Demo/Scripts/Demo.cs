@@ -285,6 +285,10 @@ namespace XDPaint.Demo
             {
                 LoadPrefs();
             }
+
+            SwitchToPreviousPaintManager();
+            bottomPanel.gameObject.SetActive(false);
+            layersUI.gameObject.SetActive(false);
         }
 
         private void Update()
