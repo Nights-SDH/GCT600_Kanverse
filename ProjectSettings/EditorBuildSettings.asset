@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/teams/team_3/Scene/Main.unity
     guid: e28c9e4c413105343b450db6604c2c30
+  - enabled: 1
+    path: Assets/teams/team_3/Scene/HMD/HMD_InGame.unity
+    guid: 843b043c76de64b9cab52e07b8b3abbf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 472ef7f1ac4b51549b280886eabfa378, type: 2}
