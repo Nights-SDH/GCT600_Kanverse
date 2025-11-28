@@ -22,7 +22,7 @@ namespace XDPaint.Tools.Raycast
             DoDispose();
             commandBuffer = new CommandBufferBuilder();
             quadMesh = MeshGenerator.GenerateQuad(Vector3.one, Vector3.zero);
-            material = new Material(SettingsXDPaint.Instance.DepthToWorldPositionShader);
+            material = new Material(SettingsXD.Instance.DepthToWorldPositionShader);
             renderTexture = RenderTextureFactory.CreateRenderTexture(Screen.width, Screen.height, 0, RenderTextureFormat.ARGBFloat);
             texture = new Texture2D(1, 1, TextureFormat.RGBAFloat, false, true);
             initialized = true;

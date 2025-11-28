@@ -101,7 +101,7 @@ namespace XDPaint.Tools.Image
             var brushHardness = Data.Brush.Hardness;
             Data.Brush.Hardness = 1.0f;
             Data.Brush.SetColor(Color.white, false, false);
-            Data.Brush.SetTexture(Tools.SettingsXDPaint.Instance.DefaultCircleBrush, true, false, false);
+            Data.Brush.SetTexture(Tools.SettingsXD.Instance.DefaultCircleBrush, true, false, false);
             Graphics.Blit(Data.Brush.RenderTexture, previewTexture);
             Data.Brush.SetColor(previousBrushColor, false, false);
             Data.Brush.SetTexture(brushSourceTexture, false, false);
@@ -112,7 +112,7 @@ namespace XDPaint.Tools.Image
         {
             if (brushSamplerMaterial == null)
             {
-                brushSamplerMaterial = new Material(Tools.SettingsXDPaint.Instance.BrushSamplerShader);
+                brushSamplerMaterial = new Material(Tools.SettingsXD.Instance.BrushSamplerShader);
                 shouldSetBrushTextureParam = true;
                 brushSamplerMaterial.mainTexture = GetTexture(RenderTarget.Combined);
                 brushSamplerMaterial.SetTexture(Constants.BrushSamplerShader.BrushMaskTexture, Data.Brush.SourceTexture);
@@ -132,7 +132,7 @@ namespace XDPaint.Tools.Image
             var brushHardness = Data.Brush.Hardness;
             Data.Brush.Hardness = 1.0f;
             Data.Brush.SetColor(Color.white, false, false);
-            Data.Brush.SetTexture(Tools.SettingsXDPaint.Instance.DefaultCircleBrush, true, false, false);
+            Data.Brush.SetTexture(Tools.SettingsXD.Instance.DefaultCircleBrush, true, false, false);
             Graphics.Blit(Data.Brush.RenderTexture, previewTexture);
             Data.Brush.SetColor(previousColor, false, false);
             Data.Brush.SetTexture(brushTexture, true, false, false);

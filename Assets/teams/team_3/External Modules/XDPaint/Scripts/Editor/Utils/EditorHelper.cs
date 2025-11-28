@@ -26,7 +26,7 @@ namespace XDPaint.Editor.Utils
             }
             if (!Application.isPlaying || Application.isPlaying && AllowSavePresetsInRuntime)
             {
-                EditorUtility.SetDirty(SettingsXDPaint.Instance);
+                EditorUtility.SetDirty(SettingsXD.Instance);
             }
             if (!Application.isPlaying)
             {

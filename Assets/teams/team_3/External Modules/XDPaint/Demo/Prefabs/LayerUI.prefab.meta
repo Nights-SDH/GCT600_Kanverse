@@ -5,10 +5,3 @@ PrefabImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 212475
-  packageName: 2D/3D Paint
-  packageVersion: 3.3.0
-  assetPath: Assets/XDPaint/Demo/Prefabs/LayerUI.prefab
-  uploadId: 795804

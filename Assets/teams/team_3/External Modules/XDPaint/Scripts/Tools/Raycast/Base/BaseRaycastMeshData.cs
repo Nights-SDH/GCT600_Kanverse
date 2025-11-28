@@ -134,7 +134,7 @@ namespace XDPaint.Tools.Raycast.Base
             var plane2Normal = -Vector3.Cross(plane2Position + plane1Normal - nearPlanePoint3, plane2Position - plane1Normal - nearPlanePoint3);
             var plane3Normal = -Vector3.Cross(plane3Position + plane1Normal - nearPlanePoint3, plane3Position - plane1Normal - nearPlanePoint3);
             var skipPlaneIntersectsTriangle = plane2Position == plane3Position;
-            if (SettingsXDPaint.Instance.RaycastsMethod == RaycastSystemType.CPU)
+            if (SettingsXD.Instance.RaycastsMethod == RaycastSystemType.CPU)
             {
                 var raycastsList = new List<RaycastTriangleData>();
                 foreach (var triangle in triangles)
@@ -189,7 +189,7 @@ namespace XDPaint.Tools.Raycast.Base
                 };
                 raycastRequest = request;
             }
-            else if (SettingsXDPaint.Instance.RaycastsMethod == RaycastSystemType.JobSystem)
+            else if (SettingsXD.Instance.RaycastsMethod == RaycastSystemType.JobSystem)
             {
                 var verticesData = trianglesSubMeshData[sender.SubMesh];
                 if (!IsTrianglesDataUpdated)

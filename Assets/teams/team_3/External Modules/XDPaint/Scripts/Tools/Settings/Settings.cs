@@ -5,7 +5,7 @@ using XDPaint.Utils;
 namespace XDPaint.Tools
 {
     [CreateAssetMenu(fileName = "XDPaintSettings", menuName = "XDPaint/Settings", order = 103)]
-    public class SettingsXDPaint : SingletonScriptableObject<SettingsXDPaint>
+    public class SettingsXD : SingletonScriptableObject<SettingsXD>
     {
         #region Shaders
 

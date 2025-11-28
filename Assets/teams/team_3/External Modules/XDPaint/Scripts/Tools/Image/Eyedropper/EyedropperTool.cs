@@ -86,7 +86,7 @@ namespace XDPaint.Tools.Image
         {
             if (eyedropperMaterial == null)
             {
-                eyedropperMaterial = new Material(Tools.SettingsXDPaint.Instance.EyedropperShader);
+                eyedropperMaterial = new Material(Tools.SettingsXD.Instance.EyedropperShader);
             }
             
             eyedropperMaterial.mainTexture = SourceTexture;

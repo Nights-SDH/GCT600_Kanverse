@@ -262,7 +262,7 @@ namespace XDPaint
 
             if (ControllersContainer.Instance == null)
             {
-                var containerGameObject = new GameObject(SettingsXDPaint.Instance.ContainerGameObjectName);
+                var containerGameObject = new GameObject(SettingsXD.Instance.ContainerGameObjectName);
                 containerGameObject.AddComponent<ControllersContainer>();
             }
 
@@ -371,7 +371,6 @@ namespace XDPaint
         
         public bool IsActive()
         {
-            Debug.LogWarning($"enabled: {enabled}, activeInHierarchy: {gameObject.activeInHierarchy}, ObjectForPainting != null: {ObjectForPainting != null}, PaintObject != null: {PaintObject != null}, PaintObject.ProcessInput: {PaintObject?.ProcessInput}");
             return enabled && gameObject.activeInHierarchy && ObjectForPainting != null && PaintObject != null && PaintObject.ProcessInput;
         }
 
@@ -430,7 +429,7 @@ namespace XDPaint
             {
                 var spriteRenderer = renderComponentsHelper.RendererComponent as SpriteRenderer;
                 if (spriteRenderer != null && spriteRenderer.material != null &&
-                    spriteRenderer.material.shader == SettingsXDPaint.Instance.SpriteMaskShader)
+                    spriteRenderer.material.shader == SettingsXD.Instance.SpriteMaskShader)
                 {
                     temp = RenderTextureFactory.CreateTemporaryRenderTexture(renderTexture, false);
                     var rti = new RenderTargetIdentifier(temp);
@@ -906,7 +905,7 @@ namespace XDPaint
                 PaintObject.InitRenderer(renderComponentsHelper.RendererComponent as Renderer);
             }
             
-            if (SettingsXDPaint.Instance.VRModeEnabled)
+            if (SettingsXD.Instance.VRModeEnabled)
             {
                 PaintObject.SetRaycastProcessor(new PenRaycastProcessor());
             }
@@ -949,7 +948,7 @@ namespace XDPaint
                 inputData.DoDispose();
             }
             
-            inputData = SettingsXDPaint.Instance.VRModeEnabled ? new InputDataVR() : new InputDataMesh();
+            inputData = SettingsXD.Instance.VRModeEnabled ? new InputDataVR() : new InputDataMesh();
             inputData.Init(this, PaintController.Instance.Camera);
             UpdatePreviewInput(currentBrush.Preview);
             InputController.Instance.OnUpdate += inputData.OnUpdate;

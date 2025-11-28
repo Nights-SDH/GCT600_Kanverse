@@ -205,7 +205,7 @@ namespace XDPaint.Tools.Image
         {
             if (brushSamplerMaterial == null)
             {
-                brushSamplerMaterial = new Material(Tools.SettingsXDPaint.Instance.BrushSamplerShader);
+                brushSamplerMaterial = new Material(Tools.SettingsXD.Instance.BrushSamplerShader);
             }
             
             brushSamplerMaterial.mainTexture = SourceTexture;
@@ -297,7 +297,7 @@ namespace XDPaint.Tools.Image
             var brushHardness = Data.Brush.Hardness;
             Data.Brush.Hardness = 1.0f;
             Data.Brush.SetColor(Color.white, false, false);
-            Data.Brush.SetTexture(Tools.SettingsXDPaint.Instance.DefaultCircleBrush, true, false, false);
+            Data.Brush.SetTexture(Tools.SettingsXD.Instance.DefaultCircleBrush, true, false, false);
             Graphics.Blit(Data.Brush.RenderTexture, previewTexture);
             Data.Brush.SetColor(previousBrushColor, false, false);
             Data.Brush.SetTexture(brushSourceTexture, false, false);
@@ -430,7 +430,7 @@ namespace XDPaint.Tools.Image
             {
                 if (CloneMaterial == null)
                 {
-                    CloneMaterial = new Material(Tools.SettingsXDPaint.Instance.BrushCloneShader);
+                    CloneMaterial = new Material(Tools.SettingsXD.Instance.BrushCloneShader);
                 }
                 
                 CloneMaterial.mainTexture = sourceTexture;

@@ -159,7 +159,7 @@ namespace XDPaint.Controllers
                 mode = GetPaintMode(paintModeType);
                 if (brush.SourceTexture == null)
                 {
-                    brush.SourceTexture = SettingsXDPaint.Instance.DefaultBrush;
+                    brush.SourceTexture = SettingsXD.Instance.DefaultBrush;
                 }
                 
                 brush.Init(mode);

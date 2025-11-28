@@ -88,7 +88,7 @@ namespace XDPaint.Controllers
         void Start()
         {
             isBegan = new bool[maxTouchesCount];
-            isVRMode = SettingsXDPaint.Instance.VRModeEnabled;
+            isVRMode = SettingsXD.Instance.VRModeEnabled;
             InitVR();
 #if ENABLE_INPUT_SYSTEM
             if (!EnhancedTouchSupport.enabled)
@@ -148,7 +148,7 @@ namespace XDPaint.Controllers
                     {
                         OnUpdate?.Invoke();
 
-                        var pressure = SettingsXDPaint.Instance.PressureEnabled ? Pen.current.pressure.ReadValue() : 1f;
+                        var pressure = SettingsXD.Instance.PressureEnabled ? Pen.current.pressure.ReadValue() : 1f;
                         var position = Pen.current.position.ReadValue();
 
                         if (Pen.current.press.wasPressedThisFrame)
@@ -177,7 +177,7 @@ namespace XDPaint.Controllers
 
                         OnUpdate?.Invoke();
 
-                        var pressure = SettingsXDPaint.Instance.PressureEnabled ? touch.pressure : 1f;
+                        var pressure = SettingsXD.Instance.PressureEnabled ? touch.pressure : 1f;
                         if (touch.phase == TouchPhase.Began && !isBegan[fingerId])
                         {
                             isBegan[fingerId] = true;

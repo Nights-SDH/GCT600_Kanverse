@@ -25,7 +25,7 @@ namespace XDPaint.Tools.Image
             base.Enter();
             if (Settings.PatternTexture == null)
             {
-                Settings.PatternTexture = Tools.SettingsXDPaint.Instance.DefaultPatternTexture;
+                Settings.PatternTexture = Tools.SettingsXD.Instance.DefaultPatternTexture;
             }
             
             ToolSettingsOnPropertyChanged(this, new PropertyChangedEventArgs(nameof(Settings.UsePattern)));

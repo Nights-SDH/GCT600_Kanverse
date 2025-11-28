@@ -48,10 +48,10 @@ namespace XDPaint.Core.PaintObject.Base
             raycasts.Add(new KeyValuePair<Ray, RaycastData>(new Ray(pointerPosition, pointerPosition - raycastStart.WorldHit), raycastStart));
             var direction = (raycastStart.WorldHit - raycastEnd.WorldHit).normalized;
             var distance = Vector3.Distance(raycastStart.WorldHit, raycastEnd.WorldHit);
-            var steps = Mathf.FloorToInt(distance / averageBrushSize / SettingsXDPaint.Instance.RaycastInterval);
+            var steps = Mathf.FloorToInt(distance / averageBrushSize / SettingsXD.Instance.RaycastInterval);
             for (var i = 0; i < steps; i++)
             {
-                var position = raycastStart.WorldHit - direction * ((i + 1) * SettingsXDPaint.Instance.RaycastInterval * averageBrushSize);
+                var position = raycastStart.WorldHit - direction * ((i + 1) * SettingsXD.Instance.RaycastInterval * averageBrushSize);
                 var ray = GetWorldRay(pointerPosition, position);
                 var raycastData = RaycastController.Instance.RaycastLocal(paintManager, ray, pointerPosition, fingerId);
                 if (raycastData == null)
@@ -248,7 +248,7 @@ namespace XDPaint.Core.PaintObject.Base
             var brushPressureStart = brushSizes[0];
             var brushPressureEnd = brushSizes[1];
             var pressureDifference = Mathf.Abs(brushPressureStart - brushPressureEnd);
-            var brushCenterPartWidth = Mathf.Clamp(SettingsXDPaint.Instance.BrushDuplicatePartWidth * brushSize, 1f, 100f);
+            var brushCenterPartWidth = Mathf.Clamp(SettingsXD.Instance.BrushDuplicatePartWidth * brushSize, 1f, 100f);
             var ratioBrush = totalDistanceInPixels * pressureDifference / brushCenterPartWidth;
             var ratioSource = totalDistanceInPixels / brushCenterPartWidth;
             return (ratioSource + ratioBrush) / totalDistanceInPixels;

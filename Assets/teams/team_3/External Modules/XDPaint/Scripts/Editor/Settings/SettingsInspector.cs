@@ -9,7 +9,7 @@ using UnityEditor.Build;
 
 namespace XDPaint.Editor
 {
-    [CustomEditor(typeof(SettingsXDPaint))]
+    [CustomEditor(typeof(SettingsXD))]
     public class SettingsInspector : UnityEditor.Editor
     {
         private SerializedProperty defaultBrushProperty;

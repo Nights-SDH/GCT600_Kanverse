@@ -150,7 +150,7 @@ namespace XDPaint.Demo
                 mainCamera = Camera.main;
             }
 
-            selectedBrushTexture = SettingsXDPaint.Instance.DefaultBrush;
+            selectedBrushTexture = SettingsXD.Instance.DefaultBrush;
             PreparePaintManagers();
 
             for (var i = 0; i < paintManagers.Length; i++)

@@ -186,7 +186,7 @@ namespace XDPaint.Tools.Image
             {
                 if (MaskMaterial == null)
                 {
-                    MaskMaterial = new Material(Tools.SettingsXDPaint.Instance.BrushBlurShader);
+                    MaskMaterial = new Material(Tools.SettingsXD.Instance.BrushBlurShader);
                 }
                 
                 MaskMaterial.mainTexture = PreBlurTexture;
@@ -194,7 +194,7 @@ namespace XDPaint.Tools.Image
                 MaskMaterial.color = data.Brush.Color;
                 if (BlurMaterial == null)
                 {
-                    BlurMaterial = new Material(Tools.SettingsXDPaint.Instance.GaussianBlurShader);
+                    BlurMaterial = new Material(Tools.SettingsXD.Instance.GaussianBlurShader);
                 }
                 
                 BlurMaterial.mainTexture = BlurTexture;

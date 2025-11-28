@@ -106,7 +106,7 @@ namespace XDPaint.Tools.Image
         {
             if (alphaMaskMaterial == null)
             {
-                alphaMaskMaterial = new Material(Tools.SettingsXDPaint.Instance.SpriteMaskShader);
+                alphaMaskMaterial = new Material(Tools.SettingsXD.Instance.SpriteMaskShader);
                 alphaMaskMaterial.SetInt(Constants.AlphaMaskShader.SrcColorBlend, (int)BlendMode.One);
                 alphaMaskMaterial.SetInt(Constants.AlphaMaskShader.DstColorBlend, (int)BlendMode.Zero);
             }
@@ -254,7 +254,7 @@ namespace XDPaint.Tools.Image
             {
                 if (GrayscaleMaterial == null)
                 {
-                    GrayscaleMaterial = new Material(Tools.SettingsXDPaint.Instance.GrayscaleShader);
+                    GrayscaleMaterial = new Material(Tools.SettingsXD.Instance.GrayscaleShader);
                 }
                 
                 GrayscaleMaterial.mainTexture = data.LayersController.ActiveLayer.RenderTexture;

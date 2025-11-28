@@ -69,7 +69,7 @@ namespace XDPaint.Tools.Image
             texture = new Texture2D(layerTexture.width, layerTexture.height, TextureFormat.ARGB32, false);
             if (Settings.PatternTexture == null)
             {
-                Settings.PatternTexture = Tools.SettingsXDPaint.Instance.DefaultPatternTexture;
+                Settings.PatternTexture = Tools.SettingsXD.Instance.DefaultPatternTexture;
             }
             
             Settings.PropertyChanged += ToolSettingsOnPropertyChanged;

@@ -12,7 +12,7 @@ namespace XDPaint.Utils
 
         private static readonly Dictionary<Type, string> paths = new Dictionary<Type, string>()
         {
-            { typeof(SettingsXDPaint), "XDPaintSettings" },
+            { typeof(SettingsXD), "XDPaintSettings" },
             { typeof(BrushPresets), "XDPaintBrushPresets" },
             { typeof(StatesSettings), "XDPaintStatesSettings" }
         };

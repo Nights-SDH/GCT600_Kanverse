@@ -24,12 +24,14 @@ MonoBehaviour:
   paintShader: {fileID: 4800000, guid: 52c8edff095d947d9b9b0981e148e2bf, type: 3}
   averageColorShader: {fileID: 4800000, guid: 35ab43ceb1f754c3bafd626b7caa2676, type: 3}
   spriteMaskShader: {fileID: 4800000, guid: 0e32ba1775f344e7880319750c287a62, type: 3}
-  depthToWorldPositionShader: {fileID: 4800000, guid: ca00a443f9dd94365b3b4ef4716bde57, type: 3}
+  depthToWorldPositionShader: {fileID: 4800000, guid: ca00a443f9dd94365b3b4ef4716bde57,
+    type: 3}
   paintWorldShader: {fileID: 4800000, guid: 7934e0e2243ee4cd3819bc6f3ea24fbd, type: 3}
   DefaultBrush: {fileID: 2800000, guid: f844f3eb6e0d04d6885cdf68f2e57b4c, type: 3}
   DefaultCircleBrush: {fileID: 2800000, guid: 0fba41bd85477476ea663cce9c159e48, type: 3}
-  DefaultPatternTexture: {fileID: 2800000, guid: 1f2815cfc3e9e4006af495419a0e5b06, type: 3}
-  VRModeEnabled: 1
+  DefaultPatternTexture: {fileID: 2800000, guid: 1f2815cfc3e9e4006af495419a0e5b06,
+    type: 3}
+  VRModeEnabled: 0
   PressureEnabled: 0
   CheckCanvasRaycasts: 1
   RaycastsMethod: 1

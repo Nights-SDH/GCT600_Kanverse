@@ -66,7 +66,7 @@ namespace XDPaint.AdditionalComponents
         {
             if (averageColorMaterial == null)
             {
-                averageColorMaterial = new Material(SettingsXDPaint.Instance.AverageColorShader);
+                averageColorMaterial = new Material(SettingsXD.Instance.AverageColorShader);
                 if (SkipTransparentPixels)
                 {
                     averageColorMaterial.SetTexture(SourceTextureParam, PaintManager.Material.SourceTexture);

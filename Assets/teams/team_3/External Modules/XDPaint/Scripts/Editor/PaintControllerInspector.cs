@@ -92,7 +92,7 @@ namespace XDPaint.Editor
             serializedObject.Update();
             DrawSharedSettingsBlock();
             DrawToolBlock();
-            if (SettingsXDPaint.Instance != null)
+            if (SettingsXD.Instance != null)
             {
                 DrawPresetsBlock();
             }

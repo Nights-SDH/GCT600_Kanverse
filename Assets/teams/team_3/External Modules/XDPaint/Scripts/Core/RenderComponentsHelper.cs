@@ -134,7 +134,7 @@ namespace XDPaint.Core
                 if (spriteRenderer != null)
                 {
                     var texture = CreateTexture(width, height, color);
-                    var pixelPerUnit = SettingsXDPaint.Instance.PixelPerUnit;
+                    var pixelPerUnit = SettingsXD.Instance.PixelPerUnit;
                     spriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, width, height), Vector2.one / 2f, pixelPerUnit);
                     return spriteRenderer.sprite.texture;
                 }

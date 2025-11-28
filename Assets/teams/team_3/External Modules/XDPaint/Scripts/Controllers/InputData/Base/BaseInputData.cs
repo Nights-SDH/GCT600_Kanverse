@@ -62,7 +62,7 @@ namespace XDPaint.Controllers.InputData.Base
                 canvas = rawImage.canvas;
             }
 
-            if (SettingsXDPaint.Instance.CheckCanvasRaycasts)
+            if (SettingsXD.Instance.CheckCanvasRaycasts)
             {
                 if (canvas != null)
                 {
@@ -135,7 +135,7 @@ namespace XDPaint.Controllers.InputData.Base
                 return;
             }
             
-            if (SettingsXDPaint.Instance.CheckCanvasRaycasts && raycasters.Count > 0)
+            if (SettingsXD.Instance.CheckCanvasRaycasts && raycasters.Count > 0)
             {
                 raycastResults[fingerId].Clear();
                 foreach (var raycaster in raycasters)
@@ -185,7 +185,7 @@ namespace XDPaint.Controllers.InputData.Base
                 return;
             }
 
-            if (SettingsXDPaint.Instance.CheckCanvasRaycasts && raycasters.Count > 0)
+            if (SettingsXD.Instance.CheckCanvasRaycasts && raycasters.Count > 0)
             {
                 raycastResults[fingerId].Clear();
                 foreach (var raycaster in raycasters)
@@ -233,7 +233,7 @@ namespace XDPaint.Controllers.InputData.Base
 
         public void OnPress(int fingerId, Vector3 position, float pressure = 1.0f)
         {
-            if (SettingsXDPaint.Instance.CheckCanvasRaycasts && InputController.Instance.BlockRaycastsOnPress && !isOnDownSuccess)
+            if (SettingsXD.Instance.CheckCanvasRaycasts && InputController.Instance.BlockRaycastsOnPress && !isOnDownSuccess)
             {
                 OnDown(fingerId, position, pressure);
                 return;
@@ -245,7 +245,7 @@ namespace XDPaint.Controllers.InputData.Base
                 return;
             }
 
-            if (SettingsXDPaint.Instance.CheckCanvasRaycasts && InputController.Instance.BlockRaycastsOnPress && raycasters.Count > 0)
+            if (SettingsXD.Instance.CheckCanvasRaycasts && InputController.Instance.BlockRaycastsOnPress && raycasters.Count > 0)
             {
                 raycastResults[fingerId].Clear();
                 foreach (var raycaster in raycasters)
@@ -328,13 +328,10 @@ namespace XDPaint.Controllers.InputData.Base
             return result;
         }
         
-        private bool CanProcess(int fingerId, bool printWarnings = true)
+        private bool CanProcess(int fingerId, bool printWarnings = false)
         {
             if (fingerId >= InputDataHistory.Length)
-            {
-                Debug.LogWarning($"FingerId {fingerId} is out of range!");
                 return false;
-            }
             
             if (!PaintManager.IsActive() || !PaintManager.LayersController.ActiveLayer.Enabled)
             {
@@ -345,8 +342,6 @@ namespace XDPaint.Controllers.InputData.Base
                         Debug.LogWarning("Active layer is disabled!");
                     }
                 }
-                Debug.LogWarning($"!PaintManager.IsActive(): {PaintManager.IsActive()}");
-                Debug.LogWarning($"!PaintManager.LayersController.ActiveLayer.Enabled: {!PaintManager.LayersController.ActiveLayer.Enabled}");
                 
                 return false;
             }

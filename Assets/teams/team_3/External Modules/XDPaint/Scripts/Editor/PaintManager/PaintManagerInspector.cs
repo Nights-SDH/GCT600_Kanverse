@@ -283,7 +283,7 @@ namespace XDPaint.Editor
                 {
                     DrawCheckboxesBlock();
                     DrawToolsBlock();
-                    if (SettingsXDPaint.Instance != null)
+                    if (SettingsXD.Instance != null)
                     {
                         DrawPresetsBlock();
                     }

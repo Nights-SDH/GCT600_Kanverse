@@ -14,9 +14,9 @@ namespace XDPaint.Editor.Utils
             {
                 SavePresets = false;
                 var pathsList = new List<string>();
-                if (SettingsXDPaint.Instance != null)
+                if (SettingsXD.Instance != null)
                 {
-                    var path = AssetDatabase.GetAssetPath(SettingsXDPaint.Instance);
+                    var path = AssetDatabase.GetAssetPath(SettingsXD.Instance);
                     if (!string.IsNullOrEmpty(path))
                     {
                         pathsList.Add(path);

@@ -219,7 +219,7 @@ namespace XDPaint.Core.Materials
                 sourceTextureWrapMode = sourceTexture.wrapMode;
             }
 
-            paintMaterial = new Material(SettingsXDPaint.Instance.PaintShader)
+            paintMaterial = new Material(SettingsXD.Instance.PaintShader)
             {
                 mainTexture = sourceTexture
             };
@@ -230,7 +230,7 @@ namespace XDPaint.Core.Materials
         public void CreateWorldMaterial()
         {
             DisposeWorldMaterial();
-            paintWorldMaterial = new Material(SettingsXDPaint.Instance.PaintWorldShader);
+            paintWorldMaterial = new Material(SettingsXD.Instance.PaintWorldShader);
             var wrapUV = sourceTexture != null && sourceTexture.wrapMode == TextureWrapMode.Repeat ? 1f : 0f;
             if (renderComponentsHelper.IsMesh())
             {

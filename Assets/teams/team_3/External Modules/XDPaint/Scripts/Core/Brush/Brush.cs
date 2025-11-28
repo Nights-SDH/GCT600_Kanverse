@@ -162,7 +162,7 @@ namespace XDPaint.Core.Materials
             OnTextureChanged?.Invoke(renderTexture);
             if (sourceTexture == null)
             {
-                sourceTexture = SettingsXDPaint.Instance.DefaultBrush;
+                sourceTexture = SettingsXD.Instance.DefaultBrush;
             }
             commandBufferBuilder = new CommandBufferBuilder("XDPaintBrush");
             InitRenderTexture();
@@ -282,13 +282,13 @@ namespace XDPaint.Core.Materials
         {
             if (material == null)
             {
-                material = new Material(SettingsXDPaint.Instance.BrushShader);
+                material = new Material(SettingsXD.Instance.BrushShader);
             }
             material.color = color;
             material.mainTexture = renderTexture;
             if (renderMaterial == null)
             {
-                renderMaterial = new Material(SettingsXDPaint.Instance.BrushRenderShader);
+                renderMaterial = new Material(SettingsXD.Instance.BrushRenderShader);
             }
             renderMaterial.mainTexture = sourceTexture;
             renderMaterial.color = color;
