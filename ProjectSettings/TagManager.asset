@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Touch
+  - Card
+  - Canvas
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -12,8 +15,8 @@ TagManager:
   - Overlay UI
   - Water
   - UI
-  - 
-  - 
+  - Card
+  - Canvas
   - 
   - 
   - 

@@ -5,49 +5,114 @@ using Meta.XR.MRUtilityKit;
 /// 방 크기를 읽어서 캔버스를 정규화된 비율로 스케일링.
 /// WallRaycastRight가 Ratio 모드일 때만 활성화됨.
 /// </summary>
-public class RatioAlignedCanvas : MonoBehaviour
+public class RatioAlignedCanvas : SingletonObject<RatioAlignedCanvas>
 {
-    [Tooltip("referenceRoomSize(m)")] // 기준 방 크기 (예: 5미터 방)
-    public float referenceRoomSize = 5f;
+    private const float StandardLength = 100;
 
-    [Tooltip("scale")] // 비율 조정용
-    public float roomScalingFactor = 1.0f;
-
-    [Tooltip("Scale Canvas Root")] // 비율 조정할 캔버스 오브젝트
-    public GameObject canvasObject;
-
-    void Start()
+    [Tooltip("CanvasArea(면적)")]
+    public float canvasArea = 120000f;
+    private float canvasAreaCache;
+    public void SetCanvasSize(float area)
     {
-        if (canvasObject == null)
-            canvasObject = this.gameObject;  // Prefab Root 사용
+        canvasArea = area;
+        canvasAreaCache = area;
     }
 
-    void Update()
+    [Tooltip("widthScale(가로비)")] // 비율 조정용
+    public float xScale = 4f;
+    private float xScaleCache;
+    public void SetXScale(float xScale)
     {
-        if (MRUK.Instance == null) return;
-
-        var room = MRUK.Instance.GetCurrentRoom();
-        if (room != null)
-            ApplyRatioAlignment(room);
+        this.xScale = xScale;
+        xScaleCache = xScale;
     }
 
-    void ApplyRatioAlignment(MRUKRoom room)
+    [Tooltip("heightScale(세로비)")] // 비율 조정용
+    public float yScale = 3f;
+    private float yScaleCache;
+    public void SetYScale(float yScale)
     {
-        if (canvasObject == null) return;
+        this.yScale = yScale;
+        yScaleCache = yScale;
+    }
 
-        Bounds roomBounds = room.GetRoomBounds();
-        Vector3 roomSize = roomBounds.size;
 
-        float ratioX = (roomSize.x / referenceRoomSize) * roomScalingFactor;
-        float ratioY = (roomSize.y / referenceRoomSize) * roomScalingFactor;
-        float ratioZ = (roomSize.z / referenceRoomSize) * roomScalingFactor;
+    [Tooltip("width(가로 길이)")] // 비율 조정용
+    public float xLength = 40f;
+    private float xLengthCache;
+    public void SetXLength(float xLength)
+    {
+        this.xLength = xLength;
+        xLengthCache = xLength;
+        gameObject.transform.localScale = new Vector3(xLength / StandardLength, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+    }
 
-        Vector3 newScale = new Vector3(ratioX, ratioY, ratioZ);
+    [Tooltip("height(세로 길이)")] // 비율 조정용
+    public float yLength = 30f;
+    private float yLengthCache;
+    public void SetYLength(float yLength)
+    {
+        this.yLength = yLength;
+        yLengthCache = yLength;
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, yLength / StandardLength, gameObject.transform.localScale.z);
+    }
 
-        canvasObject.transform.localScale = newScale;
+    public void OnValidate()
+    {
+        CheckChange();
+    }
 
-        Debug.Log(
-            $"[RatioAligned] Room Size = {roomSize}, Ratio = {newScale}, Applied to {canvasObject.name}"
-        );
+    public void Update()
+    {
+        CheckChange();
+    }
+
+    public void CheckChange()
+    {
+        if(CheckChangeCanvasArea()) return;
+        if(CheckChangeScale()) return;
+        if(CheckChangeCanvasLength()) return;
+    }
+
+    private bool CheckChangeCanvasArea()
+    {
+        if (canvasAreaCache == canvasArea) return false;
+
+        float r = Mathf.Sqrt(canvasArea / (xScale * yScale));
+        SetXLength(r * xScale);
+        SetYLength(r * yScale);
+        return true;
+    }
+
+    private bool CheckChangeScale() 
+    {
+        if (xScaleCache == xScale && yScaleCache == yScale) return false;
+        
+        float r = Mathf.Sqrt(canvasArea / (xScale * yScale));
+        SetXLength(r * xScale);
+        SetYLength(r * yScale);
+        SetXScale(xScale);
+        SetYScale(yScale);
+        return true;
+    }
+
+    private bool CheckChangeCanvasLength()
+    {
+        if(xLengthCache == xLength && yLengthCache == yLength) return false;
+        if (xLengthCache != xLength)
+        {
+            SetXLength(xLength);
+            SetYLength(canvasArea/xLength);
+            SetXScale(xLength/yLength);
+            SetYScale(1);
+        }
+        else if (yLengthCache != yLength)
+        {
+            SetYLength(yLength);
+            SetXLength(canvasArea/yLength);
+            SetYScale(yLength/xLength);
+            SetXScale(1);
+        }
+        return true;
     }
 }
