@@ -9,7 +9,7 @@ using UnityEngine;
 public class NetworkManagerPython : MonoBehaviour
 {
     // [설정] 서버 주소 (로컬 테스트 시 127.0.0.1, 실제 배포 시 IP 입력)
-    [SerializeField] private string serverUrl = "ws://127.0.0.1:8000/ws";
+    [SerializeField] private string serverUrl = "wss://arpserver-production.up.railway.app/ws";
     
     // [참조] 내 캔버스 (사이즈 측정용)
     public RectTransform myCanvasArea;
