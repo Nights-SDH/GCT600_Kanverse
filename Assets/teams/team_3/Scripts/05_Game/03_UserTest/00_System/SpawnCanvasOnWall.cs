@@ -4,10 +4,6 @@ using Unity.VisualScripting;
 
 public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 {
-    [Header("Input Settings")]
-    public OVRInput.Button spawnButton = OVRInput.Button.Two;
-    public OVRInput.Controller controller = OVRInput.Controller.RTouch;
-
     [Header("Raycast Settings")]
     public float maxDistance = 100.0f;
     public LayerMask wallLayer;
@@ -26,22 +22,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
     public float cardSpacingY = 0.3f;
     public float wallOffset = 0.001f;
 
-    // 외부에서 Update 호출 (Manager 등에서)
-    public void CheckUpdate()
-    {
-        if (OVRInput.GetDown(spawnButton, controller) || Input.GetKeyDown(KeyCode.Space))
-        {
-            TrySpawnCanvas();
-        }
-
-        
-        if (OVRInput.GetDown(OVRInput.Button.One, controller) || Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnCardsOnCanvas();
-        }
-    }
-
-    void TrySpawnCanvas()
+    public void TrySpawnCanvas()
     {
         if (CardDeck.Instance.GetCurrentCardSet() == null)
         {
@@ -58,12 +39,12 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         {
             Debug.Log($"[SDH] Wall detected {hit.collider.gameObject.name}");
             // hit.point와 hit.normal 외에 'startPos'(내 위치)도 함께 넘김
-            SpawnAndArrange(hit.point, hit.normal, startPos);
+            SpawnCanvas(hit.point, hit.normal, startPos);
         }
     }
 
     // [변경점] startPos(플레이어/컨트롤러 위치)를 인자로 추가
-    void SpawnAndArrange(Vector3 hitPoint, Vector3 hitNormal, Vector3 playerPos)
+    public void SpawnCanvas(Vector3 hitPoint, Vector3 hitNormal, Vector3 playerPos)
     {
         // 1. 벽에서 플레이어 쪽을 향하는 벡터 계산
         Vector3 toPlayerDir = (playerPos - hitPoint).normalized;

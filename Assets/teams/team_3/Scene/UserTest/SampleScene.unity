@@ -2466,6 +2466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82fa68a2be1febc46a86b0a46d990d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ControllerR: 2
+  ControllerL: 1
 --- !u!114 &454178820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2480,8 +2482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPossibleDuplicate: 0
   isDontDestory: 1
-  spawnButton: 2
-  controller: 2
   maxDistance: 100
   wallLayer:
     serializedVersion: 2
@@ -4674,7 +4674,7 @@ MonoBehaviour:
   isHost: 0
   moveCount: 0
   selectedCardSetType: 0
-  selectedCanvasSizeType: 6
+  selectedCanvasSizeType: 3
 --- !u!1 &1270424123
 GameObject:
   m_ObjectHideFlags: 0
