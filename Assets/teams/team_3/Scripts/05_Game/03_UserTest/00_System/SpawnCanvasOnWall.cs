@@ -40,7 +40,7 @@ public class SpawnCanvasOnWall: SingletonObject<SpawnCanvasOnWall>
 
         // 4. 생성 (이미 생성된 게 있다면 위치만 옮길지, 새로 만들지는 선택)
         GameObject.Instantiate(canvasPrefab, spawnPos, spawnRot);
-        spawnPos+= selectedWall.transform.forward * wallOffset;
+        spawnPos-= selectedWall.transform.forward * wallOffset;
         GameObject newCardDeck = GameObject.Instantiate(cardPrefab, spawnPos, spawnRot);
 
         Debug.Log($"Canvas generated on: {selectedWall.name}");

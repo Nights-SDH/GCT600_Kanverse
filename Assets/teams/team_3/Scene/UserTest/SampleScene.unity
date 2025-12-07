@@ -468,6 +468,10 @@ PrefabInstance:
       propertyPath: _centerEyeCamera
       value: 
       objectReference: {fileID: 2126242449}
+    - target: {fileID: 3903482226883268838, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4148778239110795873, guid: 0a7d2469f24041c4284c66706f84c45e, type: 3}
       propertyPath: m_Name
       value: '[BuildingBlock] OVRInteractionComprehensive'
@@ -2979,7 +2983,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 737406640}
-  - component: {fileID: 737406641}
   m_Layer: 0
   m_Name: LeftControllerAnchor
   m_TagString: Untagged
@@ -3003,18 +3006,6 @@ Transform:
   - {fileID: 1808701962}
   m_Father: {fileID: 175044437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &737406641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737406639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8da182e6bb4e3940b76602807baf607, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &756840267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,7 +4628,6 @@ GameObject:
   - component: {fileID: 1375755905}
   - component: {fileID: 1375755904}
   - component: {fileID: 1375755903}
-  - component: {fileID: 1375755908}
   m_Layer: 0
   m_Name: '[BuildingBlock] Camera Rig'
   m_TagString: Untagged
@@ -4800,28 +4790,6 @@ Transform:
   - {fileID: 71676255}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1375755908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375755902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 1
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &1402344770
 GameObject:
   m_ObjectHideFlags: 0
