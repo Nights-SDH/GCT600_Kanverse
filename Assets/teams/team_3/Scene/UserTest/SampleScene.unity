@@ -2431,6 +2431,7 @@ GameObject:
   - component: {fileID: 454178820}
   - component: {fileID: 454178821}
   - component: {fileID: 454178822}
+  - component: {fileID: 454178823}
   m_Layer: 0
   m_Name: UXItems
   m_TagString: Untagged
@@ -2614,6 +2615,45 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 198605d45f38a3d4aa72272361dc0c25, type: 3}
     - {fileID: 21300000, guid: 59d899c2b961aa1468a6f601f9d7e094, type: 3}
     - {fileID: 21300000, guid: 42beb03973b8b464684cf6e09b78c000, type: 3}
+--- !u!114 &454178823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454178817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2395cb2cc047df34884b5953d8a336ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPossibleDuplicate: 0
+  isDontDestory: 1
+  canvasSizes:
+  - type: 0
+    widthScale: 1
+    heightScale: 1
+  - type: 1
+    widthScale: 4
+    heightScale: 3
+  - type: 3
+    widthScale: 2.13
+    heightScale: 1
+  - type: 4
+    widthScale: 3.04
+    heightScale: 1
+  - type: 5
+    widthScale: 3.95
+    heightScale: 1
+  - type: 6
+    widthScale: 0.4
+    heightScale: 1
+  - type: 7
+    widthScale: 0.6667
+    heightScale: 1
+  - type: 8
+    widthScale: 0.9333
+    heightScale: 1
 --- !u!1 &455484473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4688,6 +4728,7 @@ MonoBehaviour:
   isHost: 0
   moveCount: 0
   selectedCardSetType: 0
+  selectedCanvasSizeType: 0
 --- !u!1 &1270424123
 GameObject:
   m_ObjectHideFlags: 0
