@@ -78,6 +78,8 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 
         // --- 이하 생성 로직 동일 ---
         GameObject newCanvas = Instantiate(canvasPrefab, spawnPos, spawnRot);
+        RatioAlignedCanvas customizableCanvas = newCanvas.GetComponent<RatioAlignedCanvas>();
+        customizableCanvas.SetScales(CanvasSizePool.Instance.GetCurrentCanvasSizeSet());
 
         CardSet cardSet = CardDeck.Instance.GetCurrentCardSet();
         List<Sprite> cardSprites = new List<Sprite>(cardSet.cardSprites);

@@ -8,4 +8,5 @@ public class GameManagerUX: SingletonObject<GameManagerUX>
     
     [Header("User Test Settings")]
     public CardSetType selectedCardSetType;
+    public CanvasSizeType selectedCanvasSizeType;
 }
