@@ -29,7 +29,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
     // 외부에서 Update 호출 (Manager 등에서)
     public void CheckUpdate()
     {
-        if (OVRInput.GetDown(spawnButton, controller))
+        if (OVRInput.GetDown(spawnButton, controller) || Input.GetKeyDown(KeyCode.Space))
         {
             TrySpawnCanvas();
         }

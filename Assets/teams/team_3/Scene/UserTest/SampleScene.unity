@@ -2654,6 +2654,9 @@ MonoBehaviour:
   - type: 8
     widthScale: 0.9333
     heightScale: 1
+  - type: 2
+    widthScale: 4
+    heightScale: 3
 --- !u!1 &455484473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,7 +4674,7 @@ MonoBehaviour:
   isHost: 0
   moveCount: 0
   selectedCardSetType: 0
-  selectedCanvasSizeType: 0
+  selectedCanvasSizeType: 2
 --- !u!1 &1270424123
 GameObject:
   m_ObjectHideFlags: 0
