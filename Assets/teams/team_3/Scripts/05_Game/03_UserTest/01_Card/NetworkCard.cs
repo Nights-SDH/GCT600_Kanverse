@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class NetworkCard : MonoBehaviour
 {
+    public int cardID;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     
@@ -28,6 +29,11 @@ public class NetworkCard : MonoBehaviour
         }
     }
 
+    public void SetCardID(int id)
+    {
+        cardID = id;
+    }
+
     // --- [로컬] 인터랙션 로직 (내가 잡을 때) ---
     public void OnGrab()
     {
@@ -39,7 +45,7 @@ public class NetworkCard : MonoBehaviour
         // [추가] 서버에 "나 이거 잡았어" 알림
         if (NetworkManagerPython.Instance != null)
         {
-            NetworkManagerPython.Instance.SendCardGrab(gameObject.name);
+            NetworkManagerPython.Instance.SendCardGrab(cardID);
         }
     }
 
@@ -51,7 +57,7 @@ public class NetworkCard : MonoBehaviour
         // [추가] 서버에 "나 이거 놨어" 알림
         if (NetworkManagerPython.Instance != null)
         {
-            NetworkManagerPython.Instance.SendCardRelease(gameObject.name);
+            NetworkManagerPython.Instance.SendCardRelease(cardID);
         }
     }
 

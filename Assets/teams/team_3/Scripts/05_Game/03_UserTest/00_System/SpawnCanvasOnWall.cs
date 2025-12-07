@@ -18,6 +18,8 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
     public GameObject cardPrefab; 
     public List<Sprite> cardSprites; 
 
+    public List<NetworkCard> spawnedCards = new List<NetworkCard>();
+
     public int totalCards => cardSprites != null ? cardSprites.Count : 0;
     public int rows = 2;
     public bool useRandomOrder = false;
@@ -115,6 +117,13 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
             // 3. 스프라이트 설정
             Sprite selectedSprite = SelectSprite(i);
             SpriteRenderer sr = newCard.GetComponent<SpriteRenderer>();
+            NetworkCard networkCard = newCard.GetComponent<NetworkCard>();
+            if (networkCard != null)
+            {
+                networkCard.SetCardID(i); // 카드 ID 할당
+                spawnedCards.Add(networkCard); // 리스트에 추가
+            }
+            
             
             if (sr != null)
             {
@@ -128,6 +137,11 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         }
 
         Debug.Log($"Canvas 생성 완료. (방향 보정됨, 카드 스케일 유지됨)");
+    }
+
+    public NetworkCard FindCardByID(int id)
+    {
+        return spawnedCards.Find(card => card.cardID == id);
     }
 
     Sprite SelectSprite(int currentIndex)

@@ -98,17 +98,17 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
 
             case "UPDATE_CARD":
                 // 상대방이 움직인 좌표 반영
-                UpdateCardPosition(msg.cardId, msg.x, msg.y);
+                UpdateCardPosition(int.Parse(msg.cardId), msg.x, msg.y);
                 break;
 
             // [추가됨] 상대방이 카드를 잡음 -> 나는 못 만지게 잠금
             case "GRAB_CARD":
-                SetCardLockState(msg.cardId, true); 
+                SetCardLockState(int.Parse(msg.cardId), true); 
                 break;
 
             // [추가됨] 상대방이 카드를 놓음 -> 다시 만질 수 있게 해제
             case "RELEASE_CARD":
-                SetCardLockState(msg.cardId, false);
+                SetCardLockState(int.Parse(msg.cardId), false);
                 break;
         }
     }
@@ -139,12 +139,12 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
         SendJson(new SocketMessage { type = "START_GAME" });
     }
 
-    public void SendCardMove(string cardId, Vector2 position)
+    public void SendCardMove(int cardId, Vector2 position)
     {
         SocketMessage msg = new SocketMessage
         {
             type = "MOVE_CARD",
-            cardId = cardId,
+            cardId = cardId.ToString(),
             x = position.x,
             y = position.y
         };
@@ -152,23 +152,23 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
     }
 
     // [추가됨] 카드 잡았을 때 호출 (Touch Start)
-    public void SendCardGrab(string cardId)
+    public void SendCardGrab(int cardId)
     {
         SocketMessage msg = new SocketMessage
         {
             type = "GRAB_CARD",
-            cardId = cardId
+            cardId = cardId.ToString(),
         };
         SendJson(msg);
     }
 
     // [추가됨] 카드 놓았을 때 호출 (Touch End)
-    public void SendCardRelease(string cardId)
+    public void SendCardRelease(int cardId)
     {
         SocketMessage msg = new SocketMessage
         {
             type = "RELEASE_CARD",
-            cardId = cardId
+            cardId = cardId.ToString()
         };
         SendJson(msg);
     }
@@ -185,29 +185,25 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
 
     // --- 로컬 로직 (위치 이동 및 잠금 처리) ---
 
-    private void UpdateCardPosition(string cardId, float x, float y)
+    private void UpdateCardPosition(int cardId, float x, float y)
     {
-        GameObject card = GameObject.Find(cardId);
-        if (card != null)
+        NetworkCard netCard = SpawnCanvasOnWall.Instance.FindCardByID(cardId);
+        if (netCard != null)
         {
-            RectTransform rect = card.GetComponent<RectTransform>();
+            RectTransform rect = netCard.GetComponent<RectTransform>();
             if(rect != null) rect.anchoredPosition = new Vector2(x, y); 
         }
     }
 
     // [추가됨] 카드의 상호작용 잠금/해제 처리
-    private void SetCardLockState(string cardId, bool isLocked)
+    private void SetCardLockState(int cardId, bool isLocked)
     {
-        GameObject card = GameObject.Find(cardId);
-        if (card != null)
+        // NetworkCard 컴포넌트를 찾아서 함수 호출
+        NetworkCard netCard = SpawnCanvasOnWall.Instance.FindCardByID(cardId);
+        if (netCard != null)
         {
-            // NetworkCard 컴포넌트를 찾아서 함수 호출
-            NetworkCard netCard = card.GetComponent<NetworkCard>();
-            if (netCard != null)
-            {
-                netCard.SetRemoteLock(isLocked);
-                Debug.Log($"카드({cardId}) 잠금 상태 변경: {isLocked}");
-            }
+            netCard.SetRemoteLock(isLocked);
+            Debug.Log($"카드({cardId}) 잠금 상태 변경: {isLocked}");
         }
     }
 }
