@@ -110,7 +110,7 @@ public class MRUKLaserInteractor : MonoBehaviour
                 {
                     // 로컬 X, Y 좌표 전송
                     NetworkManagerPython.Instance.SendCardMove(
-                        cardId, 
+                        hit.collider.GetComponent<NetworkCard>().cardID, 
                         new Vector2(localPos.x, localPos.y)
                     );
                 }
