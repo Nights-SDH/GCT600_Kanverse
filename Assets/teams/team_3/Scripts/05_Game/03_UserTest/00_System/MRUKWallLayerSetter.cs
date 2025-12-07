@@ -5,13 +5,14 @@ public class MRUKWallLayerSetter : MonoBehaviour
 {
     [Header("Settings")]
     public string targetLayerName = "Wall"; // 변경할 레이어 이름
-
-    void Start()
+    public bool isDone = false;
+    void Update()
     {
         // MRUK가 준비되면 이벤트를 연결합니다.
-        if (MRUK.Instance != null)
+        if (MRUK.Instance != null && isDone == false)
         {
             MRUK.Instance.RegisterSceneLoadedCallback(OnSceneLoaded);
+            isDone = true;
         }
     }
 
@@ -27,6 +28,7 @@ public class MRUKWallLayerSetter : MonoBehaviour
         {
             // 벽 오브젝트와 그 자식들(Mesh, Collider 등)까지 모두 변경
             SetLayerRecursively(wallAnchor.gameObject, LayerMask.NameToLayer(targetLayerName));
+            wallAnchor.gameObject.AddComponent<BoxCollider>();
         }
 
         Debug.Log($"[MRUK] 모든 벽의 Layer를 '{targetLayerName}'로 변경했습니다.");

@@ -5,7 +5,7 @@ using Meta.XR.MRUtilityKit;
 public class CeilngSquareSpawner : MonoBehaviour
 {
     public GameObject prefabToSpawn;
-    public float normalOffset = 0.05f;
+    public float normalOffset = 1f;
     public MRUKAnchor.SceneLabels ceilingLabel = MRUKAnchor.SceneLabels.CEILING;
 
     IEnumerator Start()
