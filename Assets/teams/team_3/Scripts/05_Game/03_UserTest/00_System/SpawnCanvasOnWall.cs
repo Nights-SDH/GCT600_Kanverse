@@ -4,10 +4,6 @@ using Unity.VisualScripting;
 
 public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 {
-    [Header("Input Settings")]
-    public OVRInput.Button spawnButton = OVRInput.Button.Two;
-    public OVRInput.Controller controller = OVRInput.Controller.RTouch;
-
     [Header("Raycast Settings")]
     public float maxDistance = 100.0f;
     public LayerMask wallLayer;
@@ -26,16 +22,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
     public float cardSpacingY = 0.3f;
     public float wallOffset = 0.001f;
 
-    // 외부에서 Update 호출 (Manager 등에서)
-    public void CheckUpdate()
-    {
-        if (OVRInput.GetDown(spawnButton, controller) || Input.GetKeyDown(KeyCode.Space))
-        {
-            TrySpawnCanvas();
-        }
-    }
-
-    void TrySpawnCanvas()
+    public void TrySpawnCanvas()
     {
         if (CardDeck.Instance.GetCurrentCardSet() == null)
         {
@@ -52,12 +39,12 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         {
             Debug.Log($"[SDH] Wall detected {hit.collider.gameObject.name}");
             // hit.point와 hit.normal 외에 'startPos'(내 위치)도 함께 넘김
-            SpawnAndArrange(hit.point, hit.normal, startPos);
+            SpawnCanvas(hit.point, hit.normal, startPos);
         }
     }
 
     // [변경점] startPos(플레이어/컨트롤러 위치)를 인자로 추가
-    void SpawnAndArrange(Vector3 hitPoint, Vector3 hitNormal, Vector3 playerPos)
+    public void SpawnCanvas(Vector3 hitPoint, Vector3 hitNormal, Vector3 playerPos)
     {
         // 1. 벽에서 플레이어 쪽을 향하는 벡터 계산
         Vector3 toPlayerDir = (playerPos - hitPoint).normalized;
@@ -80,7 +67,10 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         GameObject newCanvas = Instantiate(canvasPrefab, spawnPos, spawnRot);
         RatioAlignedCanvas customizableCanvas = newCanvas.GetComponent<RatioAlignedCanvas>();
         customizableCanvas.SetScales(CanvasSizePool.Instance.GetCurrentCanvasSizeSet());
+    }
 
+    public void SpawnCardsOnCanvas()
+    {
         CardSet cardSet = CardDeck.Instance.GetCurrentCardSet();
         List<Sprite> cardSprites = new List<Sprite>(cardSet.cardSprites);
         int totalCards = cardSprites.Count;
@@ -100,11 +90,11 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
             GameObject newCard = Instantiate(cardPrefab);
             
             // 1. 일단 부모 설정
-            newCard.transform.SetParent(newCanvas.transform, true);
+            newCard.transform.SetParent(RatioAlignedCanvas.Instance.transform, true);
 
             // [핵심 변경] 부모의 크기 영향을 없애기 위한 스케일 역보정
             // 공식: 자식의 LocalScale = (원하는 WorldScale) / (부모의 WorldScale)
-            Vector3 parentScale = newCanvas.transform.lossyScale;
+            Vector3 parentScale = RatioAlignedCanvas.Instance.transform.lossyScale;
             Vector3 originalScale = cardPrefab.transform.localScale;
 
             newCard.transform.localScale = new Vector3(
