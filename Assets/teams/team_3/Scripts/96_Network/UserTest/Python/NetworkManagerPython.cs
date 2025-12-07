@@ -19,7 +19,7 @@ public class NetworkManagerPython : MonoBehaviour
     private CancellationTokenSource cts = new CancellationTokenSource();
     private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>(); // 메인 스레드 전달용 큐
 
-    public bool IsHost { get; private set; } = false;
+    public bool IsHost = false;
     public bool IsConnected => ws.State == WebSocketState.Open;
 
     // 싱글톤 (어디서든 접근 가능하게)
