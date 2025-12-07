@@ -14,25 +14,26 @@ public class MRUKLaserInteractor : MonoBehaviour
 
     [Header("References")]
     public LineRenderer lineRenderer; 
-    // rayOrigin이 없으면 이 스크립트가 붙은 오브젝트(LaserBeam)가 기준이 됨
     
     private NetworkCard hoveredCard = null;
     private NetworkCard selectedObject = null;
     private bool isDragging = false;
 
+    // [추가] 네트워크 전송 빈도 조절용 변수
+    private float lastSendTime = 0f;
+    private float sendInterval = 0.05f; // 0.05초마다 전송 (초당 약 20회)
+
     void Start()
     {
-        // 로컬 좌표계 사용 강제 설정
         if (lineRenderer != null)
         {
-            lineRenderer.useWorldSpace = false; // 핵심!
-            lineRenderer.SetPosition(0, Vector3.zero); // 시작점은 항상 (0,0,0)
+            lineRenderer.useWorldSpace = false;
+            lineRenderer.SetPosition(0, Vector3.zero);
         }
     }
 
     void Update()
     {
-        // 이제 transform.position/forward는 LineRenderer가 붙은 자식 오브젝트 기준
         if (isDragging)
         {
             HandleDragging();
@@ -50,7 +51,6 @@ public class MRUKLaserInteractor : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance, cardLayer))
         {
-            Debug.Log("[SDH]" + hit.collider.gameObject.name);
             NetworkCard hitCard = hit.collider.GetComponent<NetworkCard>();
 
             if (hoveredCard != hitCard)
@@ -60,7 +60,6 @@ public class MRUKLaserInteractor : MonoBehaviour
                 if (hoveredCard != null) hoveredCard.SetHighlight(true);
             }
 
-            // [변경점] 좌표 대신 '거리'만 넘겨줍니다.
             SetLaserLength(hit.distance);
 
             if (OVRInput.GetDown(grabButton, controllerNode))
@@ -75,7 +74,6 @@ public class MRUKLaserInteractor : MonoBehaviour
                 hoveredCard.SetHighlight(false);
                 hoveredCard = null;
             }
-            // 허공이면 최대 길이
             SetLaserLength(maxDistance);
         }
     }
@@ -89,13 +87,36 @@ public class MRUKLaserInteractor : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance, canvasLayer))
         {
-            Debug.Log("[SDH] canvasLayer detected" + hit.collider.gameObject.name);
+            // 1. 시각적 이동 (World Space)
             Vector3 targetPos = hit.point + (hit.normal * 0.02f);
-
+            
+            // 부드러운 이동
             selectedObject.transform.position = Vector3.Lerp(selectedObject.transform.position, targetPos, Time.deltaTime * 20f);
 
-            // 벽까지의 거리로 길이 조절
+            // 레이저 길이 조절
             SetLaserLength(hit.distance);
+
+            // =================================================================
+            // [추가됨] 2. 서버로 좌표 전송 로직
+            // =================================================================
+            if (Time.time - lastSendTime > sendInterval)
+            {
+                // (중요) 월드 좌표(hit.point)를 그대로 보내면 상대방 방 위치가 다를 때 문제 생김.
+                // 따라서 '닿은 캔버스(벽)' 기준의 로컬 좌표로 변환해서 보냄.
+                Vector3 localPos = hit.collider.transform.InverseTransformPoint(targetPos);
+
+                if (NetworkManagerPython.Instance != null)
+                {
+                    // 로컬 X, Y 좌표 전송
+                    NetworkManagerPython.Instance.SendCardMove(
+                        selectedObject.gameObject.name, 
+                        new Vector2(localPos.x, localPos.y)
+                    );
+                }
+
+                lastSendTime = Time.time;
+            }
+            // =================================================================
         }
         else
         {
@@ -108,12 +129,10 @@ public class MRUKLaserInteractor : MonoBehaviour
         }
     }
 
-    // [핵심 변경] 시작점/끝점 좌표 계산 없이 길이(Z)만 조절
     void SetLaserLength(float distance)
     {
         if (lineRenderer != null)
         {
-            // Index 1번(끝점)의 Z좌표만 변경하면 로컬 좌표계라 알아서 방향 맞춤
             lineRenderer.SetPosition(1, new Vector3(0, 0, distance));
         }
     }
