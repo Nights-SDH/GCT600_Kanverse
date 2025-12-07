@@ -2506,8 +2506,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ebbca1194e8a7fd4a8efbd782e119660, type: 3}
   rows: 2
   useRandomOrder: 0
-  cardSpacingX: 3
-  cardSpacingY: 4
+  cardSpacingX: 3.5
+  cardSpacingY: 5.02
   wallOffset: 0.5
 --- !u!114 &454178821
 MonoBehaviour:
@@ -5207,7 +5207,7 @@ MonoBehaviour:
   Colliders: 0
   CutHoles: 0
   castShadows: 1
-  hideMesh: 0
+  hideMesh: 1
   Layer: 0
   textureCoordinateModes:
   - WallU: 5
