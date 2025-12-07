@@ -92,7 +92,7 @@ public class MRUKLaserInteractor : MonoBehaviour
             Vector3 targetPos = hit.point + (hit.normal * 0.02f);
             
             // 부드러운 이동
-            selectedObject.transform.position = Vector3.Lerp(selectedObject.transform.position, targetPos, Time.deltaTime * 20f);
+            selectedObject.transform.position = Vector3.Lerp(selectedObject.transform.position, new Vector3(targetPos.x, targetPos.y, selectedObject.transform.position.z), Time.deltaTime * 20f);
 
             // 레이저 길이 조절
             SetLaserLength(hit.distance);
@@ -110,7 +110,7 @@ public class MRUKLaserInteractor : MonoBehaviour
                 {
                     // 로컬 X, Y 좌표 전송
                     NetworkManagerPython.Instance.SendCardMove(
-                        hit.collider.GetComponent<NetworkCard>().cardID, 
+                        selectedObject.cardID, 
                         new Vector2(localPos.x, localPos.y)
                     );
                 }
