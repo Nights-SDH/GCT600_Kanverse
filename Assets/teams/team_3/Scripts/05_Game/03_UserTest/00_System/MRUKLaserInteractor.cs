@@ -18,7 +18,6 @@ public class MRUKLaserInteractor : MonoBehaviour
     private NetworkCard hoveredCard = null;
     private NetworkCard selectedObject = null;
     private bool isDragging = false;
-    private int count = 0;
 
     // [추가] 네트워크 전송 빈도 조절용 변수
     private float lastSendTime = 0f;
@@ -150,7 +149,6 @@ public class MRUKLaserInteractor : MonoBehaviour
         if (selectedObject != null) selectedObject.OnRelease();
         selectedObject = null;
         isDragging = false;
-        count+=1;
-        Debug.Log($"카드 드래그 {count}");
+        GameManagerUX.Instance.moveCount += 1;
     }
 }

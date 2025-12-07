@@ -16,7 +16,7 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
     private CancellationTokenSource cts = new CancellationTokenSource();
     private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
 
-    public bool IsHost = false;
+    public bool IsHost => GameManagerUX.Instance.isHost;
     public bool IsConnected => ws.State == WebSocketState.Open;
 
     private async void Start()
@@ -87,7 +87,7 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
         switch (msg.type)
         {
             case "ROLE_ASSIGN":
-                IsHost = (msg.role == "HOST");
+                GameManagerUX.Instance.isHost = (msg.role == "HOST");
                 Debug.Log($"내 역할 배정됨: {msg.role}");
                 break;
 
@@ -204,6 +204,7 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
         {
             netCard.SetRemoteLock(isLocked);
             Debug.Log($"카드({cardId}) 잠금 상태 변경: {isLocked}");
+            GameManagerUX.Instance.moveCount++;
         }
     }
 }

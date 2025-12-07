@@ -16,11 +16,8 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
     [Header("Spawn Settings")]
     public GameObject canvasPrefab;
     public GameObject cardPrefab; 
-    public List<Sprite> cardSprites; 
-
     public List<NetworkCard> spawnedCards = new List<NetworkCard>();
 
-    public int totalCards => cardSprites != null ? cardSprites.Count : 0;
     public int rows = 2;
     public bool useRandomOrder = false;
 
@@ -40,9 +37,9 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 
     void TrySpawnCanvas()
     {
-        if (cardSprites == null || cardSprites.Count == 0)
+        if (CardDeck.Instance.GetCurrentCardSet() == null)
         {
-            Debug.LogWarning("Card Sprites 리스트가 비어있습니다!");
+            Debug.LogWarning("현재 선택된 CardSet이 없습니다!");
             return;
         }
 
@@ -82,6 +79,10 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         // --- 이하 생성 로직 동일 ---
         GameObject newCanvas = Instantiate(canvasPrefab, spawnPos, spawnRot);
 
+        CardSet cardSet = CardDeck.Instance.GetCurrentCardSet();
+        List<Sprite> cardSprites = new List<Sprite>(cardSet.cardSprites);
+        int totalCards = cardSprites.Count;
+
         int columns = Mathf.CeilToInt((float)totalCards / rows);
         float startX = -((columns - 1) * cardSpacingX) / 2;
         float startY = ((rows - 1) * cardSpacingY) / 2;
@@ -115,7 +116,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
             newCard.transform.localRotation = Quaternion.identity;
 
             // 3. 스프라이트 설정
-            Sprite selectedSprite = SelectSprite(i);
+            Sprite selectedSprite = SelectSprite(i, cardSprites);
             SpriteRenderer sr = newCard.GetComponent<SpriteRenderer>();
             NetworkCard networkCard = newCard.GetComponent<NetworkCard>();
             if (networkCard != null)
@@ -144,7 +145,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         return spawnedCards.Find(card => card.cardID == id);
     }
 
-    Sprite SelectSprite(int currentIndex)
+    Sprite SelectSprite(int currentIndex, List<Sprite> cardSprites)
     {
         if (useRandomOrder)
         {
