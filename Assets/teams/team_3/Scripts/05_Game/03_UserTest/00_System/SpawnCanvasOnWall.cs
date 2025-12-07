@@ -94,10 +94,25 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 
             GameObject newCard = Instantiate(cardPrefab);
             
-            newCard.transform.SetParent(newCanvas.transform, false);
+            // 1. 일단 부모 설정
+            newCard.transform.SetParent(newCanvas.transform, true);
+
+            // [핵심 변경] 부모의 크기 영향을 없애기 위한 스케일 역보정
+            // 공식: 자식의 LocalScale = (원하는 WorldScale) / (부모의 WorldScale)
+            Vector3 parentScale = newCanvas.transform.lossyScale;
+            Vector3 originalScale = cardPrefab.transform.localScale;
+
+            newCard.transform.localScale = new Vector3(
+                originalScale.x / parentScale.x,
+                originalScale.y / parentScale.y,
+                originalScale.z / parentScale.z
+            );
+
+            // 2. 위치 및 회전 설정 (Local 기준)
             newCard.transform.localPosition = new Vector3(posX, posY, 0);
             newCard.transform.localRotation = Quaternion.identity;
 
+            // 3. 스프라이트 설정
             Sprite selectedSprite = SelectSprite(i);
             SpriteRenderer sr = newCard.GetComponent<SpriteRenderer>();
             
@@ -112,7 +127,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
             }
         }
 
-        Debug.Log($"Canvas 생성 완료. (방향 보정됨)");
+        Debug.Log($"Canvas 생성 완료. (방향 보정됨, 카드 스케일 유지됨)");
     }
 
     Sprite SelectSprite(int currentIndex)
