@@ -6,7 +6,7 @@ public class CommandManagerUX: MonoBehaviour
     {
         SpawnCanvasOnWall.Instance.CheckUpdate();
         
-        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
             NetworkManagerPython.Instance.RequestGameStart();
         }

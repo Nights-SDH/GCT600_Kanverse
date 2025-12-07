@@ -2506,9 +2506,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ebbca1194e8a7fd4a8efbd782e119660, type: 3}
   rows: 2
   useRandomOrder: 0
-  cardSpacingX: 2
-  cardSpacingY: 3
-  wallOffset: 0.02
+  cardSpacingX: 3
+  cardSpacingY: 4
+  wallOffset: 0.5
 --- !u!114 &454178821
 MonoBehaviour:
   m_ObjectHideFlags: 0
