@@ -2507,7 +2507,7 @@ MonoBehaviour:
   rows: 2
   useRandomOrder: 0
   cardSpacingX: 3
-  cardSpacingY: 4
+  cardSpacingY: 4.5
   wallOffset: 0.5
 --- !u!114 &454178821
 MonoBehaviour:
@@ -5150,7 +5150,7 @@ MonoBehaviour:
   Colliders: 0
   CutHoles: 0
   castShadows: 1
-  hideMesh: 0
+  hideMesh: 1
   Layer: 0
   textureCoordinateModes:
   - WallU: 5
