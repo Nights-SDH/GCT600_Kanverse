@@ -2478,8 +2478,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPossibleDuplicate: 0
   isDontDestory: 1
+  spawnButton: 2
+  controller: 2
+  maxDistance: 100
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  rayOrigin: {fileID: 1406267860}
   canvasPrefab: {fileID: 2732410611558533086, guid: 1f2ee74b0a9eecb41a06a709c22ce399, type: 3}
-  cardPrefab: {fileID: 654673180171768133, guid: a605bb0668976844b83f1e3d35132894, type: 3}
+  cardPrefab: {fileID: 4782340793592076332, guid: 71b4c2f265acba548ad7ffc486acffef, type: 3}
+  cardSprites:
+  - {fileID: 21300000, guid: 50c612899902f9c44a2e8f5c45a32723, type: 3}
+  - {fileID: 21300000, guid: df5ce33bb022ce045a5cba9d3084cbb1, type: 3}
+  - {fileID: 21300000, guid: be31a2f2bf3cc1d4a8ed846e2d81fd93, type: 3}
+  - {fileID: 21300000, guid: a0e38bcf2f882884cbb42a1abbdd9d51, type: 3}
+  - {fileID: 21300000, guid: 9c84cc019cdb3eb4b910b614bc16186a, type: 3}
+  - {fileID: 21300000, guid: 23c50215358e8b24eb9646d75cef95cd, type: 3}
+  - {fileID: 21300000, guid: 38a045ba51eeff84cb47aa0385ad30e0, type: 3}
+  - {fileID: 21300000, guid: e556cbfc8c096b542bb70d250b4448b8, type: 3}
+  - {fileID: 21300000, guid: 42949dfa14a759748a3db0f9a2f9a19b, type: 3}
+  - {fileID: 21300000, guid: 4d7729098f8c7b74e912beb205fe21a6, type: 3}
+  - {fileID: 21300000, guid: 0520633721144984ea917b9da47c7820, type: 3}
+  - {fileID: 21300000, guid: 0195f59eeb506984c94a149d5634f76a, type: 3}
+  - {fileID: 21300000, guid: 537637a4ba9d5b9468a007db7c9c8057, type: 3}
+  - {fileID: 21300000, guid: 555818f8f6592a540a6122efd8da26c0, type: 3}
+  - {fileID: 21300000, guid: 0a0647db9da446b4faeb03c57a5b1bb6, type: 3}
+  - {fileID: 21300000, guid: ebbca1194e8a7fd4a8efbd782e119660, type: 3}
+  rows: 2
+  useRandomOrder: 0
+  cardSpacingX: 0.2
+  cardSpacingY: 0.3
+  wallOffset: 0.02
 --- !u!114 &454178821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3111,6 +3140,7 @@ GameObject:
   - component: {fileID: 781582246}
   - component: {fileID: 781582245}
   - component: {fileID: 781582244}
+  - component: {fileID: 781582247}
   m_Layer: 0
   m_Name: '[BuildingBlock] MR Utility Kit'
   m_TagString: Untagged
@@ -3221,6 +3251,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &781582247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781582243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431024d31bc706447a2f53328494a83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerName: Wall
 --- !u!1 &781603118
 GameObject:
   m_ObjectHideFlags: 0

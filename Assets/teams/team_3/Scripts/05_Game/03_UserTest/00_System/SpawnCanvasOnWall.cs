@@ -1,48 +1,120 @@
 using UnityEngine;
-using Meta.XR.MRUtilityKit;
+using System.Collections.Generic;
 using Unity.VisualScripting;
-using Photon.Pun; // MRUK 필수 네임스페이스
 
-public class SpawnCanvasOnWall: SingletonObject<SpawnCanvasOnWall>
+public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 {
-    [Header("Settings")]
-    public GameObject canvasPrefab; // 생성할 캔버스 프리팹
-    public GameObject cardPrefab; // 생성할 카드 프리팹
-    public const float wallOffset = 0.02f; // 벽에서 살짝 띄울 거리 (Z-fighting 방지, 2cm)
+    [Header("Input Settings")]
+    public OVRInput.Button spawnButton = OVRInput.Button.Two;
+    public OVRInput.Controller controller = OVRInput.Controller.RTouch;
 
-    public void SpawnCanvas()
+    [Header("Raycast Settings")]
+    public float maxDistance = 100.0f;
+    public LayerMask wallLayer;
+    public Transform rayOrigin;
+
+    [Header("Spawn Settings")]
+    public GameObject canvasPrefab;
+    
+    // [변경 1] 프리팹은 1개, 이미지는 여러 개
+    public GameObject cardPrefab; 
+    public List<Sprite> cardSprites; 
+
+    public int totalCards => cardSprites.Count;
+    public int rows = 2;
+    public bool useRandomOrder = false;
+
+    [Header("Layout Settings")]
+    public float cardSpacingX = 0.2f;
+    public float cardSpacingY = 0.3f;
+    public float wallOffset = 0.02f;
+
+    public void CheckUpdate()
     {
-        // 1. 현재 방 정보 가져오기
-        if (MRUK.Instance == null) return;
-        var room = MRUK.Instance.GetCurrentRoom();
-
-        // 방이 없거나 벽이 하나도 없으면 중단
-        if (room == null || room.WallAnchors.Count == 0)
+        if (OVRInput.GetDown(spawnButton, controller))
         {
-            Debug.LogWarning("방을 찾을 수 없거나 벽이 없습니다.");
+            TrySpawnCanvas();
+        }
+    }
+
+    void TrySpawnCanvas()
+    {
+        // Sprite 리스트 확인
+        if (cardSprites == null || cardSprites.Count == 0)
+        {
+            Debug.LogWarning("Card Sprites 리스트가 비어있습니다!");
             return;
         }
 
-        // 2. 벽 리스트 중 랜덤으로 하나 선택
-        int randomIndex = Random.Range(0, room.WallAnchors.Count);
-        MRUKAnchor selectedWall = room.WallAnchors[randomIndex];
+        Vector3 startPos = rayOrigin ? rayOrigin.position : transform.position;
+        Vector3 direction = rayOrigin ? rayOrigin.forward : transform.forward;
 
-        // 3. 위치 및 회전 계산
-        // 벽의 중심 위치
-        Vector3 spawnPos = selectedWall.transform.position;
+        RaycastHit hit;
         
-        // 벽이 바라보는 방향(방 안쪽)으로 회전
-        Quaternion spawnRot = selectedWall.transform.rotation;
+        if (Physics.Raycast(startPos, direction, out hit, maxDistance, wallLayer))
+        {
+            Debug.Log($"[SDH] Wall detected {hit.collider.gameObject.name}");
+            SpawnAndArrange(hit.point, hit.normal);
+        }
+    }
 
-        // 벽에 딱 붙으면 겹쳐서 안 보일 수 있으므로 앞으로 살짝 띄움
-        // (MRUK 벽의 forward는 방 안쪽을 향합니다)
-        spawnPos += selectedWall.transform.forward * wallOffset;
+    void SpawnAndArrange(Vector3 hitPoint, Vector3 hitNormal)
+    {
+        Vector3 spawnPos = hitPoint + (hitNormal * wallOffset);
+        Quaternion spawnRot = Quaternion.LookRotation(hitNormal);
 
-        // 4. 생성 (이미 생성된 게 있다면 위치만 옮길지, 새로 만들지는 선택)
-        GameObject.Instantiate(canvasPrefab, spawnPos, spawnRot);
-        spawnPos-= selectedWall.transform.forward * wallOffset;
-        GameObject newCardDeck = GameObject.Instantiate(cardPrefab, spawnPos, spawnRot);
+        GameObject newCanvas = Instantiate(canvasPrefab, spawnPos, spawnRot);
 
-        Debug.Log($"Canvas generated on: {selectedWall.name}");
+        int columns = Mathf.CeilToInt((float)totalCards / rows);
+        float startX = -((columns - 1) * cardSpacingX) / 2;
+        float startY = ((rows - 1) * cardSpacingY) / 2;
+
+        for (int i = 0; i < totalCards; i++)
+        {
+            int currentRow = i / columns;
+            int currentCol = i % columns;
+
+            float posX = startX + (currentCol * cardSpacingX);
+            float posY = startY - (currentRow * cardSpacingY);
+
+            // [변경 2] 단일 프리팹 생성
+            GameObject newCard = Instantiate(cardPrefab);
+            
+            // 계층 및 위치 설정
+            newCard.transform.SetParent(newCanvas.transform, false);
+            newCard.transform.localPosition = new Vector3(posX, posY, 0);
+            newCard.transform.localRotation = Quaternion.identity;
+
+            // [변경 3] Sprite 교체 로직
+            Sprite selectedSprite = SelectSprite(i);
+            SpriteRenderer sr = newCard.GetComponent<SpriteRenderer>();
+            
+            if (sr != null)
+            {
+                sr.sprite = selectedSprite;
+            }
+            else
+            {
+                // 혹시 SpriteRenderer가 자식에 있는 경우 대비
+                var childSr = newCard.GetComponentInChildren<SpriteRenderer>();
+                if (childSr != null) childSr.sprite = selectedSprite;
+            }
+        }
+
+        Debug.Log($"Canvas 생성 및 이미지 교체 완료.");
+    }
+
+    Sprite SelectSprite(int currentIndex)
+    {
+        if (useRandomOrder)
+        {
+            int randomIdx = Random.Range(0, cardSprites.Count);
+            return cardSprites[randomIdx];
+        }
+        else
+        {
+            int seqIdx = currentIndex % cardSprites.Count;
+            return cardSprites[seqIdx];
+        }
     }
 }
