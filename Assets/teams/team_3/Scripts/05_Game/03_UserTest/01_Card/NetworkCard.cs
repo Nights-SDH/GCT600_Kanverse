@@ -3,50 +3,54 @@ using Photon.Pun;
 
 public class NetworkCard : MonoBehaviourPun, IPunObservable
 {
-    // 카드의 원래 색상과 선택되었을 때의 색상
-    private Renderer meshRenderer;
+    // [변경 1] SpriteRenderer로 변경
+    private SpriteRenderer spriteRenderer;
     private Color originalColor;
     public Color highlightColor = Color.yellow;
-    public PhotonTransformView photonTransformView;
+    
+    // PhotonTransformView를 쓴다면 Inspector에서 체크하고 여기선 변수 선언 안 해도 됨 (옵션)
+    // public PhotonTransformView photonTransformView; 
 
-    // 현재 로컬 플레이어가 이 카드를 잡고 있는지 여부
     public bool isInteracting = false;
 
     void Awake()
     {
-        meshRenderer = GetComponent<Renderer>();
-        if (meshRenderer != null) originalColor = meshRenderer.material.color;
+        // [변경 2] 컴포넌트 가져오기 수정
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        // SpriteRenderer의 color 프로퍼티 사용
+        if (spriteRenderer != null) originalColor = spriteRenderer.color;
     }
 
     void Update()
     {
-        // 내가 잡고 움직일 때만 위치를 업데이트하고 네트워크로 전송
+        // 내가 잡고 움직일 때만 로직 처리
         if (photonView.IsMine && isInteracting)
         {
-            // 위치 이동 로직은 Controller 스크립트에서 transform을 직접 제어함
+            // 위치 이동 로직은 Controller(LaserInteractor)가 처리함
         }
-        if (meshRenderer != null)
-        {
-            meshRenderer.material.color = isInteracting ? highlightColor : originalColor;
-        }
+
+        // [중요] Update()에 있던 색상 변경 코드는 삭제했습니다.
+        // 이유: 매 프레임 색을 원래대로 돌리려는 성질 때문에
+        // 레이저가 닿았을 때(Hover) 색이 변하지 않거나 깜빡거리는 문제를 방지하기 위함입니다.
     }
 
     // --- 시각적 효과 (하이라이트) ---
     public void SetHighlight(bool active)
     {
-        if (meshRenderer != null)
+        if (spriteRenderer != null)
         {
-            meshRenderer.material.color = active ? highlightColor : originalColor;
+            // [변경 3] Material 대신 Sprite 자체 Color 변경 (성능상 더 좋음)
+            spriteRenderer.color = active ? highlightColor : originalColor;
         }
     }
 
     // --- 인터랙션 로직 ---
     public void OnGrab()
     {
-        // Photon 소유권 가져오기 (이래야 내가 위치를 전송할 수 있음)
         photonView.RequestOwnership();
         isInteracting = true;
-        SetHighlight(true); // 잡고 있는 동안도 하이라이트 유지
+        SetHighlight(true);
     }
 
     public void OnRelease()
@@ -55,22 +59,27 @@ public class NetworkCard : MonoBehaviourPun, IPunObservable
         SetHighlight(false);
     }
 
-    // Photon Transform View 컴포넌트를 안 쓴다면 아래 코드로 동기화
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            // 내가 주인일 때 데이터 보냄
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
             stream.SendNext(isInteracting);
         }
         else
         {
-            // 남이 주인일 때 데이터 받음
             transform.position = (Vector3)stream.ReceiveNext();
             transform.rotation = (Quaternion)stream.ReceiveNext();
+            
+            bool previousState = this.isInteracting;
             this.isInteracting = (bool)stream.ReceiveNext();
+
+            // [추가] 다른 플레이어가 잡았을 때 내 화면에서도 색이 변하게 동기화
+            if (previousState != this.isInteracting)
+            {
+                SetHighlight(this.isInteracting);
+            }
         }
     }
 }
