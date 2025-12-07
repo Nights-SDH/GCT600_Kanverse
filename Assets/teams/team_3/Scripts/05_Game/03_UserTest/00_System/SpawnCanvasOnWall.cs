@@ -33,6 +33,12 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         {
             TrySpawnCanvas();
         }
+
+        
+        if (OVRInput.GetDown(OVRInput.Button.One, controller) || Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnCardsOnCanvas();
+        }
     }
 
     void TrySpawnCanvas()
@@ -80,7 +86,10 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         GameObject newCanvas = Instantiate(canvasPrefab, spawnPos, spawnRot);
         RatioAlignedCanvas customizableCanvas = newCanvas.GetComponent<RatioAlignedCanvas>();
         customizableCanvas.SetScales(CanvasSizePool.Instance.GetCurrentCanvasSizeSet());
+    }
 
+    public void SpawnCardsOnCanvas()
+    {
         CardSet cardSet = CardDeck.Instance.GetCurrentCardSet();
         List<Sprite> cardSprites = new List<Sprite>(cardSet.cardSprites);
         int totalCards = cardSprites.Count;
@@ -100,11 +109,11 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
             GameObject newCard = Instantiate(cardPrefab);
             
             // 1. 일단 부모 설정
-            newCard.transform.SetParent(newCanvas.transform, true);
+            newCard.transform.SetParent(RatioAlignedCanvas.Instance.transform, true);
 
             // [핵심 변경] 부모의 크기 영향을 없애기 위한 스케일 역보정
             // 공식: 자식의 LocalScale = (원하는 WorldScale) / (부모의 WorldScale)
-            Vector3 parentScale = newCanvas.transform.lossyScale;
+            Vector3 parentScale = RatioAlignedCanvas.Instance.transform.lossyScale;
             Vector3 originalScale = cardPrefab.transform.localScale;
 
             newCard.transform.localScale = new Vector3(

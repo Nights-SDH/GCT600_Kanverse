@@ -4674,7 +4674,7 @@ MonoBehaviour:
   isHost: 0
   moveCount: 0
   selectedCardSetType: 0
-  selectedCanvasSizeType: 2
+  selectedCanvasSizeType: 6
 --- !u!1 &1270424123
 GameObject:
   m_ObjectHideFlags: 0
