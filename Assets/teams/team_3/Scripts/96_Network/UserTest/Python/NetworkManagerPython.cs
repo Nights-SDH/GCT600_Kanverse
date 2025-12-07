@@ -41,8 +41,6 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
             Debug.Log("서버에 연결되었습니다.");
 
             _ = ReceiveLoop();
-
-            SendCanvasSize();
         }
         catch (Exception e)
         {
