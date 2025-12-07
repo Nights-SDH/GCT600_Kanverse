@@ -91,10 +91,8 @@ public class MRUKLaserInteractor : MonoBehaviour
         {
             Debug.Log("[SDH] canvasLayer detected" + hit.collider.gameObject.name);
             Vector3 targetPos = hit.point + (hit.normal * 0.02f);
-            Quaternion targetRot = Quaternion.LookRotation(hit.normal);
 
             selectedObject.transform.position = Vector3.Lerp(selectedObject.transform.position, targetPos, Time.deltaTime * 20f);
-            selectedObject.transform.rotation = Quaternion.Slerp(selectedObject.transform.rotation, targetRot, Time.deltaTime * 20f);
 
             // 벽까지의 거리로 길이 조절
             SetLaserLength(hit.distance);
