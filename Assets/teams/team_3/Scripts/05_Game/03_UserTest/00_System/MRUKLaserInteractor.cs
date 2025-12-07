@@ -89,10 +89,18 @@ public class MRUKLaserInteractor : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance, canvasLayer))
         {
             // 1. 시각적 이동 (World Space)
-            Vector2 targetPos = hit.point + (hit.normal * 0.02f);
+            Vector3 targetPos = hit.point + (hit.normal * 0.02f);
+
+            Vector3 finalPos = new Vector3(
+                targetPos.x,
+                targetPos.y,
+                selectedObject.transform.position.z // Z축은 고정
+            );
+
+            Debug.Log(finalPos);
             
             // 부드러운 이동
-            selectedObject.transform.position = Vector3.Lerp(selectedObject.transform.position, new Vector3(targetPos.x, targetPos.y, selectedObject.transform.position.z), Time.deltaTime * 20f);
+            selectedObject.transform.position = Vector3.Lerp(selectedObject.transform.position, finalPos, Time.deltaTime * 20f);
 
             // 레이저 길이 조절
             SetLaserLength(hit.distance);
