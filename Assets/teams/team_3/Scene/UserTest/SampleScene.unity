@@ -2524,7 +2524,7 @@ MonoBehaviour:
   isPossibleDuplicate: 0
   isDontDestory: 1
   serverUrl: wss://arpserver-production.up.railway.app/ws
-  IsHost: 1
+  IsHost: 0
 --- !u!1 &455484473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4152,6 +4152,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 129601990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1209763270
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1179448505044873603, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_Name
+      value: Anchor Prefab Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5477341
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.22288695
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.017872281
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
 --- !u!1 &1220100841
 GameObject:
   m_ObjectHideFlags: 0
@@ -7217,3 +7274,4 @@ SceneRoots:
   - {fileID: 285939904}
   - {fileID: 2006577255}
   - {fileID: 454178818}
+  - {fileID: 1209763270}
