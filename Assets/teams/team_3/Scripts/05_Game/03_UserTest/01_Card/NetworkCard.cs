@@ -1,85 +1,89 @@
 using UnityEngine;
-using Photon.Pun;
 
-public class NetworkCard : MonoBehaviourPun, IPunObservable
+public class NetworkCard : MonoBehaviour
 {
-    // [변경 1] SpriteRenderer로 변경
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    public Color highlightColor = Color.yellow;
     
-    // PhotonTransformView를 쓴다면 Inspector에서 체크하고 여기선 변수 선언 안 해도 됨 (옵션)
-    // public PhotonTransformView photonTransformView; 
+    [Header("Settings")]
+    public Color highlightColor = Color.yellow;
+    public Color lockedColor = Color.gray; // [추가] 다른 사람이 잡았을 때 색상
 
-    public bool isInteracting = false;
+    // 상태 변수
+    public bool isInteracting = false; // 내가 잡고 있는가?
+    public bool isLocked = false;      // 남이 잡고 있는가?
 
     void Awake()
     {
-        // [변경 2] 컴포넌트 가져오기 수정
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        // SpriteRenderer의 color 프로퍼티 사용
         if (spriteRenderer != null) originalColor = spriteRenderer.color;
     }
 
     void Update()
     {
-        // 내가 잡고 움직일 때만 로직 처리
-        if (photonView.IsMine && isInteracting)
+        // 내가 잡고 움직일 때의 로직 (필요 시 작성)
+        if (isInteracting)
         {
-            // 위치 이동 로직은 Controller(LaserInteractor)가 처리함
-        }
-
-        // [중요] Update()에 있던 색상 변경 코드는 삭제했습니다.
-        // 이유: 매 프레임 색을 원래대로 돌리려는 성질 때문에
-        // 레이저가 닿았을 때(Hover) 색이 변하지 않거나 깜빡거리는 문제를 방지하기 위함입니다.
-    }
-
-    // --- 시각적 효과 (하이라이트) ---
-    public void SetHighlight(bool active)
-    {
-        if (spriteRenderer != null)
-        {
-            // [변경 3] Material 대신 Sprite 자체 Color 변경 (성능상 더 좋음)
-            spriteRenderer.color = active ? highlightColor : originalColor;
+            // 위치 이동 등은 Controller(Interactor)에서 처리
         }
     }
 
-    // --- 인터랙션 로직 ---
+    // --- [로컬] 인터랙션 로직 (내가 잡을 때) ---
     public void OnGrab()
     {
-        photonView.RequestOwnership();
+        if (isLocked) return; // 이미 잠긴 카드는 잡을 수 없음
+
         isInteracting = true;
         SetHighlight(true);
+
+        // [추가] 서버에 "나 이거 잡았어" 알림
+        if (NetworkManagerPython.Instance != null)
+        {
+            NetworkManagerPython.Instance.SendCardGrab(gameObject.name);
+        }
     }
 
     public void OnRelease()
     {
         isInteracting = false;
         SetHighlight(false);
+
+        // [추가] 서버에 "나 이거 놨어" 알림
+        if (NetworkManagerPython.Instance != null)
+        {
+            NetworkManagerPython.Instance.SendCardRelease(gameObject.name);
+        }
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    // --- [리모트] 잠금 처리 (남이 잡았을 때 NetworkManager가 호출) ---
+    public void SetRemoteLock(bool locked)
     {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
-            stream.SendNext(isInteracting);
-        }
-        else
-        {
-            transform.position = (Vector3)stream.ReceiveNext();
-            transform.rotation = (Quaternion)stream.ReceiveNext();
-            
-            bool previousState = this.isInteracting;
-            this.isInteracting = (bool)stream.ReceiveNext();
+        isLocked = locked;
 
-            // [추가] 다른 플레이어가 잡았을 때 내 화면에서도 색이 변하게 동기화
-            if (previousState != this.isInteracting)
+        if (spriteRenderer != null)
+        {
+            if (isLocked)
             {
-                SetHighlight(this.isInteracting);
+                // 잠김 상태: 회색으로 변경 (하이라이트보다 우선순위 높음)
+                spriteRenderer.color = lockedColor;
             }
+            else
+            {
+                // 잠김 해제: 원래 색으로 복귀
+                spriteRenderer.color = originalColor;
+            }
+        }
+    }
+
+    // --- 시각적 효과 (하이라이트) ---
+    public void SetHighlight(bool active)
+    {
+        // [중요] 잠금 상태(남이 잡음)이거나 내가 이미 잡고 있으면 하이라이트 변경 무시
+        if (isLocked) return; 
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = active ? highlightColor : originalColor;
         }
     }
 }

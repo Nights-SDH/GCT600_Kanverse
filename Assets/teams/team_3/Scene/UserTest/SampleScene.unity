@@ -2518,11 +2518,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 454178817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d1eab7238df86479c223bd327f12cf, type: 3}
+  m_Script: {fileID: 11500000, guid: bbb18e65444c09945b1a1abe1668f914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHost: 1
-  roomName: UX
+  isPossibleDuplicate: 0
+  isDontDestory: 1
+  serverUrl: wss://arpserver-production.up.railway.app/ws
+  IsHost: 1
 --- !u!1 &455484473
 GameObject:
   m_ObjectHideFlags: 0

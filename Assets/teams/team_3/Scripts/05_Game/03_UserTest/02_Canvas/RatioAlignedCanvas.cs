@@ -57,6 +57,13 @@ public class RatioAlignedCanvas : SingletonObject<RatioAlignedCanvas>
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, yLength / StandardLength, gameObject.transform.localScale.z);
     }
 
+    public void SetLengths(float xLength, float yLength)
+    {
+        SetXLength(xLength);
+        SetYLength(yLength);
+        NetworkManagerPython.Instance.SendCanvasSize();
+    }
+
     public void OnValidate()
     {
         CheckChange();
@@ -79,8 +86,7 @@ public class RatioAlignedCanvas : SingletonObject<RatioAlignedCanvas>
         if (canvasAreaCache == canvasArea) return false;
 
         float r = Mathf.Sqrt(canvasArea / (xScale * yScale));
-        SetXLength(r * xScale);
-        SetYLength(r * yScale);
+        SetLengths(r * xScale, r * yScale);
         return true;
     }
 
@@ -89,8 +95,7 @@ public class RatioAlignedCanvas : SingletonObject<RatioAlignedCanvas>
         if (xScaleCache == xScale && yScaleCache == yScale) return false;
         
         float r = Mathf.Sqrt(canvasArea / (xScale * yScale));
-        SetXLength(r * xScale);
-        SetYLength(r * yScale);
+        SetLengths(r * xScale, r * yScale);
         SetXScale(xScale);
         SetYScale(yScale);
         return true;
@@ -101,15 +106,13 @@ public class RatioAlignedCanvas : SingletonObject<RatioAlignedCanvas>
         if(xLengthCache == xLength && yLengthCache == yLength) return false;
         if (xLengthCache != xLength)
         {
-            SetXLength(xLength);
-            SetYLength(canvasArea/xLength);
+            SetLengths(xLength, canvasArea/xLength);
             SetXScale(xLength/yLength);
             SetYScale(1);
         }
         else if (yLengthCache != yLength)
         {
-            SetYLength(yLength);
-            SetXLength(canvasArea/yLength);
+            SetLengths(canvasArea/yLength, yLength);
             SetYScale(yLength/xLength);
             SetXScale(1);
         }

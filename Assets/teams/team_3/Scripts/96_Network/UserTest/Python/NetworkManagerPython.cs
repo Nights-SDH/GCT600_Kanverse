@@ -5,31 +5,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class NetworkManagerPython : MonoBehaviour
+public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
 {
-    // [설정] 서버 주소 (로컬 테스트 시 127.0.0.1, 실제 배포 시 IP 입력)
     [SerializeField] private string serverUrl = "wss://arpserver-production.up.railway.app/ws";
-    
-    // [참조] 내 캔버스 (사이즈 측정용)
-    public RectTransform myCanvasArea;
 
     // 상태 변수
     private ClientWebSocket ws = new ClientWebSocket();
     private CancellationTokenSource cts = new CancellationTokenSource();
-    private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>(); // 메인 스레드 전달용 큐
+    private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
 
     public bool IsHost = false;
     public bool IsConnected => ws.State == WebSocketState.Open;
-
-    // 싱글톤 (어디서든 접근 가능하게)
-    public static NetworkManagerPython Instance;
-
-    private void Awake()
-    {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-    }
 
     private async void Start()
     {
@@ -52,10 +40,8 @@ public class NetworkManagerPython : MonoBehaviour
             await ws.ConnectAsync(new Uri(serverUrl), cts.Token);
             Debug.Log("서버에 연결되었습니다.");
 
-            // 연결 직후 수신 루프 시작
             _ = ReceiveLoop();
 
-            // [요구사항 5] 내 캔버스 크기 전송
             SendCanvasSize();
         }
         catch (Exception e)
@@ -64,7 +50,7 @@ public class NetworkManagerPython : MonoBehaviour
         }
     }
 
-    // --- 2. 메시지 수신 (백그라운드 스레드) ---
+    // --- 2. 메시지 수신 (백그라운드) ---
     private async Task ReceiveLoop()
     {
         var buffer = new byte[1024 * 4];
@@ -77,8 +63,6 @@ public class NetworkManagerPython : MonoBehaviour
                 if (result.MessageType == WebSocketMessageType.Close) break;
 
                 string jsonString = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                
-                // 받은 메시지를 큐에 넣음 (Update에서 처리하기 위해)
                 messageQueue.Enqueue(jsonString);
             }
             catch (Exception e)
@@ -92,7 +76,6 @@ public class NetworkManagerPython : MonoBehaviour
     // --- 3. 메인 스레드 처리 (Update) ---
     private void Update()
     {
-        // 큐에 쌓인 메시지가 있으면 꺼내서 처리
         while (messageQueue.TryDequeue(out string json))
         {
             ProcessMessage(json);
@@ -101,7 +84,6 @@ public class NetworkManagerPython : MonoBehaviour
 
     private void ProcessMessage(string json)
     {
-        // JSON 파싱
         SocketMessage msg = JsonUtility.FromJson<SocketMessage>(json);
 
         switch (msg.type)
@@ -113,34 +95,42 @@ public class NetworkManagerPython : MonoBehaviour
 
             case "GAME_START":
                 Debug.Log("게임이 시작되었습니다!");
-                // TODO: 게임 시작 UI 처리나 로직 호출
+                // TODO: 게임 시작 이벤트 발생
                 break;
 
             case "UPDATE_CARD":
-                // [요구사항 6] 상대방이 움직인 좌표 반영
-                // msg.x, msg.y는 이미 서버에서 내 캔버스 비율에 맞게 변환된 값임
+                // 상대방이 움직인 좌표 반영
                 UpdateCardPosition(msg.cardId, msg.x, msg.y);
+                break;
+
+            // [추가됨] 상대방이 카드를 잡음 -> 나는 못 만지게 잠금
+            case "GRAB_CARD":
+                SetCardLockState(msg.cardId, true); 
+                break;
+
+            // [추가됨] 상대방이 카드를 놓음 -> 다시 만질 수 있게 해제
+            case "RELEASE_CARD":
+                SetCardLockState(msg.cardId, false);
                 break;
         }
     }
 
     // --- 4. 송신 메서드들 ---
 
-    // [요구사항 5] 캔버스 크기 전송
     public void SendCanvasSize()
     {
-        if (myCanvasArea == null) return;
+        // 사용자가 수정한 RatioAlignedCanvas 참조 유지
+        if (RatioAlignedCanvas.InstanceWithoutCreate == null) return;
         
         SocketMessage msg = new SocketMessage
         {
             type = "INIT_CANVAS",
-            width = myCanvasArea.rect.width,
-            height = myCanvasArea.rect.height
+            width = RatioAlignedCanvas.InstanceWithoutCreate.xLength,
+            height = RatioAlignedCanvas.InstanceWithoutCreate.yLength
         };
         SendJson(msg);
     }
 
-    // [요구사항 4] 게임 시작 요청 (Host만 가능)
     public void RequestGameStart()
     {
         if (!IsHost)
@@ -151,7 +141,6 @@ public class NetworkManagerPython : MonoBehaviour
         SendJson(new SocketMessage { type = "START_GAME" });
     }
 
-    // [요구사항 6] 카드 이동 전송
     public void SendCardMove(string cardId, Vector2 position)
     {
         SocketMessage msg = new SocketMessage
@@ -160,6 +149,28 @@ public class NetworkManagerPython : MonoBehaviour
             cardId = cardId,
             x = position.x,
             y = position.y
+        };
+        SendJson(msg);
+    }
+
+    // [추가됨] 카드 잡았을 때 호출 (Touch Start)
+    public void SendCardGrab(string cardId)
+    {
+        SocketMessage msg = new SocketMessage
+        {
+            type = "GRAB_CARD",
+            cardId = cardId
+        };
+        SendJson(msg);
+    }
+
+    // [추가됨] 카드 놓았을 때 호출 (Touch End)
+    public void SendCardRelease(string cardId)
+    {
+        SocketMessage msg = new SocketMessage
+        {
+            type = "RELEASE_CARD",
+            cardId = cardId
         };
         SendJson(msg);
     }
@@ -174,19 +185,31 @@ public class NetworkManagerPython : MonoBehaviour
         await ws.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, cts.Token);
     }
 
-    // --- 카드 업데이트 로직 (예시) ---
+    // --- 로컬 로직 (위치 이동 및 잠금 처리) ---
+
     private void UpdateCardPosition(string cardId, float x, float y)
     {
-        // 씬에 있는 카드 객체를 찾아서 이동시킴
-        // 실제 구현 시에는 Dictionary<string, GameObject>로 카드를 관리하는 게 좋음
         GameObject card = GameObject.Find(cardId);
         if (card != null)
         {
-            // Canvas가 Screen Space라면 rectTransform.anchoredPosition 사용 추천
-            // 여기서는 World 좌표 예시로 transform.position을 쓰거나 로직에 맞게 수정
-            // 예: UI Canvas 상의 좌표라면 아래와 같이
-             RectTransform rect = card.GetComponent<RectTransform>();
-             if(rect != null) rect.anchoredPosition = new Vector2(x, y); 
+            RectTransform rect = card.GetComponent<RectTransform>();
+            if(rect != null) rect.anchoredPosition = new Vector2(x, y); 
+        }
+    }
+
+    // [추가됨] 카드의 상호작용 잠금/해제 처리
+    private void SetCardLockState(string cardId, bool isLocked)
+    {
+        GameObject card = GameObject.Find(cardId);
+        if (card != null)
+        {
+            // NetworkCard 컴포넌트를 찾아서 함수 호출
+            NetworkCard netCard = card.GetComponent<NetworkCard>();
+            if (netCard != null)
+            {
+                netCard.SetRemoteLock(isLocked);
+                Debug.Log($"카드({cardId}) 잠금 상태 변경: {isLocked}");
+            }
         }
     }
 }
