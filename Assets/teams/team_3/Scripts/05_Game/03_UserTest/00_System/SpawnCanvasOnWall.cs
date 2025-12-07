@@ -15,12 +15,10 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 
     [Header("Spawn Settings")]
     public GameObject canvasPrefab;
-    
-    // [변경 1] 프리팹은 1개, 이미지는 여러 개
     public GameObject cardPrefab; 
     public List<Sprite> cardSprites; 
 
-    public int totalCards => cardSprites.Count;
+    public int totalCards => cardSprites != null ? cardSprites.Count : 0;
     public int rows = 2;
     public bool useRandomOrder = false;
 
@@ -29,6 +27,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
     public float cardSpacingY = 0.3f;
     public float wallOffset = 0.02f;
 
+    // 외부에서 Update 호출 (Manager 등에서)
     public void CheckUpdate()
     {
         if (OVRInput.GetDown(spawnButton, controller))
@@ -39,7 +38,6 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 
     void TrySpawnCanvas()
     {
-        // Sprite 리스트 확인
         if (cardSprites == null || cardSprites.Count == 0)
         {
             Debug.LogWarning("Card Sprites 리스트가 비어있습니다!");
@@ -54,15 +52,32 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         if (Physics.Raycast(startPos, direction, out hit, maxDistance, wallLayer))
         {
             Debug.Log($"[SDH] Wall detected {hit.collider.gameObject.name}");
-            SpawnAndArrange(hit.point, hit.normal);
+            // hit.point와 hit.normal 외에 'startPos'(내 위치)도 함께 넘김
+            SpawnAndArrange(hit.point, hit.normal, startPos);
         }
     }
 
-    void SpawnAndArrange(Vector3 hitPoint, Vector3 hitNormal)
+    // [변경점] startPos(플레이어/컨트롤러 위치)를 인자로 추가
+    void SpawnAndArrange(Vector3 hitPoint, Vector3 hitNormal, Vector3 playerPos)
     {
-        Vector3 spawnPos = hitPoint + (hitNormal * wallOffset);
-        Quaternion spawnRot = Quaternion.LookRotation(hitNormal);
+        // 1. 벽에서 플레이어 쪽을 향하는 벡터 계산
+        Vector3 toPlayerDir = (playerPos - hitPoint).normalized;
 
+        // 2. 내적(Dot Product)을 통해 방향 판별
+        // hitNormal과 toPlayerDir의 각도가 90도 이내면 양수, 벗어나면 음수
+        float dot = Vector3.Dot(hitNormal, toPlayerDir);
+
+        // 3. 최종 앞쪽 방향(Forward) 결정
+        // 내적이 0보다 크면 벽이 이미 나를 보고 있음. 
+        // 0보다 작으면 벽이 반대편이므로 법선(Normal)을 뒤집어줌.
+        Vector3 finalForward = (dot >= 0) ? hitNormal : -hitNormal;
+
+        // 4. 보정된 방향(finalForward)을 기준으로 위치와 회전 설정
+        // 이렇게 하면 항상 플레이어 쪽으로 튀어나오고(Offset), 플레이어를 바라봄(LookRotation)
+        Vector3 spawnPos = hitPoint + (finalForward * wallOffset);
+        Quaternion spawnRot = Quaternion.LookRotation(finalForward);
+
+        // --- 이하 생성 로직 동일 ---
         GameObject newCanvas = Instantiate(canvasPrefab, spawnPos, spawnRot);
 
         int columns = Mathf.CeilToInt((float)totalCards / rows);
@@ -77,15 +92,12 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
             float posX = startX + (currentCol * cardSpacingX);
             float posY = startY - (currentRow * cardSpacingY);
 
-            // [변경 2] 단일 프리팹 생성
             GameObject newCard = Instantiate(cardPrefab);
             
-            // 계층 및 위치 설정
             newCard.transform.SetParent(newCanvas.transform, false);
             newCard.transform.localPosition = new Vector3(posX, posY, 0);
             newCard.transform.localRotation = Quaternion.identity;
 
-            // [변경 3] Sprite 교체 로직
             Sprite selectedSprite = SelectSprite(i);
             SpriteRenderer sr = newCard.GetComponent<SpriteRenderer>();
             
@@ -95,13 +107,12 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
             }
             else
             {
-                // 혹시 SpriteRenderer가 자식에 있는 경우 대비
                 var childSr = newCard.GetComponentInChildren<SpriteRenderer>();
                 if (childSr != null) childSr.sprite = selectedSprite;
             }
         }
 
-        Debug.Log($"Canvas 생성 및 이미지 교체 완료.");
+        Debug.Log($"Canvas 생성 완료. (방향 보정됨)");
     }
 
     Sprite SelectSprite(int currentIndex)
