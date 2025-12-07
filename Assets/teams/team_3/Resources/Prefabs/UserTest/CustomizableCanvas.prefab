@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 50}
-  m_LocalScale: {x: 0.4, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.26832816, y: 0.08944272, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,11 +103,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPossibleDuplicate: 0
   isDontDestory: 1
-  canvasArea: 1200
-  xScale: 4
-  yScale: 3
-  xLength: 40
-  yLength: 30
+  canvasArea: 240
+  xScale: 3
+  yScale: 1
+  xLength: 26.832817
+  yLength: 8.944272
 --- !u!65 &5741012142957389667
 BoxCollider:
   m_ObjectHideFlags: 0

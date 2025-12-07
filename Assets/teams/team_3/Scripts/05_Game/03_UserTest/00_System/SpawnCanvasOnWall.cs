@@ -25,7 +25,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
     [Header("Layout Settings")]
     public float cardSpacingX = 0.2f;
     public float cardSpacingY = 0.3f;
-    public float wallOffset = 0.02f;
+    public float wallOffset = 0.001f;
 
     // 외부에서 Update 호출 (Manager 등에서)
     public void CheckUpdate()
@@ -70,7 +70,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
         // 3. 최종 앞쪽 방향(Forward) 결정
         // 내적이 0보다 크면 벽이 이미 나를 보고 있음. 
         // 0보다 작으면 벽이 반대편이므로 법선(Normal)을 뒤집어줌.
-        Vector3 finalForward = (dot >= 0) ? hitNormal : -hitNormal;
+        Vector3 finalForward = (dot < 0) ? hitNormal : -hitNormal;
 
         // 4. 보정된 방향(finalForward)을 기준으로 위치와 회전 설정
         // 이렇게 하면 항상 플레이어 쪽으로 튀어나오고(Offset), 플레이어를 바라봄(LookRotation)
