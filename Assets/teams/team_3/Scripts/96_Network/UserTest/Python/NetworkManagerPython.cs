@@ -203,8 +203,7 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
         if (netCard != null)
         {
             netCard.SetRemoteLock(isLocked);
-            Debug.Log($"카드({cardId}) 잠금 상태 변경: {isLocked}");
-            GameManagerUX.Instance.moveCount++;
+            Debug.Log($"[SDH] 카드({cardId}) 잠금 상태 변경: {isLocked}");
         }
     }
 }
