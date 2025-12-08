@@ -2634,7 +2634,7 @@ MonoBehaviour:
     widthScale: 1
     heightScale: 1
   - type: 1
-    widthScale: 4
+    widthScale: 5
     heightScale: 3
   - type: 3
     widthScale: 2.13
@@ -2655,7 +2655,7 @@ MonoBehaviour:
     widthScale: 0.9333
     heightScale: 1
   - type: 2
-    widthScale: 4
+    widthScale: 5
     heightScale: 3
 --- !u!1 &455484473
 GameObject:
@@ -4298,7 +4298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1179448505044873603, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6360705466309871435, guid: 471d68e4c6ca30548909af9f986f9d8f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4673,8 +4673,9 @@ MonoBehaviour:
   isDontDestory: 1
   isHost: 0
   moveCount: 0
-  selectedCardSetType: 0
-  selectedCanvasSizeType: 3
+  selectedCardSetType: 4
+  selectedCanvasSizeType: 1
+  intervalCardAndCanvas: 0
 --- !u!1 &1270424123
 GameObject:
   m_ObjectHideFlags: 0
