@@ -9,4 +9,5 @@ public class GameManagerUX: SingletonObject<GameManagerUX>
     [Header("User Test Settings")]
     public CardSetType selectedCardSetType;
     public CanvasSizeType selectedCanvasSizeType;
+    public float intervalCardAndCanvas = -0.01f;
 }

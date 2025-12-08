@@ -104,7 +104,7 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
             );
 
             // 2. 위치 및 회전 설정 (Local 기준)
-            newCard.transform.localPosition = new Vector3(posX, posY, -0.01f);
+            newCard.transform.localPosition = new Vector3(posX, posY, GameManagerUX.Instance.intervalCardAndCanvas);
             newCard.transform.localRotation = Quaternion.identity;
 
             // 3. 스프라이트 설정
