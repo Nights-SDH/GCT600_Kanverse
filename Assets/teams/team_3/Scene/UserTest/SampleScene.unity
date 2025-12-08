@@ -2490,10 +2490,10 @@ MonoBehaviour:
   canvasPrefab: {fileID: 2732410611558533086, guid: 1f2ee74b0a9eecb41a06a709c22ce399, type: 3}
   cardPrefab: {fileID: 4782340793592076332, guid: 71b4c2f265acba548ad7ffc486acffef, type: 3}
   spawnedCards: []
-  rows: 2
+  rows: 4
   useRandomOrder: 0
   cardSpacingX: 3.5
-  cardSpacingY: 4.5
+  cardSpacingY: 5.5
   wallOffset: 0.5
 --- !u!114 &454178821
 MonoBehaviour:
@@ -2646,13 +2646,13 @@ MonoBehaviour:
     widthScale: 3.95
     heightScale: 1
   - type: 6
-    widthScale: 0.4
+    widthScale: 0.9333
     heightScale: 1
   - type: 7
     widthScale: 0.6667
     heightScale: 1
   - type: 8
-    widthScale: 0.9333
+    widthScale: 0.4
     heightScale: 1
   - type: 2
     widthScale: 5
@@ -4674,7 +4674,7 @@ MonoBehaviour:
   isHost: 0
   moveCount: 0
   selectedCardSetType: 4
-  selectedCanvasSizeType: 1
+  selectedCanvasSizeType: 8
   intervalCardAndCanvas: 0
 --- !u!1 &1270424123
 GameObject:
