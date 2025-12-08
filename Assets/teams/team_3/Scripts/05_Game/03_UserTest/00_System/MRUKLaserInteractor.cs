@@ -87,36 +87,42 @@ public class MRUKLaserInteractor : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance, canvasLayer))
         {
-            // 1. 시각적 이동 (World Space)
-            Vector3 targetPos = hit.point + (hit.normal * 0.02f);
-            
-            // 부드러운 이동
-            selectedObject.transform.position = Vector3.Lerp(selectedObject.transform.position, new Vector3(targetPos.x, targetPos.y, selectedObject.transform.position.z), Time.deltaTime * 20f);
+            // 1. 월드 좌표(hit.point)를 벽(hit.collider) 기준의 로컬 좌표로 변환
+            Vector3 localHitPos = hit.collider.transform.InverseTransformPoint(hit.point);
+
+            // 2. Z축 고정 (Z-Fighting 방지용)
+            // 벽의 앞쪽으로 살짝 띄우기 위해 Z값을 고정합니다. (예: -0.02f 또는 0.02f)
+            // Unity 2D나 UI는 보통 Z가 음수일 때 카메라 쪽으로 튀어나옵니다. (상황에 따라 부호 확인 필요)
+            Vector3 targetLocalPos = new Vector3(localHitPos.x, localHitPos.y, GameManagerUX.Instance.intervalCardAndCanvas);
+
+            // 3. 로컬 좌표로 이동 (localPosition 사용!)
+            // 부드럽게 이동 (Lerp)
+            selectedObject.transform.localPosition = Vector3.Lerp(
+                selectedObject.transform.localPosition, 
+                targetLocalPos, 
+                Time.deltaTime * 20f
+            );
+
+            // 4. 회전은 벽에 딱 붙도록 초기화 (부모 회전을 그대로 따라가게)
+            selectedObject.transform.localRotation = Quaternion.identity;
 
             // 레이저 길이 조절
             SetLaserLength(hit.distance);
 
             // =================================================================
-            // [추가됨] 2. 서버로 좌표 전송 로직
+            // [서버 전송] 이미 targetLocalPos가 로컬 좌표이므로 변환 없이 바로 전송 가능
             // =================================================================
             if (Time.time - lastSendTime > sendInterval)
             {
-                // (중요) 월드 좌표(hit.point)를 그대로 보내면 상대방 방 위치가 다를 때 문제 생김.
-                // 따라서 '닿은 캔버스(벽)' 기준의 로컬 좌표로 변환해서 보냄.
-                Vector3 localPos = hit.collider.transform.InverseTransformPoint(targetPos);
-
                 if (NetworkManagerPython.Instance != null)
                 {
-                    // 로컬 X, Y 좌표 전송
                     NetworkManagerPython.Instance.SendCardMove(
                         selectedObject.cardID, 
-                        new Vector2(localPos.x, localPos.y)
+                        new Vector2(targetLocalPos.x, targetLocalPos.y) // 계산된 로컬 좌표 그대로 전송
                     );
                 }
-
                 lastSendTime = Time.time;
             }
-            // =================================================================
         }
         else
         {
