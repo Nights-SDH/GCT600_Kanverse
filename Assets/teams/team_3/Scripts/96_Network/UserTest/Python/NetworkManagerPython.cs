@@ -38,13 +38,13 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
         {
             ws = new ClientWebSocket();
             await ws.ConnectAsync(new Uri(serverUrl), cts.Token);
-            Debug.Log("서버에 연결되었습니다.");
+            Debug.Log("[SDH] 서버에 연결되었습니다.");
 
             _ = ReceiveLoop();
         }
         catch (Exception e)
         {
-            Debug.LogError($"연결 실패: {e.Message}");
+            Debug.LogError($"[SDH] 연결 실패: {e.Message}");
         }
     }
 
@@ -65,7 +65,7 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
             }
             catch (Exception e)
             {
-                Debug.LogError($"수신 오류: {e.Message}");
+                Debug.LogError($"[SDH] 수신 오류: {e.Message}");
                 break;
             }
         }
@@ -88,11 +88,11 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
         {
             case "ROLE_ASSIGN":
                 GameManagerUX.Instance.isHost = (msg.role == "HOST");
-                Debug.Log($"내 역할 배정됨: {msg.role}");
+                Debug.Log($"[SDH] 내 역할 배정됨: {msg.role}");
                 break;
 
             case "GAME_START":
-                Debug.Log("게임이 시작되었습니다!");
+                Debug.Log("[SDH] 게임이 시작되었습니다!");
                 // TODO: 게임 시작 이벤트 발생
                 break;
 
