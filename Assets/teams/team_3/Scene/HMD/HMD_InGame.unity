@@ -5400,6 +5400,64 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.016699273, y: -0.03636414, z: -0.018954389}
     m_Extent: {x: 0.05463389, y: 0.050220694, z: 0.051451057}
   m_DirtyAABB: 0
+--- !u!1001 &1494738523
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729659718322924559, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+      propertyPath: m_Name
+      value: BrushController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 2487296937867333376, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
 --- !u!1 &1512540885
 GameObject:
   m_ObjectHideFlags: 0
@@ -7288,3 +7346,4 @@ SceneRoots:
   - {fileID: 1257389692}
   - {fileID: 1154219152}
   - {fileID: 2022784365}
+  - {fileID: 1494738523}

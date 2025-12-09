@@ -17,12 +17,6 @@ public class SpawnCanvasOnWall : SingletonObject<SpawnCanvasOnWall>
 
     public void TrySpawnCanvas()
     {
-        if (CardDeck.Instance.GetCurrentCardSet() == null)
-        {
-            Debug.LogWarning("현재 선택된 CardSet이 없습니다!");
-            return;
-        }
-
         Vector3 startPos = rayOrigin ? rayOrigin.position : transform.position;
         Vector3 direction = rayOrigin ? rayOrigin.forward : transform.forward;
 
