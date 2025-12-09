@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CommandManagerUX: MonoBehaviour
+public class CommandManagerHMD: MonoBehaviour
 {
     public OVRInput.Controller ControllerR = OVRInput.Controller.RTouch;
     public OVRInput.Controller ControllerL = OVRInput.Controller.LTouch;
@@ -10,10 +10,6 @@ public class CommandManagerUX: MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.One, ControllerR) || Input.GetKeyDown(KeyCode.Space))
         {
             SpawnCanvasOnWall.Instance.TrySpawnCanvas();
-        }
-        if (OVRInput.GetDown(OVRInput.Button.Two, ControllerR) || Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnCardOnCanvas.Instance.SpawnCardsOnCanvas();
         }
         if (OVRInput.GetDown(OVRInput.Button.One, ControllerL))
         {

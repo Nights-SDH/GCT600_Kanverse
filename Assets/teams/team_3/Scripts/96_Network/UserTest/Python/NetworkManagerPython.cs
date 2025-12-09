@@ -187,7 +187,7 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
 
     private void UpdateCardPosition(int cardId, float x, float y)
     {
-        NetworkCard netCard = SpawnCanvasOnWall.Instance.FindCardByID(cardId);
+        NetworkCard netCard = SpawnCardOnCanvas.Instance.FindCardByID(cardId);
         if (netCard != null)
         {
             RectTransform rect = netCard.GetComponent<RectTransform>();
@@ -199,7 +199,7 @@ public class NetworkManagerPython : SingletonObject<NetworkManagerPython>
     private void SetCardLockState(int cardId, bool isLocked)
     {
         // NetworkCard 컴포넌트를 찾아서 함수 호출
-        NetworkCard netCard = SpawnCanvasOnWall.Instance.FindCardByID(cardId);
+        NetworkCard netCard = SpawnCardOnCanvas.Instance.FindCardByID(cardId);
         if (netCard != null)
         {
             netCard.SetRemoteLock(isLocked);

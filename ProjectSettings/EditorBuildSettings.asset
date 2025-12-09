@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/teams/team_3/Scene/Main.unity
     guid: e28c9e4c413105343b450db6604c2c30
   - enabled: 1
-    path: Assets/teams/team_3/Scene/HMD/HMD_InGame.unity
+    path: Assets/teams/team_3/Scene/HMD/Backup.unity
     guid: 843b043c76de64b9cab52e07b8b3abbf
   - enabled: 1
     path: Assets/teams/team_3/Scene/HMD/UserSpace.unity
