@@ -498,24 +498,27 @@ MonoBehaviour:
   - speaker: 2
     sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
     darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
-  - speaker: 1
-    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
-    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
-  - speaker: 1
-    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
-    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
-  - speaker: 1
-    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
-    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
-  - speaker: 1
-    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
-    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
-  - speaker: 1
-    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
-    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
-  - speaker: 1
-    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
-    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
+  - speaker: 4
+    sprite: {fileID: 21300000, guid: ecb1f603b317741408178aa7f490a9f6, type: 3}
+    darkSprite: {fileID: 21300000, guid: 2af169833fd3a1048b1d4051781404f3, type: 3}
+  - speaker: 5
+    sprite: {fileID: 21300000, guid: e6faf33623d72cd43ac0a590886cc94f, type: 3}
+    darkSprite: {fileID: 21300000, guid: f78cbfa1cd1253640bca1e03506b17d3, type: 3}
+  - speaker: 6
+    sprite: {fileID: 21300000, guid: 4a8831c3c89e0954cafb2bac5a73c341, type: 3}
+    darkSprite: {fileID: 21300000, guid: 510d3118be3637041b23b1edd017b10c, type: 3}
+  - speaker: 7
+    sprite: {fileID: 21300000, guid: d1656fb369edd5647962adb2b44b1c10, type: 3}
+    darkSprite: {fileID: 21300000, guid: 7e93468d21cafbd4cb3311d0efd9b9ae, type: 3}
+  - speaker: 8
+    sprite: {fileID: 21300000, guid: dc340e849b650c645ac7cf06bc78271f, type: 3}
+    darkSprite: {fileID: 21300000, guid: 5d20d9d8ecde890449d5e845418b69a5, type: 3}
+  - speaker: 9
+    sprite: {fileID: 21300000, guid: 54f41aa03b0917e4cb495b38da20231a, type: 3}
+    darkSprite: {fileID: 21300000, guid: 177490151b7efe74d87ffee199f002bb, type: 3}
+  - speaker: 10
+    sprite: {fileID: 21300000, guid: fba4e0504ffe74847828cd2c13d47da4, type: 3}
+    darkSprite: {fileID: 21300000, guid: 998836ca143c9b344a4dfa260a726134, type: 3}
   defaultSpeakerSprite: {fileID: 21300000, guid: 1b081373ff7ea5d46a502b6cdc69e518, type: 3}
   fadeInEffect: {fileID: 1599561651}
 --- !u!1 &1573610302

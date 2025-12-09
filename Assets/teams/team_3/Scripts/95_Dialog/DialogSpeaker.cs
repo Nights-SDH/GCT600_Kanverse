@@ -29,19 +29,21 @@ public static class DialogSpeakerExtensions
             case DialogSpeaker.Kongjwi:
                 return "콩쥐";
             case DialogSpeaker.ExcavatorMole:
-                return "굴착기 두더지";
+                return "두더지";
             case DialogSpeaker.GlassesSparrow1:
-                return "안경 쓴 참새1";
+                return "참새1";
             case DialogSpeaker.GlassesSparrow2:
-                return "안경 쓴 참새2";
+                return "참새2";
             case DialogSpeaker.FlatClam:
-                return "납작한 조개";
+                return "조개";
             case DialogSpeaker.OrigamiButterflyFairy:
-                return "종이접기 나비 요정";
+                return "나비 요정";
             case DialogSpeaker.Magistrate:
                 return "원님";
             case DialogSpeaker.Official:
                 return "이방";
+            case DialogSpeaker.Special:
+                return "플레이어";
             default:
                 return "알 수 없음";
         }
