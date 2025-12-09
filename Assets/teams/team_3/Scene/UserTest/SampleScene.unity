@@ -4673,8 +4673,8 @@ MonoBehaviour:
   isDontDestory: 1
   isHost: 0
   moveCount: 0
-  selectedCardSetType: 4
-  selectedCanvasSizeType: 8
+  selectedCardSetType: 3
+  selectedCanvasSizeType: 1
   intervalCardAndCanvas: 0
 --- !u!1 &1270424123
 GameObject:
