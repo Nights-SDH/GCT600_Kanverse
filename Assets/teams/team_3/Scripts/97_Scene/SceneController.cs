@@ -10,6 +10,7 @@ public class SceneController : SingletonObject<SceneController>
     void Start()
     {
         currentScene = Util.ParseEnumFromString<SceneName>(SceneManager.GetActiveScene().name);
+        Debug.Log("Current scene: " + currentScene.ToString());
     }
 
     public void ChangeScene(SceneName sceneName)

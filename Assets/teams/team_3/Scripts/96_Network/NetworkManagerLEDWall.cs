@@ -36,4 +36,9 @@ public class NetworkManagerLEDWall : SingletonObject<NetworkManagerLEDWall>
             NetworkFunctionsProject.ProcessMessage(json);
         }
     }
+
+    public void RequestGameStart()
+    {
+        NetworkFunctionsProject.RequestGameStart(GameManagerUX.Instance.isHost, ws, cts);
+    }
 }

@@ -22,7 +22,13 @@ public static class NetworkFunctionsProject
 
             case "GAME_START":
                 Debug.Log("[SDH] 게임이 시작되었습니다!");
-                // TODO: 게임 시작 이벤트 발생
+                if(NetworkManagerLEDWall.InstanceWithoutCreate?.IsHost == true)
+                {
+                    NetworkManagerLEDWall.Instance.StartCoroutine(SceneController.Instance.ChangeSceneWithLoading(SceneName.InGame_LEDWall));
+                } else
+                {
+                    // [TODO]: 한옥 띄움 - 수지
+                }
                 break;
         }
     }

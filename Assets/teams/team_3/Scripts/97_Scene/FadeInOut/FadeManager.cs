@@ -27,7 +27,6 @@ public class FadeManager : MonoBehaviour
     {
         //StartCoroutine(FadeIn()); 
     }
-
     public IEnumerator FadeIn()
     {
         fadePanel.SetActive(true);

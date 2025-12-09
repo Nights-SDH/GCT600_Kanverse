@@ -15,7 +15,8 @@ public class TitleManager: SingletonObject<TitleManager>
 
     public void OnStartButtonClicked()
     {
-        SceneController.Instance.ChangeSceneWithLoading(SceneName.Lobby_LEDWall);
+        Debug.Log("Start Button Clicked");
+        StartCoroutine(SceneController.Instance.ChangeSceneWithLoading(SceneName.Lobby_LEDWall));
     }
 
     public void OnEndButtonClicked()

@@ -28,6 +28,6 @@ public class LobbyManager: SingletonObject<LobbyManager>
 
     void OnStartButtonClicked()
     {
-        SceneController.Instance.ChangeSceneWithLoading(SceneName.InGame_LEDWall);
+        NetworkManagerLEDWall.Instance.RequestGameStart();
     }
 }
