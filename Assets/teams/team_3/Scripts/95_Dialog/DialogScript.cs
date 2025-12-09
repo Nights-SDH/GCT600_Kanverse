@@ -5,194 +5,355 @@ public class DialogScript
     public static Dictionary<DialogName, Dictionary<Language, (DialogSpeaker, string[])[]>> DialogData = new()
     {
         // ==================================================================
-        // --- 신규 대화 데이터 (콩쥐팥쥐) ---
+        // --- 장면 1. 콩쥐의 집 ---
         // ==================================================================
-
-        // 1. 콩쥐의 탄생
-        { DialogName.Kongjwi_Intro_Birth, new ()
+        { DialogName.Scene1_Intro, new ()
         {
             {
                 Language.kr, new []{
                     (DialogSpeaker.Narration, new string[]{
-                        "옛날 어느 마을에 사이좋은 부부가 살았어요.",
-                        "이 부부에겐 오랫동안 아이가 없었지만\n정성껏 기도 끝에 예쁜 딸을 얻게 되었죠.",
-                        "부부는 어여쁜 콩처럼 올곧게 자랐으면\n좋겠다는 의미에서 딸의 이름을 콩쥐 라고 지었습니다."
-                    })
-                }
-            },
-            {
-                Language.en, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "Once upon a time, in a certain village, lived a happy couple.",
-                        "They had no child for a long time, but after praying sincerely,\nthey were blessed with a beautiful daughter.",
-                        "The couple named their daughter Kongjwi, hoping she would grow up\nupright and beautiful like a pretty bean."
+                        "옛날 어느 마을에 콩쥐라는 소녀가 살고 있었어요.",
+                        "콩쥐는 어머니를 일찍 여의고 아버지와 단둘이 살았지만,\n마음씨가 고운 데다 부지런해서 마을 사람들에게 사랑을 많이 받았지요.",
+                        "하지만 어느 날, 아버지가 새어머니와 그 딸 팥쥐를 데리고 오면서\n콩쥐의 삶은 달라지기 시작했어요."
                     })
                 }
             }
         }},
-
-        // 2. 콩쥐의 성장 (어머니의 죽음)
-        { DialogName.Kongjwi_Intro_GrowingUp, new ()
+        { DialogName.Scene1_Stepmother, new ()
         {
             {
                 Language.kr, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "하지만 콩쥐의 어머니는 콩쥐를 낳고 얼마\n지나지 않아 세상을 떠나고 말았어요.",
-                        "콩쥐 아버지는 잔나비같이 안고 영영 울었죠.",
-                        "다행히 콩쥐는 무럭무럭 잘 자라요.\n마을에서도 어찌나 고운지…",
-                        "마을에서 콩쥐를 싫어하는 사람은\n아무도 없었답니다."
-                    })
-                }
-            },
-            {
-                Language.en, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "However, not long after giving birth to Kongjwi,\nher mother passed away.",
-                        "Kongjwi's father wept bitterly, holding her.",
-                        "Fortunately, Kongjwi grew up well.\nShe was so lovely...",
-                        "No one in the village disliked her."
-                    })
+                    (DialogSpeaker.Stepmother, new string[]{ "(겉으로 상냥하게) 콩쥐야, 앞으로 우리 잘 지내보자꾸나." }),
+                    (DialogSpeaker.Narration, new string[]{ "하지만 새어머니의 속마음은 달랐어요." }),
+                    (DialogSpeaker.Stepmother, new string[]{ "(혼잣말, 콧방귀) 저 애는 부지런하니,\n집안일은 몽땅 저 애 시키면 되겠네." }),
+                    (DialogSpeaker.Patjwi, new string[]{ "(새어머니에게 살짝) 엄마, 나는 힘든 거 싫은데~\n콩쥐한테 다 시켜요." }),
+                    (DialogSpeaker.Narration, new string[]{ "그날부터 새어머니와 팥쥐는 콩쥐에게 힘든 일만 골라 시키며\n괴롭히기 시작했답니다." })
                 }
             }
         }},
 
-        // 3. 새어머니와 팥쥐의 등장
-        { DialogName.Kongjwi_Intro_Stepmother, new ()
+        // ==================================================================
+        // --- 장면 2. 산 너머 큰 밭과 굴착기 두더지 ---
+        // ==================================================================
+        { DialogName.Scene2_Field_Task, new ()
         {
             {
                 Language.kr, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "그러던 어느날 콩쥐 아버지가\n새어머니를 데리고 와요.",
-                        "새어머니는 욕심이 많고 성질이 사나웠죠.",
-                        "그리고 팥쥐라는 딸도 데리고 왔어요.",
-                        "나이는 콩쥐보다 한살 어렸지만\n제 엄마를 닮아 심술궂고 마음씨도\n고약했답니다."
-                    })
-                }
-            },
-            {
-                Language.en, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "Then one day, Kongjwi's father\nbrought home a new stepmother.",
-                        "The stepmother was greedy and had a fierce temper.",
-                        "And she brought a daughter named Patjwi.",
-                        "She was one year younger than Kongjwi,\nbut just like her mother, she was mean and unkind."
-                    })
-                }
-            }
-        }},
-
-        // 4. 캘리그라피 미션
-        { DialogName.Kongjwi_Mission_Calligraphy, new ()
-        {
-            {
-                Language.kr, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "🎞 2. 콩쥐의 불행한 시작 (글씨 채우기: “콩쥐”, “팥쥐”)",
-                        "사용자 미션: 사용자는 ‘콩쥐’, ‘팥쥐’ 이름 부분을 캘리그라피로 써서 화면의 빈 영역을 채운다."
-                    })
-                }
-            },
-            {
-                Language.en, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "🎞 2. Kongjwi's Unhappy Beginning (Fill in the words: “Kongjwi”, “Patjwi”)",
-                        "User Mission: The user must write 'Kongjwi' and 'Patjwi' in calligraphy to fill the empty space on the screen."
-                    })
-                }
-            }
-        }},
-
-         { DialogName.Kongjwi_Misfortune_Start, new ()
-        {
-            {
-                Language.kr, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "새어머니는 아버지 앞에서는\n콩쥐에게 친절하게 굴었지만...",
-                        "아버지가 없으면 온갖 구박을 하기 시작했어요."
-                    }),
-                    (DialogSpeaker.Stepmother, new string[]{ "콩쥐야! 물 떠와라!", "콩쥐! 방 안 쓸고 뭐하니!" }),
-                    (DialogSpeaker.Patjwi, new string[]{ "엄마! 쟤 또 꾸물거려! 에이, 게으름뱅이!" }),
-                    (DialogSpeaker.Kongjwi, new string[]{ "흑... 흑..." }),
-                    (DialogSpeaker.Narration, new string[]{ "콩쥐는 매일 눈물 마를 날이 없었답니다." })
-                }
-            },
-            {
-                Language.en, new []{
-                    (DialogSpeaker.Narration, new string[]{
-                        "The stepmother acted kindly to Kongjwi\nin front of the father, but...",
-                        "When he wasn't around, she started tormenting her."
-                    }),
-                    (DialogSpeaker.Stepmother, new string[]{ "Kongjwi! Fetch water!", "Kongjwi! Why haven't you swept the room!" }),
-                    (DialogSpeaker.Patjwi, new string[]{ "Mom! She's slacking again! Ugh, so lazy!" }),
-                    (DialogSpeaker.Kongjwi, new string[]{ "*Sob... sob...*" }),
-                    (DialogSpeaker.Narration, new string[]{ "Kongjwi cried every single day." })
-                }
-            }
-        }},
-
-        // 6. 밭 매기 일 시키기
-        { DialogName.Kongjwi_Task_Field, new ()
-        {
-            {
-                Language.kr, new []{
-                    (DialogSpeaker.Narration, new string[]{ "어느 날 새어머니는 콩쥐와 팥쥐에게\n일을 시켰어요." }),
+                    (DialogSpeaker.Narration, new string[]{ "어느 날 새어머니가 콩쥐와 팥쥐를 불렀어요." }),
                     (DialogSpeaker.Stepmother, new string[]{
-                        "콩쥐는 언니니까 산 너머 저 큰 밭을 다 매거라!",
-                        "팥쥐는 동생이니까 집 앞 모래밭의\n풀이나 쪼끔 뽑아라!"
+                        "콩쥐야, 너는 산 너머 큰 밭을 다 매거라.",
+                        "팥쥐야, 너는 집 앞 작은 밭만 살살 매면 된다."
                     }),
-                    (DialogSpeaker.Narration, new string[]{ "그러면서 콩쥐한테는 다 망가진 나무 호미를 주고\n팥쥐한테는 튼튼한 쇠 호미를 주었답니다." }),
-                    (DialogSpeaker.Patjwi, new string[]{ "엄마 최고! 콩쥐 언니는 힘들겠다~ 메롱~" })
-                }
-            },
-            {
-                Language.en, new []{
-                    (DialogSpeaker.Narration, new string[]{ "One day, the stepmother gave Kongjwi and Patjwi\na task." }),
-                    (DialogSpeaker.Stepmother, new string[]{
-                        "Kongjwi, you're the older sister, so go weed that entire big field\nover the mountain!",
-                        "Patjwi, you're younger, so just pull a few weeds\nin the sand patch in front of the house!"
-                    }),
-                    (DialogSpeaker.Narration, new string[]{ "Then, she gave Kongjwi a broken wooden hoe\nand Patjwi a sturdy iron hoe." }),
-                    (DialogSpeaker.Patjwi, new string[]{ "Mom's the best! Too bad for you, Kongjwi~ Neener neener~" })
+                    (DialogSpeaker.Narration, new string[]{ "그러더니 콩쥐에게는 부러지기 쉬운 나무 호미를,\n팥쥐에게는 튼튼한 쇠 호미를 쥐여 주었지요." })
                 }
             }
         }},
-
-        // 7. 호미 부러짐
-        { DialogName.Kongjwi_Task_HoeBreaks, new ()
+        { DialogName.Scene2_Field_Work, new ()
         {
             {
                 Language.kr, new []{
-                    (DialogSpeaker.Stepmother, new string[]{ "오늘 안에 다 못하면 집에 들어올 생각 마!" }),
-                    (DialogSpeaker.Patjwi, new string[]{ "키킥, 꼴좋다!" }),
+                    (DialogSpeaker.Patjwi, new string[]{ "(속으로 웃으며) 에이, 이 정도면 오늘도 나는 편하겠는걸?" }),
                     (DialogSpeaker.Narration, new string[]{
-                        "누워서 떡먹기처럼 쉬운 일을 한\n팥쥐는 금세 일을 마치고 집으로 돌아왔어요.",
-                        "콩쥐는 땡볕에서 나무 호미로\n열심히 잡초를 뽑았어요.",
-                        "그런데 이럴 어쩌죠?"
+                        "팥쥐는 집 앞에서 조금 일하는 척만 하고 금세 들어가 새어머니와 놀았어요.",
+                        "하지만 콩쥐는 산을 넘어 커다란 밭에서 땀을 뻘뻘 흘리며 잡초를 뽑고 있었지요."
                     }),
-                    (DialogSpeaker.Kongjwi, new string[]{ "어... 어떡하지? 호미가..." }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(헉헉거리며) 이 넓은 밭을 언제 다 매나... 그래도 해야지." })
+                }
+            }
+        }},
+        { DialogName.Scene2_Hoe_Break, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{ "그때였어요. \"딱!\" 소리와 함께 나무 호미가 두 동강 나고 말았어요." }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(울먹이며) 어떡하지... 호미도 없고, 밭도 아직 반이나 남았는데..." })
+                }
+            }
+        }},
+        { DialogName.Scene2_Mole_Appear, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{ "바로 그때, 땅속에서 \"부스럭부스럭\" 소리가 나더니," }),
+                    (DialogSpeaker.Special, new string[]{
+                        "어디선가 [______1______]이(가) 나타나 [______2______]로 도와주는게 아니겠어요?"
+                    }),
                     (DialogSpeaker.Narration, new string[]{
-                        "그만 나무 호미가 툭~ 부러지고 말았어요.",
-                        "콩쥐는 눈앞이 캄캄해져 눈물이 그렁그렁 했어요."
+                        "어디선가 [두더지]가 나타나 [굴착기]로 도와주는게 아니겠어요?"
+                    }),
+                    (DialogSpeaker.ExcavatorMole, new string[]{ "(헬멧을 고쳐 쓰며) 흐음, 여기서 누가 한숨을 쉬나 했더니 콩쥐구나?" }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(깜짝 놀라) 어, 누구세요?" }),
+                    (DialogSpeaker.ExcavatorMole, new string[]{
+                        "나는 땅 파기의 달인, [굴착기 두더지]다.",
+                        "밭을 매는 건 내가 훨씬 빠르지!"
                     })
                 }
-            },
+            }
+        }},
+        { DialogName.Scene2_Mole_Help, new ()
+        {
             {
-                Language.en, new []{
-                    (DialogSpeaker.Stepmother, new string[]{ "If you don't finish by today, don't even think about coming home!" }),
-                    (DialogSpeaker.Patjwi, new string[]{ "Hehe, serves you right!" }),
+                Language.kr, new []{
                     (DialogSpeaker.Narration, new string[]{
-                        "Patjwi, who had an easy job,\nfinished quickly and returned home.",
-                        "Kongjwi worked hard under the hot sun,\npulling weeds with the wooden hoe.",
-                        "But what happened?"
+                        "그러더니 [굴착기 두더지]는 앞발로 밭을 [이리저리 파헤치고 뒤엎으며]",
+                        "잡초를 몽땅 [뿌리째 뽑아 버렸어요]."
                     }),
-                    (DialogSpeaker.Kongjwi, new string[]{ "Oh... what do I do? The hoe..." }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(눈이 동그래져서) 와... 정말 금세 끝났어요! 고마워요, [굴착기 두더지]님!" }),
+                    (DialogSpeaker.ExcavatorMole, new string[]{ "(쿡 웃으며) 다음에 또 힘들면 불러. 그럼 난 이만~" }),
                     (DialogSpeaker.Narration, new string[]{
-                        "The wooden hoe suddenly snapped and broke.",
-                        "Kongjwi's world turned dark, and her eyes welled up with tears."
+                        "[굴착기 두더지]는 다시 땅속으로 쏙 들어가 버렸고,",
+                        "콩쥐는 생각보다 훨씬 빨리 일을 마칠 수 있었답니다."
                     })
                 }
             }
         }},
 
+        // // ==================================================================
+        // // --- 장면 3. 곡식 까기와 안경 쓴 참새들 ---
+        // // ==================================================================
+        // { DialogName.Scene3_Grain_Task, new ()
+        // {
+        //     {
+        //         Language.kr, new []{
+        //             (DialogSpeaker.Narration, new string[]{ "며칠 뒤, 새어머니는 또 콩쥐를 불렀어요." }),
+        //             (DialogSpeaker.Stepmother, new string[]{
+        //                 "우린 잔칫집에 갔다 올 테니, 그 동안",
+        //                 "벼 껍질 다 까고, 솥 씻고, 항아리에 물도 가득 채워 놓거라.",
+        //                 "못 하면 집에 들어오지도 말거라!"
+        //             }),
+        //             (DialogSpeaker.Patjwi, new string[]{ "(웃으며) 엄마, 나 예쁜 옷 입고 갈래요~ 콩쥐는 또 집에 있으라고 하죠?" }),
+        //             (DialogSpeaker.Stepmother, new string[]{ "그렇지, 그렇지. 콩쥐야, 울지 말고 잘~ 해 보거라. (비웃으며 나감)" }),
+        //             (DialogSpeaker.Narration, new string[]{ "콩쥐는 커다란 벼 자루를 보며 깊은 한숨을 쉬었어요." }),
+        //             (DialogSpeaker.Kongjwi, new string[]{ "이걸 언제 다 까지... 손으로 하면 밤새워도 못 끝낼 텐데..." })
+        //         }
+        //     }
+        // }},
+        // { DialogName.Scene3_Sparrow_Help, new ()
+        // {
+        //     {
+        //         Language.kr, new []{
+        //             (DialogSpeaker.Narration, new string[]{
+        //                 "바로 그때, 하늘 위에서 뭔가 반짝였어요.",
+        //             }),
+        //             (DialogSpeaker.Special, new string[]{
+        //                 "[______1______]이 반짝이며 날아오더니, [______2______]들이 내려오는 게 아니겠어요?"
+        //             }),
+        //             (DialogSpeaker.Narration, new string[]{
+        //                 "[작은 안경]이 반짝이며 날아오더니, [참새들]이 내려오는 게 아니겠어요?"
+        //             }),
+        //             (DialogSpeaker.GlassesSparrow1, new string[]{ "(안경을 고쳐 쓰며) 음, 벼 껍질 작업인가. 통계상 우리 작업 속도가 제일 빠르지." }),
+        //             (DialogSpeaker.GlassesSparrow2, new string[]{ "그럼 시작해 볼까?" }),
+        //             (DialogSpeaker.Narration, new string[]{
+        //                 "[안경 쓴 참새들]은 벼 이삭에 줄줄이 매달려, 날개로 이삭을 힘껏 털어 주었어요.",
+        //                 "그러자 껍질들은 옆으로 휙휙 날아가고, 알맹이만 “토도독토도독” 바구니에 떨어졌지요."
+        //             }),
+        //             (DialogSpeaker.Kongjwi, new string[]{ "우와... 벌써 다섯 섬이나 끝났어! 여러분 덕분이에요, 고마워요!" }),
+        //             (DialogSpeaker.GlassesSparrow1, new string[]{ "(멋있게 고개 끄덕이며) 협업은 언제나 옳다구. 그럼 우리는 다음 프로젝트가 있어서 이만!" }),
+        //             (DialogSpeaker.Narration, new string[]{ "[안경 쓴 참새들]은 하늘로 \"짹짹!\" 노래를 부르며 사라졌어요." })
+        //         }
+        //     }
+        // }},
+
+        // ==================================================================
+        // --- 장면 4. 항아리의 구멍과 납작한 조개 ---
+        // ==================================================================
+        { DialogName.Scene4_Jar_Task, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{
+                        "이제 남은 건 항아리에 물을 채우는 일이었어요.",
+                        "콩쥐는 샘물로 가서 여러 번 물을 길어 와 항아리에 부었습니다.",
+                        "하지만 아무리 부어도 물이 가득 차지 않는 거예요."
+                    }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "어? 분명히 이렇게 많이 부었는데 왜...?" }),
+                    (DialogSpeaker.Narration, new string[]{ "가만히 살펴보니, 항아리 바닥에 커다란 구멍이 뻥 뚫려 있었지요." }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(눈물이 맺혀) 또 혼나겠네... 어떡하지..." })
+                }
+            }
+        }},
+        { DialogName.Scene4_Clam_Help, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Special, new string[]{
+                        "그때 물가에서 햇빛을 받으며 조용히 빛나던 [______1______] 하나가 살며시 움직이더니, [______2______] 도와주겠다는게 아니겠어요?"
+                    }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "그때 물가에서 햇빛을 받으며 조용히 빛나던 [납작한 조개] 하나가",
+                        "살며시 움직이더니, 항아리 쪽으로 데굴데굴 굴러오는 게 아니겠어요?"
+                    }),
+                    (DialogSpeaker.FlatClam, new string[]{ "(조용한 목소리로) 구멍이 문제라면, 내가 좀 도와줄 수 있을지도 모르겠네." }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "[납작한 조개]는 항아리 안으로 들어가 껍데기를 쫙 펼쳐",
+                        "구멍을 [단단히 막아] 주었어요.",
+                        "이제 물은 더 이상 새어나가지 않고,",
+                        "콩쥐가 물을 부을 때마다 항아리 안에 차곡차곡 쌓여 갔지요."
+                    }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "정말 고마워요, [납작한 조개]야!" }),
+                    (DialogSpeaker.FlatClam, new string[]{ "(살짝 반짝이며) 아무에게도 말하지 말고, 나중에 물가에 놀러 와 줘." })
+                }
+            }
+        }},
+
+        // ==================================================================
+        // --- 장면 5. 종이접기 나비 요정의 비단옷과 꽃신 ---
+        // ==================================================================
+        { DialogName.Scene5_Fairy_Appear, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{
+                        "이렇게 새어머니가 시킨 힘든 일들을 거의 다 해냈을 때였어요.",
+                        "어디선가 \"바스락, 바스락\" 소리가 나기 시작했지요.",
+                    }),
+                    (DialogSpeaker.Special, new string[]{
+                        "공중에서 [______1______]들이 팔랑팔랑 날아오더니 스스로 [______2______]가 되는 게 아니겠어요?"
+                    }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "공중에서 하얀 종이들이 팔랑팔랑 날아오더니 스스로 나비가 되는 게 아니겠어요?"
+                    }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "우와... 종이 나비다..." }),
+                    (DialogSpeaker.Narration, new string[]{ "그 사이, 종이 나비들 가운데에서 [종이접기 나비 요정]이 나타났어요." }),
+                    (DialogSpeaker.OrigamiButterflyFairy, new string[]{
+                        "안녕, 콩쥐야. 너의 부지런함은 여기까지 소문이 났단다.",
+                        "이제 잔치에 갈 시간이지?"
+                    }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(조심스럽게) 그런데... 저는 입고 갈 옷도, 신발도 없어요." })
+                }
+            }
+        }},
+        { DialogName.Scene5_Fairy_Gift, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{
+                        "그러자 [종이접기 나비 요정]은 두 손을 펼치며",
+                        "종이와 달빛 조각을 한데 모아 빙글빙글 돌렸어요.",
+                        "[종이접기 나비 요정]은 종이와 달빛으로",
+                        "비단옷과 꽃신을 후다닥 접어 만들어 콩쥐에게 건네주었어요."
+                    }),
+                    (DialogSpeaker.OrigamiButterflyFairy, new string[]{ "이 옷과 꽃신을 신고, 너도 네가 얼마나 소중한 사람인지 잊지 말고 잔치에 다녀오렴." }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "정말... 감사합니다!" }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "콩쥐는 [종이접기 나비 요정]이 건네준 비단옷과 꽃신을 신고",
+                        "조심조심 잔칫집으로 향했답니다."
+                    })
+                }
+            }
+        }},
+
+        // ==================================================================
+        // --- 장면 6. 다리 위에서 잃어버린 꽃신 ---
+        // ==================================================================
+        { DialogName.Scene6_Lost_Shoe, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{
+                        "마을 어귀에 놓인 다리를 건너던 중이었어요.",
+                        "콩쥐가 생각에 잠긴 사이, 꽃신 한 짝이 \"툭!” 하고 다리 아래 개울로 떨어지고 말았지요."
+                    }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(깜짝 놀라) 아! 내 꽃신!" }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "꽃신은 물 위에 동동 떠 있다가 점점 아래로 흘러 내려갔어요.",
+                        "그 아래쪽 물가에서는 [납작한 조개]가 햇빛을 쬐고 있었는데,",
+                        "꽃신이 떠내려오는 것을 보고 \"지금이다!\" 하고 껍데기를 탁 닫았다 펴며",
+                        "꽃신을 강가 모래 위로 '툭' 튕겨 올렸어요.",
+                        "마침 그때, 원님 일행이 그 길을 지나가고 있었지요."
+                    })
+                }
+            }
+        }},
+
+        // ==================================================================
+        // --- 장면 7. 원님과 꽃신의 주인 ---
+        // ==================================================================
+        { DialogName.Scene7_Magistrate_Find, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Magistrate, new string[]{ "(수레 위에서) 저기 떨어진 것이 무엇이냐?" }),
+                    (DialogSpeaker.Official, new string[]{ "(달려가 꽃신을 줍고) 원님, 반짝이는 꽃신 한 짝이옵니다." }),
+                    (DialogSpeaker.Magistrate, new string[]{
+                        "참으로 귀한 신이로다.",
+                        "여봐라, 이 꽃신의 주인을 찾아오너라!"
+                    }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "그리하여 마을 곳곳에 \"비단 꽃신의 주인을 찾습니다\"라는 방이 붙었어요.",
+                        "마을 처녀들은 너도나도 꽃신을 신어 보겠다며 줄을 섰지만,",
+                        "누구의 발에도 꼭 맞지는 않았습니다."
+                    })
+                }
+            }
+        }},
+        { DialogName.Scene7_Shoe_Test, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Stepmother, new string[]{ "(팥쥐를 데리고 와) 이리 와, 팥쥐야. 네 발이랑 딱 맞을 거야. 억지로라도 신어 보거라." }),
+                    (DialogSpeaker.Patjwi, new string[]{ "(신발을 밀어 넣으며) 아, 너무 끼는데..." }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "그때 하늘에서 [종이접기 나비 요정]이 몰래 내려와,",
+                        "[종이 나비들]을 팥쥐 주위에 [휘리릭 날려 보내며] 발등을 간질였어요."
+                    }),
+                    (DialogSpeaker.Patjwi, new string[]{ "으악, 간지러워! 못 신겠어요!" }),
+                    (DialogSpeaker.Narration, new string[]{ "결국 팥쥐의 발은 꽃신에 들어가지 않았지요." }),
+                    (DialogSpeaker.Official, new string[]{ "(주위를 둘러보다가) 저기 구석에 서 있는 저 처녀는 누구요? 참 얌전하고 곱게 생겼구려." }),
+                    (DialogSpeaker.Stepmother, new string[]{ "(당황하며) 아, 저 애는... 그냥 집안일이나 하는 아이..." }),
+                    (DialogSpeaker.Official, new string[]{ "그대도 꽃신을 한 번 신어 보시오." }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(조심스럽게) 제가... 신어도 될까요?" }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "콩쥐가 꽃신을 살며시 발에 신어 보니,",
+                        "마치 기다렸다는 듯이 딱 맞는 게 아니겠어요?"
+                    }),
+                    (DialogSpeaker.Official, new string[]{ "오! 꼭 맞습니다, 원님!" }),
+                    (DialogSpeaker.Magistrate, new string[]{
+                        "(콩쥐를 바라보며) 그대가 이 꽃신의 주인이겠구나.",
+                        "이름이 무엇이오?"
+                    }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "저는... 콩쥐라고 합니다." })
+                }
+            }
+        }},
+
+        // ==================================================================
+        // --- 장면 8. 결말 - 함께 바뀌어 가는 사람들 ---
+        // ==================================================================
+        { DialogName.Scene8_Ending, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{
+                        "그 순간, 마당 한쪽에서는 [굴착기 두더지]가 기뻐서 땅을 [부스럭부스럭 파고] 있었고,",
+                        "지붕 위에서는 [안경 쓴 참새들]이 콩쥐 이름을 [신나게 노래하고],",
+                        "개울가에서는 [납작한 조개]가 [햇빛을 받으며 반짝였어요].",
+                        "하늘 위에는 [종이접기 나비 요정]이 [종이 나비들을 흩뿌리며] 콩쥐를 축복하고 있었지요."
+                    }),
+                    (DialogSpeaker.Magistrate, new string[]{
+                        "콩쥐, 그대는 힘들었을 텐데도 이렇게 따뜻한 눈을 하고 있구려.",
+                        "나와 함께 이 고을 사람들을 도우며 살겠소?"
+                    }),
+                    (DialogSpeaker.Kongjwi, new string[]{
+                        "(잠시 고민하다가) 네... 다만, 새어머니와 팥쥐도...",
+                        "언젠가는 함께 웃을 수 있으면 좋겠습니다."
+                    }),
+                    (DialogSpeaker.Narration, new string[]{ "그 말을 들은 새어머니와 팥쥐는 얼굴을 붉히며 고개를 숙였어요." }),
+                    (DialogSpeaker.Stepmother, new string[]{ "콩쥐야, 그동안 미안했다... 다시는 그러지 않을게." }),
+                    (DialogSpeaker.Patjwi, new string[]{ "나도... 잘못했어. 앞으로는 같이 일도 하고, 같이 놀자." }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "그날 이후, 콩쥐와 원님은 마을 사람들을 도우며 살았고,",
+                        "새어머니와 팥쥐도 조금씩 마음을 고쳐 나갔답니다.",
+                        "[굴착기 두더지]는 논밭을 도와주고,",
+                        "[안경 쓴 참새들]은 씨앗을 알맞게 골라 뿌려 주었지요.",
+                        "[납작한 조개]는 물길을 지키며 가뭄을 막았고,",
+                        "[종이접기 나비 요정]은 힘들어하는 사람들에게",
+                        "작은 종이 나비와 함께 새로운 용기를 [살짝 건네주었답니다].",
+                        "그래서 그 마을 사람들은 서로 도우며 웃는 법을 잊지 않고,",
+                        "오래오래 행복하게 살았다고 해요."
+                    })
+                }
+            }
+        }}
     };
 }
