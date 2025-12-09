@@ -15,6 +15,7 @@ public class SceneController : SingletonObject<SceneController>
     public void ChangeScene(SceneName sceneName)
     {
         RunChangeSceneProcess(sceneName);
+        Debug.Log("now loading scene: " + sceneName.ToString());
         SceneManager.LoadScene(sceneName.ToString());
     }
 
