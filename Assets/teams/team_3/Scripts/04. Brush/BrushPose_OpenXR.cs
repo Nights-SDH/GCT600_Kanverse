@@ -11,41 +11,50 @@ public class BrushPose_OpenXR : MonoBehaviour
 
     private void Update()
     {
+        if (pinch == null)
+        {
+            Debug.LogError("❌ BrushPose_OpenXR: PinchDetector component is NULL!");
+            return;
+        }
+
+        if (pinch.indexTip == null || pinch.thumbTip == null || pinch.wrist == null)
+        {
+            Debug.LogError("❌ BrushPose_OpenXR: Hand joint references are NULL!");
+            return;
+        }
+
         if (!pinch.IsPinching)
         {
             brushModel.gameObject.SetActive(false);
             return;
         }
 
+        // 핀치하면 붓 표시
         brushModel.gameObject.SetActive(true);
 
         // ===== 1) 손가락 위치 =====
+
         Vector3 thumb = pinch.thumbTip.position;
         Vector3 index = pinch.indexTip.position;
-        Vector3 wrist = pinch.wrist.position;
 
-        // ===== 2) 붓이 나아갈 방향(정방향) =====
+        // ===== 방향 계산 =====
         Vector3 forward = (index - thumb).normalized;  
+        Vector3 palmUp = pinch.wrist.up;
 
-        // ===== 3) 손바닥 방향 (up) =====
-        Vector3 palmUp = pinch.wrist.up;  
-
-        // ===== 4) forward 와 palmUp 이 직교하도록 재계산 =====
         Vector3 right = Vector3.Cross(palmUp, forward).normalized;
         Vector3 up = Vector3.Cross(forward, right);
 
         Quaternion rot = Quaternion.LookRotation(forward, up);
 
-        // Quaternion to Vector3
-        Vector3 newRotation = rot.eulerAngles;
-        newRotation.z += 200f; // Adjust the X axis by 90 degrees
+        // 붓 방향 미세 조정(필요 시 수정)
+        Quaternion finalRot = rot * Quaternion.Euler(0, 0, 200f);
 
-        // ===== 5) 위치 계산: pinch point 기준 =====
+        // ===== 위치 계산 =====
         Vector3 finalPos = pinch.PinchPosition + forward * 0.01f;
 
         // ===== 6) 적용 =====
         brushModel.position = finalPos;
-        brushModel.rotation = Quaternion.Euler(newRotation);
+        brushModel.rotation = finalRot;
 
         Debug.Log("indexTip: " + pinch.indexTip.position);
         Debug.Log("wrist: " + pinch.wrist.position);
