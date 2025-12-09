@@ -4304,7 +4304,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   paintColor: {r: 0, g: 0, b: 0, a: 1}
-  brushSize: 10
+  brushSize: 5
   textureResolution: 1024
   lineRenderer: {fileID: 1406267861}
 --- !u!1 &1236769654
