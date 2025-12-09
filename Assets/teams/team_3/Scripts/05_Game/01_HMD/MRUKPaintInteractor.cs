@@ -49,6 +49,7 @@ public class MRUKPaintInteractor : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance, drawingSurfaceLayer))
         {
+            Debug.Log("동환아 그만하자" + hit.collider.gameObject.name);
             SetLaserLength(hit.distance);
 
             // 버튼을 누르고 있을 때
