@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class MRUKPaintInteractor : MonoBehaviour
+public class MRUKPaintInteractor : SingletonObject<MRUKPaintInteractor>
 {
     [Header("Controller Settings")]
     public OVRInput.Controller controllerNode = OVRInput.Controller.RTouch;
@@ -47,26 +47,35 @@ public class MRUKPaintInteractor : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, maxDistance, drawingSurfaceLayer))
-        {
-            Debug.Log("동환아 그만하자" + hit.collider.gameObject.name);
-            SetLaserLength(hit.distance);
+        bool isHit = Physics.Raycast(ray, out hit, maxDistance, drawingSurfaceLayer);
 
-            // 버튼을 누르고 있을 때
-            if (OVRInput.Get(drawButton, controllerNode))
+        // 1. 시각적 레이저(LineRenderer) 길이 업데이트
+        // 충돌했으면 그 거리까지, 안 했으면 최대 거리까지
+        float visualDistance = isHit ? hit.distance : maxDistance;
+        
+        if (lineRenderer != null)
+        {
+            lineRenderer.SetPosition(0, Vector3.zero); // 시작점 (컨트롤러 위치)
+            lineRenderer.SetPosition(1, new Vector3(0, 0, visualDistance)); // 끝점 (로컬 좌표계 기준 Z방향)
+        }
+
+        // 2. 페인팅 로직 수행
+        if (isHit)
+        {
+            // ... 기존 페인팅 로직 ...
+            if (OpenXRHandPinchDetector.Instance.IsPinching)
             {
                 PaintOnSprite(hit);
             }
             else
             {
-                // 버튼을 떼면 이전 좌표 초기화 (선을 끊음)
                 lastDrawUV = null;
                 lastHitCollider = null;
             }
         }
         else
         {
-            SetLaserLength(maxDistance);
+            // 허공을 보고 있을 때 초기화
             lastDrawUV = null;
             lastHitCollider = null;
         }
@@ -149,6 +158,27 @@ public class MRUKPaintInteractor : MonoBehaviour
                 }
             }
         }
+    }
+
+    // 모든 캔버스를 하얗게 지우기
+    public void ResetAllCanvases()
+    {
+        foreach (var entry in drawingTextures)
+        {
+            Texture2D tex = entry.Value;
+            
+            // 텍스처 전체 픽셀 수만큼 흰색 배열 생성
+            Color[] fillColors = new Color[tex.width * tex.height];
+            for (int i = 0; i < fillColors.Length; i++) 
+            {
+                fillColors[i] = Color.white; // 초기 색상과 맞춰주세요
+            }
+
+            tex.SetPixels(fillColors);
+            tex.Apply();
+        }
+        
+        Debug.Log("모든 캔버스가 리셋되었습니다.");
     }
 
     Texture2D InitializeDrawingSprite(SpriteRenderer sr, BoxCollider boxCol)

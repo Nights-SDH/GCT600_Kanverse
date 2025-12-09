@@ -2561,6 +2561,7 @@ MonoBehaviour:
   isPossibleDuplicate: 0
   isDontDestory: 1
   defaultBackground: {fileID: 21300000, guid: f3dd56cc02e389646ab6e57a102594a3, type: 3}
+  backgroundRenderer: {fileID: 0}
   backgroundDataList:
   - backgroundSprite: {fileID: 21300000, guid: f3dd56cc02e389646ab6e57a102594a3, type: 3}
     associatedDialogNames: 000000000100000007000000080000000f0000001000000002000000
@@ -4299,7 +4300,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1232934966}
-  - component: {fileID: 1232934967}
   m_Layer: 0
   m_Name: RightHandAnchor
   m_TagString: Untagged
@@ -4325,28 +4325,6 @@ Transform:
   - {fileID: 1406267860}
   m_Father: {fileID: 1632410508}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1232934967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232934965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c156f0cc24a3324fa5c4e3e74d593e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controllerNode: 2
-  drawButton: 8192
-  maxDistance: 100
-  drawingSurfaceLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  paintColor: {r: 0, g: 0, b: 0, a: 1}
-  brushSize: 5
-  textureResolution: 1024
-  lineRenderer: {fileID: 1406267861}
 --- !u!1 &1236769654
 GameObject:
   m_ObjectHideFlags: 0
@@ -4569,6 +4547,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 454178818}
+  - {fileID: 1839238285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1257389693
@@ -4925,13 +4904,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1406267860}
   - component: {fileID: 1406267861}
+  - component: {fileID: 1406267862}
   m_Layer: 0
   m_Name: LaserBeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1406267860
 Transform:
   m_ObjectHideFlags: 0
@@ -4940,13 +4920,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406267859}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1232934966}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!120 &1406267861
 LineRenderer:
   serializedVersion: 2
@@ -4971,7 +4951,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 9de9f4243ae4e68489c735a1db2e792f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4997,7 +4977,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 100}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.005
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -5015,8 +4995,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 0, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5040,7 +5020,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -5054,6 +5034,30 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1406267862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406267859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c156f0cc24a3324fa5c4e3e74d593e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPossibleDuplicate: 0
+  isDontDestory: 1
+  controllerNode: 2
+  drawButton: 8192
+  maxDistance: 100
+  drawingSurfaceLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  paintColor: {r: 0, g: 0, b: 0, a: 1}
+  brushSize: 5
+  textureResolution: 1024
+  lineRenderer: {fileID: 1406267861}
 --- !u!1 &1415328965
 GameObject:
   m_ObjectHideFlags: 0
@@ -5584,72 +5588,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1001 &1524202834
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3306667521790783127, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3677608497275836363, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: pinch
-      value: 
-      objectReference: {fileID: 1839238284}
-    - target: {fileID: 4026882870026174815, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: pinch
-      value: 
-      objectReference: {fileID: 1839238284}
-    - target: {fileID: 7729659718322924559, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-      propertyPath: m_Name
-      value: BrushController
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4026882870026174815, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: df3eab53442b63b4faf09450c5527d20, type: 3}
 --- !u!1 &1554796404
 GameObject:
   m_ObjectHideFlags: 0
@@ -6554,12 +6492,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839238283}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.3173}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.9528033, y: -0.731357, z: -2.4481292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1257389692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1879867679
 GameObject:
@@ -7445,5 +7383,3 @@ SceneRoots:
   - {fileID: 1257389692}
   - {fileID: 1154219152}
   - {fileID: 2022784365}
-  - {fileID: 1524202834}
-  - {fileID: 1839238285}

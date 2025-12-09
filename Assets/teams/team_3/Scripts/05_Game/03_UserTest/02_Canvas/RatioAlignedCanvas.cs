@@ -71,6 +71,11 @@ public class RatioAlignedCanvas : SingletonObject<RatioAlignedCanvas>
         CheckChangeScale();
     }
 
+    public void OnEnable()
+    {
+        MRUKPaintInteractor.Instance.ResetAllCanvases();
+    }
+
     public void OnValidate()
     {
         CheckChange();
