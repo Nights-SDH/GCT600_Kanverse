@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CommandManagerHMD: MonoBehaviour
@@ -9,11 +10,13 @@ public class CommandManagerHMD: MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.One, ControllerR) || Input.GetKeyDown(KeyCode.Space))
         {
-            SpawnCanvasOnWall.Instance.TrySpawnCanvas();
-        }
-        if (OVRInput.GetDown(OVRInput.Button.One, ControllerL))
-        {
-            NetworkManagerPython.Instance.RequestGameStart();
+            if(RatioAlignedCanvas.InstanceWithoutCreate == null)
+            {
+                SpawnCanvasOnWall.Instance.TrySpawnCanvas();
+            } else
+            {
+                RatioAlignedCanvas.Instance.gameObject.SetActive(!RatioAlignedCanvas.Instance.gameObject.activeSelf);
+            }
         }
     }
 }
