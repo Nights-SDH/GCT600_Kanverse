@@ -95,13 +95,13 @@ public class DialogScript
             {
                 Language.kr, new []{
                     (DialogSpeaker.Narration, new string[]{
-                        "그러더니 [굴착기 두더지]는 앞발로 밭을 [이리저리 파헤치고 뒤엎으며]",
-                        "잡초를 몽땅 [뿌리째 뽑아 버렸어요]."
+                        "그러더니 [ 굴착기 두더지 ]는 앞발로 밭을 [ 이리저리 파헤치고 뒤엎으며 ]",
+                        "잡초를 몽땅 [ 뿌리째 뽑아 버렸어요 ]."
                     }),
-                    (DialogSpeaker.Kongjwi, new string[]{ "(눈이 동그래져서) 와... 정말 금세 끝났어요! 고마워요, [굴착기 두더지]님!" }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "(눈이 동그래져서) 와... 정말 금세 끝났어요! 고마워요, [ 굴착기 두더지 ]님!" }),
                     (DialogSpeaker.ExcavatorMole, new string[]{ "(쿡 웃으며) 다음에 또 힘들면 불러. 그럼 난 이만~" }),
                     (DialogSpeaker.Narration, new string[]{
-                        "[굴착기 두더지]는 다시 땅속으로 쏙 들어가 버렸고,",
+                        "[ 굴착기 두더지 ]는 다시 땅속으로 쏙 들어가 버렸고,",
                         "콩쥐는 생각보다 훨씬 빨리 일을 마칠 수 있었답니다."
                     })
                 }
@@ -139,17 +139,17 @@ public class DialogScript
                         "[______1______]이 반짝이며 날아오더니, [______2______]들이 내려오는 게 아니겠어요?"
                     }),
                     (DialogSpeaker.Narration, new string[]{
-                        "[작은 안경]이 반짝이며 날아오더니, [참새들]이 내려오는 게 아니겠어요?"
+                        "[ 작은 안경 ]이 반짝이며 날아오더니, [ 참새들 ]이 내려오는 게 아니겠어요?"
                     }),
                     (DialogSpeaker.GlassesSparrow1, new string[]{ "(안경을 고쳐 쓰며) 음, 벼 껍질 작업인가. 통계상 우리 작업 속도가 제일 빠르지." }),
                     (DialogSpeaker.GlassesSparrow2, new string[]{ "그럼 시작해 볼까?" }),
                     (DialogSpeaker.Narration, new string[]{
-                        "[안경 쓴 참새들]은 벼 이삭에 줄줄이 매달려, 날개로 이삭을 힘껏 털어 주었어요.",
+                        "[ 안경 쓴 참새들 ]은 벼 이삭에 줄줄이 매달려, 날개로 이삭을 힘껏 털어 주었어요.",
                         "그러자 껍질들은 옆으로 휙휙 날아가고, 알맹이만 “토도독토도독” 바구니에 떨어졌지요."
                     }),
                     (DialogSpeaker.Kongjwi, new string[]{ "우와... 벌써 다섯 섬이나 끝났어! 여러분 덕분이에요, 고마워요!" }),
                     (DialogSpeaker.GlassesSparrow1, new string[]{ "(멋있게 고개 끄덕이며) 협업은 언제나 옳다구. 그럼 우리는 다음 ARP 프로젝트가 있어서 이만!" }),
-                    (DialogSpeaker.Narration, new string[]{ "[안경 쓴 참새들]은 하늘로 \"짹짹!\" 노래를 부르며 사라졌어요." })
+                    (DialogSpeaker.Narration, new string[]{ "[ 안경 쓴 참새들 ]은 하늘로 \"짹짹!\" 노래를 부르며 사라졌어요." })
                 }
             }
         }},
@@ -180,17 +180,17 @@ public class DialogScript
                         "그때 물가에서 햇빛을 받으며 조용히 빛나던 [______1______] 하나가 살며시 움직이더니, [______2______] 도와주겠다는게 아니겠어요?"
                     }),
                     (DialogSpeaker.Narration, new string[]{
-                        "그때 물가에서 햇빛을 받으며 조용히 빛나던 [납작한 조개] 하나가",
+                        "그때 물가에서 햇빛을 받으며 조용히 빛나던 [ 납작한 조개 ] 하나가",
                         "살며시 움직이더니, 항아리 쪽으로 데굴데굴 굴러오는 게 아니겠어요?"
                     }),
                     (DialogSpeaker.FlatClam, new string[]{ "(조용한 목소리로) 구멍이 문제라면, 내가 좀 도와줄 수 있을지도 모르겠네." }),
                     (DialogSpeaker.Narration, new string[]{
-                        "[납작한 조개]는 항아리 안으로 들어가 껍데기를 쫙 펼쳐",
-                        "구멍을 [단단히 막아] 주었어요.",
+                        "[ 납작한 조개 ]는 항아리 안으로 들어가 껍데기를 쫙 펼쳐",
+                        "구멍을 [ 단단히 막아 ] 주었어요.",
                         "이제 물은 더 이상 새어나가지 않고,",
                         "콩쥐가 물을 부을 때마다 항아리 안에 차곡차곡 쌓여 갔지요."
                     }),
-                    (DialogSpeaker.Kongjwi, new string[]{ "정말 고마워요, [납작한 조개]야!" }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "정말 고마워요, [ 납작한 조개 ]야!" }),
                     (DialogSpeaker.FlatClam, new string[]{ "(살짝 반짝이며) 아무에게도 말하지 말고, 나중에 물가에 놀러 와 줘." })
                 }
             }
@@ -211,10 +211,10 @@ public class DialogScript
                         "공중에서 [______1______]들이 팔랑팔랑 날아오더니 스스로 [______2______]가 되는 게 아니겠어요?"
                     }),
                     (DialogSpeaker.Narration, new string[]{
-                        "공중에서 [하얀 종이]들이 팔랑팔랑 날아오더니 스스로 [나비]가 되는 게 아니겠어요?"
+                        "공중에서 [ 하얀 종이 ]들이 팔랑팔랑 날아오더니 스스로 [ 나비 ]가 되는 게 아니겠어요?"
                     }),
                     (DialogSpeaker.Kongjwi, new string[]{ "우와... [ 종이 나비 ] 다..." }),
-                    (DialogSpeaker.Narration, new string[]{ "그 사이, 종이 나비들 가운데에서 [종이접기 나비 요정]이 나타났어요." }),
+                    (DialogSpeaker.Narration, new string[]{ "그 사이, 종이 나비들 가운데에서 [ 종이접기 나비 요정 ]이 나타났어요." }),
                     (DialogSpeaker.OrigamiButterflyFairy, new string[]{
                         "안녕, 콩쥐야. 너의 부지런함은 여기까지 소문이 났단다.",
                         "이제 잔치에 갈 시간이지?"
@@ -228,7 +228,7 @@ public class DialogScript
             {
                 Language.kr, new []{
                     (DialogSpeaker.Narration, new string[]{
-                        "그러자 [종이접기 나비 요정]은 두 손을 펼치며",
+                        "그러자 [ 종이접기 나비 요정 ]은 두 손을 펼치며",
                         "종이와 달빛 조각을 한데 모아 빙글빙글 돌렸어요.",
                         "[종이접기 나비 요정]은 종이와 달빛으로",
                         "비단옷과 꽃신을 후다닥 접어 만들어 콩쥐에게 건네주었어요."
@@ -236,7 +236,7 @@ public class DialogScript
                     (DialogSpeaker.OrigamiButterflyFairy, new string[]{ "이 옷과 꽃신을 신고, 너도 네가 얼마나 소중한 사람인지 잊지 말고 잔치에 다녀오렴." }),
                     (DialogSpeaker.Kongjwi, new string[]{ "정말... 감사합니다!" }),
                     (DialogSpeaker.Narration, new string[]{
-                        "콩쥐는 [종이접기 나비 요정]이 건네준 비단옷과 꽃신을 신고",
+                        "콩쥐는 [ 종이접기 나비 요정 ]이 건네준 비단옷과 꽃신을 신고",
                         "조심조심 잔칫집으로 향했답니다."
                     })
                 }
@@ -257,7 +257,7 @@ public class DialogScript
                     (DialogSpeaker.Kongjwi, new string[]{ "(깜짝 놀라) 아! 내 꽃신!" }),
                     (DialogSpeaker.Narration, new string[]{
                         "꽃신은 물 위에 동동 떠 있다가 점점 아래로 흘러 내려갔어요.",
-                        "그 아래쪽 물가에서는 [납작한 조개]가 햇빛을 쬐고 있었는데,",
+                        "그 아래쪽 물가에서는 [ 납작한 조개 ]가 햇빛을 쬐고 있었는데,",
                         "꽃신이 떠내려오는 것을 보고 \"지금이다!\" 하고 껍데기를 탁 닫았다 펴며",
                         "꽃신을 강가 모래 위로 '툭' 튕겨 올렸어요.",
                         "마침 그때, 원님 일행이 그 길을 지나가고 있었지요."
@@ -294,8 +294,8 @@ public class DialogScript
                     (DialogSpeaker.Stepmother, new string[]{ "(팥쥐를 데리고 와) 이리 와, 팥쥐야. 네 발이랑 딱 맞을 거야. 억지로라도 신어 보거라." }),
                     (DialogSpeaker.Patjwi, new string[]{ "(신발을 밀어 넣으며) 아, 너무 끼는데..." }),
                     (DialogSpeaker.Narration, new string[]{
-                        "그때 하늘에서 [종이접기 나비 요정]이 몰래 내려와,",
-                        "[종이 나비들]을 팥쥐 주위에 [휘리릭 날려 보내며] 발등을 간질였어요."
+                        "그때 하늘에서 [ 종이접기 나비 요정 ]이 몰래 내려와,",
+                        "[ 종이 나비들 ]을 팥쥐 주위에 [ 휘리릭 날려 보내며 ] 발등을 간질였어요."
                     }),
                     (DialogSpeaker.Patjwi, new string[]{ "으악, 간지러워! 못 신겠어요!" }),
                     (DialogSpeaker.Narration, new string[]{ "결국 팥쥐의 발은 꽃신에 들어가지 않았지요." }),
@@ -325,10 +325,10 @@ public class DialogScript
             {
                 Language.kr, new []{
                     (DialogSpeaker.Narration, new string[]{
-                        "그 순간, 마당 한쪽에서는 [굴착기 두더지]가 기뻐서 땅을 [부스럭부스럭 파고] 있었고,",
-                        "지붕 위에서는 [안경 쓴 참새들]이 콩쥐 이름을 [신나게 노래하고],",
-                        "개울가에서는 [납작한 조개]가 [햇빛을 받으며 반짝였어요].",
-                        "하늘 위에는 [종이접기 나비 요정]이 [종이 나비들을 흩뿌리며] 콩쥐를 축복하고 있었지요."
+                        "그 순간, 마당 한쪽에서는 [ 굴착기 두더지 ]가 기뻐서 땅을 [ 부스럭부스럭 파고 ] 있었고,",
+                        "지붕 위에서는 [ 안경 쓴 참새들 ]이 콩쥐 이름을 [ 신나게 노래하고 ],",
+                        "개울가에서는 [ 납작한 조개 ]가 [ 햇빛을 받으며 반짝였어요 ].",
+                        "하늘 위에는 [ 종이접기 나비 요정 ]이 [ 종이 나비들을 흩뿌리며 ] 콩쥐를 축복하고 있었지요."
                     }),
                     (DialogSpeaker.Magistrate, new string[]{
                         "콩쥐, 그대는 힘들었을 텐데도 이렇게 따뜻한 눈을 하고 있구려.",
@@ -344,11 +344,11 @@ public class DialogScript
                     (DialogSpeaker.Narration, new string[]{
                         "그날 이후, 콩쥐와 원님은 마을 사람들을 도우며 살았고,",
                         "새어머니와 팥쥐도 조금씩 마음을 고쳐 나갔답니다.",
-                        "[굴착기 두더지]는 논밭을 도와주고,",
-                        "[안경 쓴 참새들]은 씨앗을 알맞게 골라 뿌려 주었지요.",
-                        "[납작한 조개]는 물길을 지키며 가뭄을 막았고,",
-                        "[종이접기 나비 요정]은 힘들어하는 사람들에게",
-                        "작은 종이 나비와 함께 새로운 용기를 [살짝 건네주었답니다].",
+                        "[ 굴착기 두더지 ]는 논밭을 도와주고,",
+                        "[ 안경 쓴 참새들 ]은 씨앗을 알맞게 골라 뿌려 주었지요.",
+                        "[ 납작한 조개 ]는 물길을 지키며 가뭄을 막았고,",
+                        "[ 종이접기 나비 요정 ]은 힘들어하는 사람들에게",
+                        "작은 종이 나비와 함께 새로운 용기를 [ 살짝 건네주었답니다 ].",
                         "그래서 그 마을 사람들은 서로 도우며 웃는 법을 잊지 않고,",
                         "오래오래 행복하게 살았다고 해요."
                     })
