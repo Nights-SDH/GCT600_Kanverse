@@ -31,5 +31,8 @@ public enum DialogName
     Scene7_Shoe_Test,       // 팥쥐 실패, 콩쥐 성공
 
     // 장면 8. 결말
-    Scene8_Ending           // 대동단결 해피엔딩
+    Scene8_Ending,           // 대동단결 해피엔딩
+    
+    // System End
+    End,
 }

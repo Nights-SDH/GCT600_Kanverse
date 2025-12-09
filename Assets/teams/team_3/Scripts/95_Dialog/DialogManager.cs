@@ -41,7 +41,7 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         Initialize();
-        StartDialog(DialogName.Kongjwi_Intro_Birth);
+        StartDialog(DialogName.Scene1_Intro);
     }
 
     private void Update()
