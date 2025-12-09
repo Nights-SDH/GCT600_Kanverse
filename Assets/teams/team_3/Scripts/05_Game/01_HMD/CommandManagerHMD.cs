@@ -18,5 +18,10 @@ public class CommandManagerHMD: MonoBehaviour
                 RatioAlignedCanvas.Instance.gameObject.SetActive(!RatioAlignedCanvas.Instance.gameObject.activeSelf);
             }
         }
+
+        if (OVRInput.GetDown(OVRInput.Button.One, ControllerL) || Input.GetKeyDown(KeyCode.N))
+        {
+            NetworkManagerHMD.Instance.TryConnectToServer();
+        }
     }
 }

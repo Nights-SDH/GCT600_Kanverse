@@ -23,7 +23,7 @@ public class NetworkManagerHMD : SingletonObject<NetworkManagerHMD>
             ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Client closing", CancellationToken.None);
     }
 
-    private async void Start()
+    public async void TryConnectToServer()
     {
         await NetworkFunctionsProject.ConnectToServer(messageQueue, ws, cts);
     }
