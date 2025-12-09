@@ -111,48 +111,48 @@ public class DialogScript
         // // ==================================================================
         // // --- 장면 3. 곡식 까기와 안경 쓴 참새들 ---
         // // ==================================================================
-        // { DialogName.Scene3_Grain_Task, new ()
-        // {
-        //     {
-        //         Language.kr, new []{
-        //             (DialogSpeaker.Narration, new string[]{ "며칠 뒤, 새어머니는 또 콩쥐를 불렀어요." }),
-        //             (DialogSpeaker.Stepmother, new string[]{
-        //                 "우린 잔칫집에 갔다 올 테니, 그 동안",
-        //                 "벼 껍질 다 까고, 솥 씻고, 항아리에 물도 가득 채워 놓거라.",
-        //                 "못 하면 집에 들어오지도 말거라!"
-        //             }),
-        //             (DialogSpeaker.Patjwi, new string[]{ "(웃으며) 엄마, 나 예쁜 옷 입고 갈래요~ 콩쥐는 또 집에 있으라고 하죠?" }),
-        //             (DialogSpeaker.Stepmother, new string[]{ "그렇지, 그렇지. 콩쥐야, 울지 말고 잘~ 해 보거라. (비웃으며 나감)" }),
-        //             (DialogSpeaker.Narration, new string[]{ "콩쥐는 커다란 벼 자루를 보며 깊은 한숨을 쉬었어요." }),
-        //             (DialogSpeaker.Kongjwi, new string[]{ "이걸 언제 다 까지... 손으로 하면 밤새워도 못 끝낼 텐데..." })
-        //         }
-        //     }
-        // }},
-        // { DialogName.Scene3_Sparrow_Help, new ()
-        // {
-        //     {
-        //         Language.kr, new []{
-        //             (DialogSpeaker.Narration, new string[]{
-        //                 "바로 그때, 하늘 위에서 뭔가 반짝였어요.",
-        //             }),
-        //             (DialogSpeaker.Special, new string[]{
-        //                 "[______1______]이 반짝이며 날아오더니, [______2______]들이 내려오는 게 아니겠어요?"
-        //             }),
-        //             (DialogSpeaker.Narration, new string[]{
-        //                 "[작은 안경]이 반짝이며 날아오더니, [참새들]이 내려오는 게 아니겠어요?"
-        //             }),
-        //             (DialogSpeaker.GlassesSparrow1, new string[]{ "(안경을 고쳐 쓰며) 음, 벼 껍질 작업인가. 통계상 우리 작업 속도가 제일 빠르지." }),
-        //             (DialogSpeaker.GlassesSparrow2, new string[]{ "그럼 시작해 볼까?" }),
-        //             (DialogSpeaker.Narration, new string[]{
-        //                 "[안경 쓴 참새들]은 벼 이삭에 줄줄이 매달려, 날개로 이삭을 힘껏 털어 주었어요.",
-        //                 "그러자 껍질들은 옆으로 휙휙 날아가고, 알맹이만 “토도독토도독” 바구니에 떨어졌지요."
-        //             }),
-        //             (DialogSpeaker.Kongjwi, new string[]{ "우와... 벌써 다섯 섬이나 끝났어! 여러분 덕분이에요, 고마워요!" }),
-        //             (DialogSpeaker.GlassesSparrow1, new string[]{ "(멋있게 고개 끄덕이며) 협업은 언제나 옳다구. 그럼 우리는 다음 프로젝트가 있어서 이만!" }),
-        //             (DialogSpeaker.Narration, new string[]{ "[안경 쓴 참새들]은 하늘로 \"짹짹!\" 노래를 부르며 사라졌어요." })
-        //         }
-        //     }
-        // }},
+        { DialogName.Scene3_Grain_Task, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{ "며칠 뒤, 새어머니는 또 콩쥐를 불렀어요." }),
+                    (DialogSpeaker.Stepmother, new string[]{
+                        "우린 잔칫집에 갔다 올 테니, 그 동안",
+                        "벼 껍질 다 까고, 솥 씻고, 항아리에 물도 가득 채워 놓거라.",
+                        "못 하면 집에 들어오지도 말거라!"
+                    }),
+                    (DialogSpeaker.Patjwi, new string[]{ "(웃으며) 엄마, 나 예쁜 옷 입고 갈래요~ 콩쥐는 또 집에 있으라고 하죠?" }),
+                    (DialogSpeaker.Stepmother, new string[]{ "그렇지, 그렇지. 콩쥐야, 울지 말고 잘~ 해 보거라. (비웃으며 나감)" }),
+                    (DialogSpeaker.Narration, new string[]{ "콩쥐는 커다란 벼 자루를 보며 깊은 한숨을 쉬었어요." }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "이걸 언제 다 까지... 손으로 하면 밤새워도 못 끝낼 텐데..." })
+                }
+            }
+        }},
+        { DialogName.Scene3_Sparrow_Help, new ()
+        {
+            {
+                Language.kr, new []{
+                    (DialogSpeaker.Narration, new string[]{
+                        "바로 그때, 하늘 위에서 뭔가 반짝였어요.",
+                    }),
+                    (DialogSpeaker.Special, new string[]{
+                        "[______1______]이 반짝이며 날아오더니, [______2______]들이 내려오는 게 아니겠어요?"
+                    }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "[작은 안경]이 반짝이며 날아오더니, [참새들]이 내려오는 게 아니겠어요?"
+                    }),
+                    (DialogSpeaker.GlassesSparrow1, new string[]{ "(안경을 고쳐 쓰며) 음, 벼 껍질 작업인가. 통계상 우리 작업 속도가 제일 빠르지." }),
+                    (DialogSpeaker.GlassesSparrow2, new string[]{ "그럼 시작해 볼까?" }),
+                    (DialogSpeaker.Narration, new string[]{
+                        "[안경 쓴 참새들]은 벼 이삭에 줄줄이 매달려, 날개로 이삭을 힘껏 털어 주었어요.",
+                        "그러자 껍질들은 옆으로 휙휙 날아가고, 알맹이만 “토도독토도독” 바구니에 떨어졌지요."
+                    }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "우와... 벌써 다섯 섬이나 끝났어! 여러분 덕분이에요, 고마워요!" }),
+                    (DialogSpeaker.GlassesSparrow1, new string[]{ "(멋있게 고개 끄덕이며) 협업은 언제나 옳다구. 그럼 우리는 다음 프로젝트가 있어서 이만!" }),
+                    (DialogSpeaker.Narration, new string[]{ "[안경 쓴 참새들]은 하늘로 \"짹짹!\" 노래를 부르며 사라졌어요." })
+                }
+            }
+        }},
 
         // ==================================================================
         // --- 장면 4. 항아리의 구멍과 납작한 조개 ---
