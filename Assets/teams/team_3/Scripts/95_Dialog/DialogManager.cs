@@ -20,7 +20,7 @@ public class DialogManager : MonoBehaviour
     public Sprite defaultSpeakerSprite;
 
     private DialogName currentDialogName;
-    private (DialogSpeaker, string[])[] dialogSequence;
+    private (DialogSpeaker, (string, AudioClip)[])[] dialogSequence;
     private int dialogIndex = 0;
     private int lineIndex = 0;
 
@@ -160,7 +160,7 @@ public class DialogManager : MonoBehaviour
         if (lineIndex < lines.Length)
         {
             // 같은 화자의 다음 대사
-            dialogText.text = lines[lineIndex];
+            dialogText.text = lines[lineIndex].Item1;
         }
         else
         {
@@ -185,7 +185,11 @@ public class DialogManager : MonoBehaviour
         // 화자 업데이트 체크
         UpdateSpeakers(speaker);
 
-        dialogText.text = lines[lineIndex];
+        dialogText.text = lines[lineIndex].Item1;
+        if(lines[lineIndex].Item2 != null)
+        {
+            SoundManager.Instance.SFXPlay(lines[lineIndex].Item2);
+        }
 
         // 말하는 사람 강조
         if (speaker == speaker1)

@@ -13,11 +13,40 @@ MonoBehaviour:
   m_Name: SoundList
   m_EditorClassIdentifier: 
   titleBGM: {fileID: 0}
-  heroBaseBGM: {fileID: 0}
-  barBGM: {fileID: 0}
-  battleBGM: {fileID: 0}
-  cutScenePieceBGM: {fileID: 0}
-  cutSceneViolentBGM: {fileID: 0}
-  hydeSwingSFX: {fileID: 0}
-  hydeWalkSFK: {fileID: 0}
-  hydeHurtSFK: {fileID: 0}
+  EmptySlot: {fileID: 8300000, guid: 36bdc9cc3c30ead48bd5aef5c028524b, type: 3}
+  IntroNarration1: {fileID: 8300000, guid: c9fb5edc9fe5f4b42b0cb62db9e94f76, type: 3}
+  IntroNarration2: {fileID: 8300000, guid: 2f9af9ec19640c841b32f5b51dc633b5, type: 3}
+  IntroNarration3: {fileID: 8300000, guid: 122122aa0b9423241baaeacb7dd012f8, type: 3}
+  IntroNarration4: {fileID: 8300000, guid: eeddc24c9c51ccd4682b369c7973b8ba, type: 3}
+  IntroNarration5: {fileID: 8300000, guid: 7e08819061ef43f4a8a20b59654847e9, type: 3}
+  MoleNarration1: {fileID: 8300000, guid: 73828016ac1062b47916e62616932816, type: 3}
+  MoleNarration2: {fileID: 8300000, guid: 397ce22b21367f744add28c019e46786, type: 3}
+  MoleNarration3: {fileID: 8300000, guid: dc07e467e495e5a49beb87aec38f02cb, type: 3}
+  MoleNarration4: {fileID: 8300000, guid: 73037ca0613250f478cb740bc74351ae, type: 3}
+  MoleNarration5: {fileID: 8300000, guid: 64d935f56d485134e9672b1e24c42386, type: 3}
+  MoleNarration6: {fileID: 8300000, guid: 405c1907fd8823040adebddb5627db4b, type: 3}
+  MoleNarration7: {fileID: 8300000, guid: 92b9495dce7b6304489fa2856a9e6af1, type: 3}
+  MoleNarration8: {fileID: 8300000, guid: a924544a591e6c346ae0676956c31500, type: 3}
+  MoleNarration9: {fileID: 8300000, guid: aef923914c1f5984492d5af22d12483c, type: 3}
+  EndNarration0: {fileID: 8300000, guid: 970b548e43c18ca4c8c8c79cb8a57a4c, type: 3}
+  EndNarration1: {fileID: 8300000, guid: 315cb00b04ec5b240afb024dd1ee5515, type: 3}
+  EndNarration2: {fileID: 8300000, guid: a459cbc731dd3ae4a98dab09587b127f, type: 3}
+  EndNarration3: {fileID: 8300000, guid: 22d4a232910b76942ac478c7c4f231df, type: 3}
+  EndNarration4: {fileID: 8300000, guid: b7104c0911e9b3445b360f773d24973f, type: 3}
+  EndNarration5: {fileID: 8300000, guid: ab3203fe738f06e499c19fdd044774bd, type: 3}
+  EndNarration6: {fileID: 8300000, guid: d74170ee07016ab4aa63c2d694628469, type: 3}
+  EndNarration7: {fileID: 8300000, guid: 581c2273224eb5a4e889e73098b5f366, type: 3}
+  EndNarration8: {fileID: 8300000, guid: 09eb6dcca268ab249a8593b2880188ea, type: 3}
+  EndNarration9: {fileID: 8300000, guid: 98c20cb2dfa17c744bbe743254de07be, type: 3}
+  EndNarration10: {fileID: 8300000, guid: ff6e1dea261fd7344b7a19c5f52e74a9, type: 3}
+  EndNarration11: {fileID: 8300000, guid: 4bc5dd3690321484bb687a874883fcc2, type: 3}
+  EndNarration12: {fileID: 8300000, guid: 01aa7787bbb04434b90b3cfd7a1607a2, type: 3}
+  EndNarration13: {fileID: 8300000, guid: c6064d57df0d1a04c9c88521a5253f7e, type: 3}
+  IntroStepMother1: {fileID: 8300000, guid: 20b913e910424004d87ae37a48dee34a, type: 3}
+  IntroStepMother2: {fileID: 8300000, guid: 8cbe2665e55cf554cb74d41df282d79a, type: 3}
+  MoleStepMother1: {fileID: 8300000, guid: e5f8c541262dad84f8297531d4554ef5, type: 3}
+  MoleStepMother2: {fileID: 8300000, guid: a42e9c762cceff0409dfea3b6e41b35b, type: 3}
+  EndStepMother1: {fileID: 8300000, guid: 5a81df7af4755e6439e22174f6e0f65c, type: 3}
+  IntroPatjwi1: {fileID: 8300000, guid: 26d4bc0b80aa1f943961a1d243923d06, type: 3}
+  MolePatjwi1: {fileID: 8300000, guid: 4c5937eff5a370f42b008e66f1fe34c2, type: 3}
+  EndPatjwi1: {fileID: 8300000, guid: bbf50d855db38ba49b60cff3ad3df364, type: 3}

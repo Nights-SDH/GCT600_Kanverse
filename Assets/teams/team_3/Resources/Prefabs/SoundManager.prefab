@@ -51,7 +51,6 @@ MonoBehaviour:
   backGroundSound: {fileID: 5067291678764927535}
   soundEffect: {fileID: 7842529842738398002}
   mixer: {fileID: 24100000, guid: 553f08e6304d55c4d98721d471911212, type: 2}
-  KnockSound: {fileID: 0}
 --- !u!82 &5067291678764927535
 AudioSource:
   m_ObjectHideFlags: 0
@@ -61,7 +60,7 @@ AudioSource:
   m_GameObject: {fileID: 1902735031879749021}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1532379575071245607, guid: 553f08e6304d55c4d98721d471911212, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -158,7 +157,7 @@ AudioSource:
   m_GameObject: {fileID: 1902735031879749021}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8026875356428235455, guid: 553f08e6304d55c4d98721d471911212, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

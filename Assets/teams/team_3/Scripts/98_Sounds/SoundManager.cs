@@ -9,8 +9,8 @@ public class SoundManager : SingletonObject<SoundManager>
     public AudioSource soundEffect;
     public AudioMixer mixer;
     private float sfxVolume = 1.0f;
-    private float backgroundVolume;
-    private float masterVolume;
+    private float backgroundVolume = 1.0f;
+    private float masterVolume = 1.0f;
     private const float DUCKING_VOLUME = 0.5f;
     private float originalBGMVolume;
     private bool isDucking = false;
@@ -19,11 +19,9 @@ public class SoundManager : SingletonObject<SoundManager>
     private const float VOLUME_REDUCTION_FACTOR = 1f; // TODO: 적정 값을 찾아야 함
     private List<AudioClip> activeClips = new List<AudioClip>();
 
-    // TODO: AudioList에서 관리하도록 수정
-    public AudioClip KnockSound;
-
     protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(this.gameObject);
         importantSoundList = new ImportantSoundList();
     }
@@ -141,7 +139,7 @@ public class SoundManager : SingletonObject<SoundManager>
     {
         soundEffect.outputAudioMixerGroup = mixer.FindMatchingGroups("SFX")[0];
         soundEffect.clip = clip;
-        soundEffect.loop = true;
+        soundEffect.loop = false;
         soundEffect.Play();
     }
 
@@ -154,11 +152,6 @@ public class SoundManager : SingletonObject<SoundManager>
     public void StopBackGroundSFX()
     {
         soundEffect.Stop();
-    }
-
-    public void PlayKnockSound()
-    {
-        BackGroundPlay(KnockSound);
     }
 
     public void SetBGMMute(bool mute)
