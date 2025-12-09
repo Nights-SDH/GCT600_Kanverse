@@ -4299,10 +4299,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerNode: 2
   drawButton: 8192
-  maxDistance: 5
+  maxDistance: 100
   drawingSurfaceLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   paintColor: {r: 0, g: 0, b: 0, a: 1}
   brushSize: 5
   textureResolution: 1024
