@@ -498,6 +498,24 @@ MonoBehaviour:
   - speaker: 1
     sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
     darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
+  - speaker: 1
+    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
+    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
+  - speaker: 1
+    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
+    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
+  - speaker: 1
+    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
+    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
+  - speaker: 1
+    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
+    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
+  - speaker: 1
+    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
+    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
+  - speaker: 1
+    sprite: {fileID: 21300000, guid: f011e02b868d9724b9d0c03bc036bdc6, type: 3}
+    darkSprite: {fileID: 21300000, guid: b0274f37d13353b4a80e6104784a16a9, type: 3}
   defaultSpeakerSprite: {fileID: 21300000, guid: 1b081373ff7ea5d46a502b6cdc69e518, type: 3}
   fadeInEffect: {fileID: 1599561651}
 --- !u!1 &1599561649

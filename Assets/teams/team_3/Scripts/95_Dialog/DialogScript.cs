@@ -79,12 +79,12 @@ public class DialogScript
                         "어디선가 [______1______]이(가) 나타나 [______2______]로 도와주는게 아니겠어요?"
                     }),
                     (DialogSpeaker.Narration, new string[]{
-                        "어디선가 [두더지]가 나타나 [굴착기]로 도와주는게 아니겠어요?"
+                        "어디선가 [ 두더지 ]가 나타나 [ 굴착기 ]로 도와주는게 아니겠어요?"
                     }),
                     (DialogSpeaker.ExcavatorMole, new string[]{ "(헬멧을 고쳐 쓰며) 흐음, 여기서 누가 한숨을 쉬나 했더니 콩쥐구나?" }),
                     (DialogSpeaker.Kongjwi, new string[]{ "(깜짝 놀라) 어, 누구세요?" }),
                     (DialogSpeaker.ExcavatorMole, new string[]{
-                        "나는 땅 파기의 달인, [굴착기 두더지]다.",
+                        "나는 땅 파기의 달인, [ 굴착기 두더지 ]다.",
                         "밭을 매는 건 내가 훨씬 빠르지!"
                     })
                 }
@@ -148,7 +148,7 @@ public class DialogScript
                         "그러자 껍질들은 옆으로 휙휙 날아가고, 알맹이만 “토도독토도독” 바구니에 떨어졌지요."
                     }),
                     (DialogSpeaker.Kongjwi, new string[]{ "우와... 벌써 다섯 섬이나 끝났어! 여러분 덕분이에요, 고마워요!" }),
-                    (DialogSpeaker.GlassesSparrow1, new string[]{ "(멋있게 고개 끄덕이며) 협업은 언제나 옳다구. 그럼 우리는 다음 프로젝트가 있어서 이만!" }),
+                    (DialogSpeaker.GlassesSparrow1, new string[]{ "(멋있게 고개 끄덕이며) 협업은 언제나 옳다구. 그럼 우리는 다음 ARP 프로젝트가 있어서 이만!" }),
                     (DialogSpeaker.Narration, new string[]{ "[안경 쓴 참새들]은 하늘로 \"짹짹!\" 노래를 부르며 사라졌어요." })
                 }
             }
@@ -211,9 +211,9 @@ public class DialogScript
                         "공중에서 [______1______]들이 팔랑팔랑 날아오더니 스스로 [______2______]가 되는 게 아니겠어요?"
                     }),
                     (DialogSpeaker.Narration, new string[]{
-                        "공중에서 하얀 종이들이 팔랑팔랑 날아오더니 스스로 나비가 되는 게 아니겠어요?"
+                        "공중에서 [하얀 종이]들이 팔랑팔랑 날아오더니 스스로 [나비]가 되는 게 아니겠어요?"
                     }),
-                    (DialogSpeaker.Kongjwi, new string[]{ "우와... 종이 나비다..." }),
+                    (DialogSpeaker.Kongjwi, new string[]{ "우와... [ 종이 나비 ] 다..." }),
                     (DialogSpeaker.Narration, new string[]{ "그 사이, 종이 나비들 가운데에서 [종이접기 나비 요정]이 나타났어요." }),
                     (DialogSpeaker.OrigamiButterflyFairy, new string[]{
                         "안녕, 콩쥐야. 너의 부지런함은 여기까지 소문이 났단다.",
