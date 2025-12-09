@@ -20,7 +20,7 @@ public class NetworkManagerHMD : SingletonObject<NetworkManagerHMD>
     {
         cts.Cancel();
         if (ws != null && ws.State == WebSocketState.Open)
-            ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Client closing", CancellationToken.None);
+            ws.CloseAsync(WebSocketCloseStatus.NormalClosure, " Client closing", CancellationToken.None);
     }
 
     public async void TryConnectToServer()
@@ -31,6 +31,7 @@ public class NetworkManagerHMD : SingletonObject<NetworkManagerHMD>
     // --- 3. 메인 스레드 처리 (Update) ---
     private void Update()
     {
+        if(!IsConnected) return;
         while (messageQueue.TryDequeue(out string json))
         {
             NetworkFunctionsProject.ProcessMessage(json);

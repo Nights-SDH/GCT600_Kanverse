@@ -26,8 +26,8 @@ public class LobbyManager: SingletonObject<LobbyManager>
         roomInfoViewer.text = $"RoomId: 1004 ({participantCount}/{MAX_PARTICIPANTS})";   
     }
 
-    void OnStartButtonClicked()
+    public void OnStartButtonClicked()
     {
-        NetworkManagerLEDWall.Instance.RequestGameStart();
+        StartCoroutine(SceneController.Instance.ChangeSceneWithLoading(SceneName.InGame_LEDWall));
     }
 }
