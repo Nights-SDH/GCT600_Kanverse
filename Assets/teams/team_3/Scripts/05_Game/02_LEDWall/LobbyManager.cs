@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,7 +17,6 @@ public class LobbyManager: SingletonObject<LobbyManager>
     {
         startButton.onClick.AddListener(OnStartButtonClicked);
     }
-
     public void AddParticipant()
     {
         if(participantCount == MAX_PARTICIPANTS) return;
@@ -24,6 +24,19 @@ public class LobbyManager: SingletonObject<LobbyManager>
         participantsList[participantCount].SetActive(true); 
         participantCount++;
         roomInfoViewer.text = $"RoomId: 1004 ({participantCount}/{MAX_PARTICIPANTS})";   
+    }
+
+    public void UpdateRoomInfo(int count)
+    {
+        if(count != participantCount)
+        {
+            participantCount = count;
+            roomInfoViewer.text = $"RoomId: 1004 ({participantCount}/{MAX_PARTICIPANTS})";   
+            for(int i = participantCount; i < count; i++)
+            {
+                participantsList[i].SetActive(true);
+            }
+        }
     }
 
     public void OnStartButtonClicked()

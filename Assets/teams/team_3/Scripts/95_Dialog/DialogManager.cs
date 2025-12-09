@@ -41,7 +41,6 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         Initialize();
-        StartDialog(DialogName.Scene1_Intro);
     }
 
     private void Update()
@@ -84,15 +83,7 @@ public class DialogManager : MonoBehaviour
         {
             if (dialogPanel.activeSelf)
             {
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    EndDialog();
-                }
-                if (Input.GetKeyDown(KeyCode.Return) ||
-                Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetMouseButtonDown(0))
-                {
-                    NextLine();
-                }
+                NextLine();
             }
 
             // if (cutSceneController != null && cutSceneController.isPlaying)

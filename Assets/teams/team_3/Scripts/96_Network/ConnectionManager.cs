@@ -1,53 +1,190 @@
-using Photon.Pun;
-using Photon.Realtime;
+using System;
+using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
+using System.Collections.Concurrent;
+using UnityEditor.SearchService;
 
-public class ConnectionManager: MonoBehaviourPunCallbacks
+
+[Serializable]
+public class SocketMessageFinal
 {
-    public bool isHost = false;
-    public string roomName = "UX";
-    public static ConnectionManager Instance;
-    public void Awake()
+    public string type;
+    public string device_type; // REGISTER용
+    public string role;        // ROLE_ASSIGN용
+    public int playerCount;    // ROOM_UPDATE용
+    public bool isRoomCreated; // ROOM_UPDATE용
+}
+
+public class ConnectionManager : SingletonObject<ConnectionManager>
+{
+    [Header("Network Settings")]
+    
+    [Header("Device Configuration")]
+    public DeviceType myDeviceType = DeviceType.HMD; // Inspector에서 설정
+
+    private ClientWebSocket ws = new ClientWebSocket();
+    private CancellationTokenSource cts = new CancellationTokenSource();
+    private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
+
+    public bool IsHost { get; private set; } = false;
+    public bool IsConnected => ws != null && ws.State == WebSocketState.Open;
+
+    private async void Start()
     {
-        if (Instance == null)
+        await ConnectToServer();
+    }
+
+    private void OnDestroy()
+    {
+        cts.Cancel();
+        if (ws != null) ws.Dispose();
+    }
+
+    private async Task ConnectToServer()
+    {
+        try
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            ws = new ClientWebSocket();
+            await ws.ConnectAsync(new Uri(NetworkFunctionsProject.serverUrl), cts.Token);
+            Debug.Log("서버 연결됨. 등록 절차 진행...");
+
+            _ = ReceiveLoop();
+
+            // [중요] 연결 직후 내 정체(DeviceType)를 서버에 등록
+            SendRegister();
         }
-        else
+        catch (Exception e)
         {
-            Destroy(gameObject);
+            Debug.LogError($"연결 실패: {e.Message}");
         }
     }
 
-    void Start()
+    // --- 송신 패킷들 ---
+
+    // 1. 등록 (접속 시 자동 호출)
+    public void SendRegister()
     {
-        PhotonNetwork.ConnectUsingSettings();
+        SocketMessageFinal msg = new SocketMessageFinal
+        {
+            type = "REGISTER",
+            device_type = myDeviceType.ToString() // "HMD" or "LED_WALL"
+        };
+        SendJson(msg);
     }
 
-    public override void OnConnected()
+    // 2. 게임 시작 (Host만 호출)
+    public void SendGameStart()
     {
-        base.OnConnected();
-        print(System.Reflection.MethodBase.GetCurrentMethod().Name);
+        if (myDeviceType == DeviceType.HMD && IsHost)
+        {
+            SendJson(new SocketMessageFinal { type = "START_GAME" });
+        }
     }
 
-    public override void OnConnectedToMaster()
+    // 3. 로딩 완료 (LED Wall만 호출 - 씬 로드 끝난 후 호출하세요)
+    public void SendLoadingComplete()
     {
-        base.OnConnectedToMaster();
-        print(System.Reflection.MethodBase.GetCurrentMethod().Name);
-
-        PhotonNetwork.JoinLobby();
+        if (myDeviceType == DeviceType.LED_WALL)
+        {
+            SendJson(new SocketMessageFinal { type = "LOADING_COMPLETE" });
+        }
     }
 
-    public override void OnJoinedRoom()
+    // 4. 다음 시나리오 (Host만 호출)
+    public void SendNextScenario()
     {
-        base.OnJoinedRoom();
-        if(isHost) PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = 2, IsVisible = true});
-        else PhotonNetwork.JoinRoom(roomName);
+        if (myDeviceType == DeviceType.HMD && IsHost)
+        {
+            SendJson(new SocketMessageFinal { type = "NEXT_SCENARIO" });
+        }
     }
 
-    public override void OnCreatedRoom()
+    // --- 수신 루프 및 처리 ---
+
+    private async Task ReceiveLoop()
     {
-        base.OnCreatedRoom();
-        print(System.Reflection.MethodBase.GetCurrentMethod().Name);
+        var buffer = new byte[1024 * 4];
+        while (ws.State == WebSocketState.Open && !cts.IsCancellationRequested)
+        {
+            try
+            {
+                var result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), cts.Token);
+                if (result.MessageType == WebSocketMessageType.Close) break;
+
+                string json = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                messageQueue.Enqueue(json);
+            }
+            catch { break; }
+        }
+    }
+
+    private void Update()
+    {
+        while (messageQueue.TryDequeue(out string json))
+        {
+            ProcessMessage(json);
+        }
+    }
+
+    private void ProcessMessage(string json)
+    {
+        SocketMessageFinal msg = JsonUtility.FromJson<SocketMessageFinal>(json);
+
+        switch (msg.type)
+        {
+            case "ROLE_ASSIGN":
+                IsHost = (msg.role == "HOST");
+                Debug.Log($"[내 역할] {msg.role}");
+                break;
+
+            case "ROOM_UPDATE":
+                // LED Wall이 받는 정보 (현재 인원수 등)
+                Debug.Log($"[LED Wall Info] Player Count: {msg.playerCount}, Room Created: {msg.isRoomCreated}");
+                if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.Lobby_LEDWall)
+                {
+                    if(msg.isRoomCreated && LobbyManager.InstanceWithoutCreate == null)
+                    {
+                        TitleManager.Instance.OnStartButtonClicked();
+                        LobbyManager.Instance.UpdateRoomInfo(msg.playerCount); // TODO: 동시성 문제 있을듯
+                    }
+                    
+                }
+                break;
+
+            case "GAME_START":
+                Debug.Log("게임 시작! 씬 로딩을 시작합니다...");
+                if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.Lobby_LEDWall)
+                {
+                    LobbyManager.Instance.OnStartButtonClicked();
+                }
+                break;
+
+            case "SCENARIO_START":
+                Debug.Log("모든 LED Wall 로딩 완료. 시나리오 시작!");
+                if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.InGame_LEDWall)
+                {
+                    DialogManager.Instance.StartDialog(DialogName.Scene1_Intro);
+                }
+                break;
+
+            case "NEXT_SCENARIO":
+                Debug.Log("다음 시나리오를 재생합니다.");
+                if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.InGame_LEDWall)
+                {
+                    DialogManager.Instance.CommandCheck();
+                }
+                break;
+        }
+    }
+
+    private async void SendJson(SocketMessageFinal msg)
+    {
+        if (ws.State != WebSocketState.Open) return;
+        string json = JsonUtility.ToJson(msg);
+        byte[] buffer = Encoding.UTF8.GetBytes(json);
+        await ws.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true, cts.Token);
     }
 }

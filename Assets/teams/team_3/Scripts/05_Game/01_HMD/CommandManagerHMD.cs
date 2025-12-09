@@ -18,10 +18,16 @@ public class CommandManagerHMD: MonoBehaviour
                 RatioAlignedCanvas.Instance.gameObject.SetActive(!RatioAlignedCanvas.Instance.gameObject.activeSelf);
             }
         }
-
-        if (OVRInput.GetDown(OVRInput.Button.One, ControllerL) || Input.GetKeyDown(KeyCode.N))
+        if(ConnectionManager.Instance.IsHost)
         {
-            NetworkManagerHMD.Instance.TryConnectToServer();
+            if (OVRInput.GetDown(OVRInput.Button.Two, ControllerL) || Input.GetKeyDown(KeyCode.N))
+            {
+                ConnectionManager.Instance.SendGameStart();
+            }
+            else if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, ControllerR) || Input.GetKeyDown(KeyCode.N))
+            {
+                ConnectionManager.Instance.SendNextScenario();
+            }
         }
     }
 }

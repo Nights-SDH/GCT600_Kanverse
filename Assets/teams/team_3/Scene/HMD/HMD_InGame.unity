@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &158903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158905}
+  - component: {fileID: 158904}
+  m_Layer: 0
+  m_Name: NetworkManagerPython
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &158904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb18e65444c09945b1a1abe1668f914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPossibleDuplicate: 0
+  isDontDestory: 1
+  serverUrl: wss://arpserver-production.up.railway.app/ws
+--- !u!4 &158905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2587397
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +812,37 @@ Transform:
   - {fileID: 804765164}
   - {fileID: 1415328966}
   m_Father: {fileID: 1417650180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &146024313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146024314}
+  m_Layer: 0
+  m_Name: Standard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &146024314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146024313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.49, y: -2.72, z: 1.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1406267860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &152526987
 GameObject:
@@ -2430,8 +2508,8 @@ GameObject:
   - component: {fileID: 454178824}
   - component: {fileID: 454178820}
   - component: {fileID: 454178823}
-  - component: {fileID: 454178825}
   - component: {fileID: 454178826}
+  - component: {fileID: 454178827}
   m_Layer: 0
   m_Name: HMDSystems
   m_TagString: Untagged
@@ -2531,21 +2609,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControllerR: 2
   ControllerL: 1
---- !u!114 &454178825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454178817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e48ac1d60e20b489ea9e4f63b91477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPossibleDuplicate: 0
-  isDontDestory: 1
-  IsHost: 0
 --- !u!114 &454178826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2571,6 +2634,21 @@ MonoBehaviour:
     associatedDialogNames: 090000000a0000000b0000000c000000
   - backgroundSprite: {fileID: 21300000, guid: 37c06020a9bd3b949a58bb37336756e8, type: 3}
     associatedDialogNames: 0d0000000e000000
+--- !u!114 &454178827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454178817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d1eab7238df86479c223bd327f12cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPossibleDuplicate: 0
+  isDontDestory: 1
+  myDeviceType: 0
 --- !u!1 &455484473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4877,7 +4955,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 146024314}
   m_Father: {fileID: 1232934966}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!120 &1406267861
@@ -5007,7 +5086,7 @@ MonoBehaviour:
   drawingSurfaceLayer:
     serializedVersion: 2
     m_Bits: 128
-  standard: {fileID: 0}
+  standard: {fileID: 146024313}
   paintColor: {r: 0, g: 0, b: 0, a: 1}
   brushSize: 5
   textureResolution: 1024
@@ -7361,3 +7440,4 @@ SceneRoots:
   - {fileID: 285939904}
   - {fileID: 1257389692}
   - {fileID: 2022784365}
+  - {fileID: 158905}
