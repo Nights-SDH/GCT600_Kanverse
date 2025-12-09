@@ -36,7 +36,10 @@ public class MRUKPaintInteractor : MonoBehaviour
 
     void Update()
     {
-        HandleRaycastingAndPainting();
+        if(RatioAlignedCanvas.InstanceWithoutCreate?.gameObject.activeSelf == true)
+        {
+            HandleRaycastingAndPainting();
+        }
     }
 
     void HandleRaycastingAndPainting()

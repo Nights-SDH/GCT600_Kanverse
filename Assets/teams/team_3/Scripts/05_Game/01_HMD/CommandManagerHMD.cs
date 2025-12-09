@@ -8,7 +8,7 @@ public class CommandManagerHMD: MonoBehaviour
 
     public void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.One, ControllerR) || Input.GetKeyDown(KeyCode.Space))
+        if (OVRInput.GetDown(OVRInput.Button.Two, ControllerR) || Input.GetKeyDown(KeyCode.Space))
         {
             if(RatioAlignedCanvas.InstanceWithoutCreate == null)
             {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OpenXRHandPinchDetector : MonoBehaviour
+public class OpenXRHandPinchDetector : SingletonObject<OpenXRHandPinchDetector>
 {
     [Header("Hand Joint Transforms")]
     public Transform indexTip;
