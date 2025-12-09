@@ -118,6 +118,7 @@ public class DialogManager : MonoBehaviour
 
         Initialize();
         SetActiveDialogPanel(true);
+        BackgroundChanger.Instance.ChangeBackground(dialogName);
 
         playedDialogs.Add(dialogName);
         currentDialogName = dialogName;

@@ -447,6 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550125886}
   - component: {fileID: 1550125887}
+  - component: {fileID: 1550125888}
   m_Layer: 0
   m_Name: DialogManager
   m_TagString: Untagged
@@ -521,6 +522,31 @@ MonoBehaviour:
     darkSprite: {fileID: 21300000, guid: 998836ca143c9b344a4dfa260a726134, type: 3}
   defaultSpeakerSprite: {fileID: 21300000, guid: 1b081373ff7ea5d46a502b6cdc69e518, type: 3}
   fadeInEffect: {fileID: 1599561651}
+--- !u!114 &1550125888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550125885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819daaf77faa6674fb47e502b5429440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPossibleDuplicate: 0
+  isDontDestory: 1
+  defaultBackground: {fileID: 21300000, guid: f3dd56cc02e389646ab6e57a102594a3, type: 3}
+  backgroundRenderer: {fileID: 68195668099212038}
+  backgroundDataList:
+  - backgroundSprite: {fileID: 21300000, guid: f3dd56cc02e389646ab6e57a102594a3, type: 3}
+    associatedDialogNames: 000000000100000007000000080000000f0000001000000002000000
+  - backgroundSprite: {fileID: 21300000, guid: 49ab9b318916c8648b02b000c8f121eb, type: 3}
+    associatedDialogNames: 03000000040000000500000006000000
+  - backgroundSprite: {fileID: 21300000, guid: 9ac43a2fcf45bf445a3ee09d4a11cee2, type: 3}
+    associatedDialogNames: 090000000a0000000b0000000c000000
+  - backgroundSprite: {fileID: 21300000, guid: 37c06020a9bd3b949a58bb37336756e8, type: 3}
+    associatedDialogNames: 0d0000000e000000
 --- !u!1 &1573610302
 GameObject:
   m_ObjectHideFlags: 0
