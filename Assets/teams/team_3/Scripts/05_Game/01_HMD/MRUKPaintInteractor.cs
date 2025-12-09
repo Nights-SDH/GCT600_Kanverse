@@ -10,6 +10,7 @@ public class MRUKPaintInteractor : SingletonObject<MRUKPaintInteractor>
     [Header("Ray Settings")]
     public float maxDistance = 100.0f;
     public LayerMask drawingSurfaceLayer;
+    public GameObject standard;
 
     [Header("Painting Settings")]
     public Color paintColor = Color.black;
@@ -44,7 +45,7 @@ public class MRUKPaintInteractor : SingletonObject<MRUKPaintInteractor>
 
     void HandleRaycastingAndPainting()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = new Ray(transform.position, standard.transform.position);
         RaycastHit hit;
 
         bool isHit = Physics.Raycast(ray, out hit, maxDistance, drawingSurfaceLayer);
