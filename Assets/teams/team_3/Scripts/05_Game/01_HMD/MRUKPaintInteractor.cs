@@ -8,19 +8,22 @@ public class MRUKPaintInteractor : MonoBehaviour
     public OVRInput.Button drawButton = OVRInput.Button.PrimaryIndexTrigger;
 
     [Header("Ray Settings")]
-    public float maxDistance = 5.0f;
+    public float maxDistance = 100.0f;
     public LayerMask drawingSurfaceLayer;
 
     [Header("Painting Settings")]
     public Color paintColor = Color.black;
     public int brushSize = 5;
-    public int textureResolution = 512; // 텍스처 해상도 (512x512)
+    public int textureResolution = 1024; // 해상도 높임 (더 정밀하게)
 
     [Header("References")]
     public LineRenderer lineRenderer;
 
-    // 변경점: Renderer 대신 SpriteRenderer와 텍스처를 매핑
     private Dictionary<Collider, Texture2D> drawingTextures = new Dictionary<Collider, Texture2D>();
+
+    // [해결 2] 점이 끊기는 현상 방지를 위한 '이전 프레임 좌표' 저장
+    private Vector2? lastDrawUV = null; 
+    private Collider lastHitCollider = null;
 
     void Start()
     {
@@ -45,14 +48,23 @@ public class MRUKPaintInteractor : MonoBehaviour
         {
             SetLaserLength(hit.distance);
 
+            // 버튼을 누르고 있을 때
             if (OVRInput.Get(drawButton, controllerNode))
             {
                 PaintOnSprite(hit);
+            }
+            else
+            {
+                // 버튼을 떼면 이전 좌표 초기화 (선을 끊음)
+                lastDrawUV = null;
+                lastHitCollider = null;
             }
         }
         else
         {
             SetLaserLength(maxDistance);
+            lastDrawUV = null;
+            lastHitCollider = null;
         }
     }
 
@@ -60,92 +72,113 @@ public class MRUKPaintInteractor : MonoBehaviour
     {
         Collider hitCollider = hit.collider;
         SpriteRenderer spriteRenderer = hitCollider.GetComponent<SpriteRenderer>();
-        BoxCollider boxCol = hitCollider as BoxCollider; // BoxCollider 가져오기
+        BoxCollider boxCol = hitCollider as BoxCollider;
 
         if (spriteRenderer == null || boxCol == null) return;
 
-        // 1. 그릴 텍스처 준비
+        // 1. 텍스처 준비 (초기화)
         Texture2D drawTexture;
         if (!drawingTextures.TryGetValue(hitCollider, out drawTexture))
         {
-            drawTexture = InitializeDrawingSprite(spriteRenderer, hitCollider);
+            // [해결 1] 텍스처 생성 시 크기 왜곡 방지 로직 적용
+            drawTexture = InitializeDrawingSprite(spriteRenderer, boxCol);
             drawingTextures.Add(hitCollider, drawTexture);
         }
 
-        // 2. 월드 좌표 -> 로컬 좌표 변환
+        // 2. UV 좌표 계산 (Collider 크기 기준 정규화)
         Vector3 localPos = hitCollider.transform.InverseTransformPoint(hit.point);
-
-        // [핵심 수정] Box Collider의 실제 크기와 중심점을 반영하여 UV 계산
-        // 로컬 좌표계에서 Collider의 왼쪽 끝은 (center.x - size.x / 2) 입니다.
-        
-        // 예: size가 10이면, 범위는 -5 ~ +5. 
-        // localPos가 -5일 때 -> (-5 / 10) + 0.5 = 0 (UV 시작점)
-        // localPos가 +5일 때 -> (+5 / 10) + 0.5 = 1 (UV 끝점)
         
         float uvX = ((localPos.x - boxCol.center.x) / boxCol.size.x) + 0.5f;
         float uvY = ((localPos.y - boxCol.center.y) / boxCol.size.y) + 0.5f;
 
-        // 3. UV -> 픽셀 좌표 변환
-        int centerX = (int)(uvX * drawTexture.width);
-        int centerY = (int)(uvY * drawTexture.height);
+        // UV가 0~1을 벗어나지 않도록 안전장치
+        uvX = Mathf.Clamp01(uvX);
+        uvY = Mathf.Clamp01(uvY);
 
-        // 4. 그리기 (브러시)
-        bool modified = false;
+        Vector2 currentUV = new Vector2(uvX, uvY);
+
+        // 3. [해결 2] 선형 보간 (Interpolation) - 점과 점 사이 채우기
+        // 다른 벽으로 넘어갔거나, 처음 찍는 점이라면 보간 없이 현재 점만 찍음
+        if (lastDrawUV == null || lastHitCollider != hitCollider)
+        {
+            DrawBrush(drawTexture, currentUV);
+        }
+        else
+        {
+            // 이전 위치와 현재 위치 사이를 촘촘하게 채움
+            float dist = Vector2.Distance(lastDrawUV.Value, currentUV);
+            // 텍스처 크기에 비례하여 단계 수 결정 (너무 많으면 렉 걸림)
+            int steps = (int)(dist * textureResolution); 
+            
+            for (int i = 0; i <= steps; i++)
+            {
+                float t = (float)i / steps;
+                Vector2 lerpedUV = Vector2.Lerp(lastDrawUV.Value, currentUV, t);
+                DrawBrush(drawTexture, lerpedUV);
+            }
+        }
+
+        drawTexture.Apply();
+
+        // 현재 위치를 '이전 위치'로 저장
+        lastDrawUV = currentUV;
+        lastHitCollider = hitCollider;
+    }
+
+    // 실제로 픽셀을 찍는 함수
+    void DrawBrush(Texture2D texture, Vector2 uv)
+    {
+        int centerX = (int)(uv.x * texture.width);
+        int centerY = (int)(uv.y * texture.height);
+
         for (int x = centerX - brushSize; x < centerX + brushSize; x++)
         {
             for (int y = centerY - brushSize; y < centerY + brushSize; y++)
             {
-                // 텍스처 범위 체크
-                if (x >= 0 && x < drawTexture.width && y >= 0 && y < drawTexture.height)
+                if (x >= 0 && x < texture.width && y >= 0 && y < texture.height)
                 {
                     // 원형 브러시
                     if ((x - centerX) * (x - centerX) + (y - centerY) * (y - centerY) <= brushSize * brushSize)
                     {
-                        drawTexture.SetPixel(x, y, paintColor);
-                        modified = true;
+                        texture.SetPixel(x, y, paintColor);
                     }
                 }
             }
         }
-
-        // 5. 적용
-        if (modified)
-        {
-            drawTexture.Apply();
-        }
     }
 
-    // SpriteRenderer를 위한 초기화 함수
-    Texture2D InitializeDrawingSprite(SpriteRenderer sr, Collider col)
+    Texture2D InitializeDrawingSprite(SpriteRenderer sr, BoxCollider boxCol)
     {
-        // 1. 새 하얀색 텍스처 생성
+        // 새 텍스처 생성
         Texture2D newTexture = new Texture2D(textureResolution, textureResolution, TextureFormat.RGBA32, false);
         
+        // 흰색으로 채우기 (배경)
         Color[] fillColors = new Color[textureResolution * textureResolution];
-        for (int i = 0; i < fillColors.Length; i++) fillColors[i] = Color.white; // 배경 흰색
+        for (int i = 0; i < fillColors.Length; i++) fillColors[i] = Color.white;
         newTexture.SetPixels(fillColors);
         newTexture.Apply();
 
-        // 2. 텍스처를 담을 새 Sprite 생성 (Rect는 전체, Pivot은 중앙)
+        // [해결 1 핵심] PPU (Pixels Per Unit) 자동 계산
+        // 텍스처의 가로 픽셀 수 / 실제 콜라이더의 가로 길이 = 1유닛당 픽셀 수
+        // 이렇게 해야 텍스처가 콜라이더 크기에 딱 맞게 늘어납니다.
+        float autoPPU = textureResolution / boxCol.size.x;
+
+        // 너무 작거나 0이면 기본값 방어
+        if (autoPPU <= 0.01f) autoPPU = 100f;
+
+        // Sprite 생성
         Sprite newSprite = Sprite.Create(
             newTexture, 
             new Rect(0, 0, newTexture.width, newTexture.height), 
             new Vector2(0.5f, 0.5f), // Pivot Center
-            100.0f // PPU (Pixels Per Unit) - 필요하면 조정
+            autoPPU 
         );
 
-        // 3. SpriteRenderer 교체
         sr.sprite = newSprite;
+        
+        // 더 이상 BoxCollider 사이즈를 강제로 바꾸지 않습니다. (기존 크기 유지)
 
-        // 4. BoxCollider 크기 재조정 (선택 사항)
-        // 스프라이트 크기가 바뀌었을 수 있으므로 Collider 사이즈를 스프라이트에 맞춤
-        BoxCollider boxCol = col as BoxCollider;
-        if (boxCol != null)
-        {
-            boxCol.size = new Vector3(1, 1, 0.2f); // 1x1 단위 크기로 가정
-        }
-
-        Debug.Log($"Created new writable Sprite for: {sr.gameObject.name}");
+        Debug.Log($"Initialized Sprite. Texture Size: {textureResolution}, Collider Size X: {boxCol.size.x}, Calculated PPU: {autoPPU}");
         return newTexture;
     }
 
