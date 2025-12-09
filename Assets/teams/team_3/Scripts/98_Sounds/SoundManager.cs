@@ -125,7 +125,7 @@ public class SoundManager : SingletonObject<SoundManager>
     {
         // backGroundSound.outputAudioMixerGroup = mixer.FindMatchingGroups("BackGround")[0];
         backGroundSound.clip = clip;
-        backGroundSound.loop = true;
+        backGroundSound.loop = false;
         backGroundSound.volume = 1.0f;
         backGroundSound.Play();
     }

@@ -50,3 +50,15 @@ MonoBehaviour:
   IntroPatjwi1: {fileID: 8300000, guid: 26d4bc0b80aa1f943961a1d243923d06, type: 3}
   MolePatjwi1: {fileID: 8300000, guid: 4c5937eff5a370f42b008e66f1fe34c2, type: 3}
   EndPatjwi1: {fileID: 8300000, guid: bbf50d855db38ba49b60cff3ad3df364, type: 3}
+  MoleKongjwi1: {fileID: 8300000, guid: 6ed6a477dcf4e0b40ab6ce985cb84ba9, type: 3}
+  MoleKongjwi2: {fileID: 8300000, guid: 58ebb69d12f4c69449214b145510a29c, type: 3}
+  MoleKongjwi3: {fileID: 8300000, guid: e12cbc2789ef0ad4f9cb169fbb6eb979, type: 3}
+  MoleKongjwi4: {fileID: 8300000, guid: ce52f7c19271fc94e8435a6481cfdf70, type: 3}
+  EndKongjwi1: {fileID: 8300000, guid: 43032c7183b82b743b019844387a8c1a, type: 3}
+  EndKongjwi2: {fileID: 8300000, guid: 8f427586554423541b9210ee7933ea0c, type: 3}
+  MoleMole1: {fileID: 8300000, guid: f4f6440faba6bfc409175829547574d7, type: 3}
+  MoleMole2: {fileID: 8300000, guid: 20f3901ad50ab2c45a79939a5bf45063, type: 3}
+  MoleMole3: {fileID: 8300000, guid: e2eaafc3625a8974395f870f3693931f, type: 3}
+  MoleMole4: {fileID: 8300000, guid: 8e99faf74f96e7e40a7ded6452c10be5, type: 3}
+  EndMagistrate1: {fileID: 8300000, guid: 2d8a4c9103e014e43adce71da5833f8c, type: 3}
+  EndMagistrate2: {fileID: 8300000, guid: a3de768189cd78b4a99568f3e00dbdbf, type: 3}

@@ -14,8 +14,8 @@ public class DialogScript
                 Language.kr, new []{
                     (DialogSpeaker.Narration, new (string, AudioClip)[]{
                         ("옛날 어느 마을에 콩쥐라는 소녀가 살고 있었어요.", SoundList.Instance.IntroNarration1), 
-                        ("콩쥐는 어머니를 일찍 여의고 아버지와 단둘이 살았지만,\n마음씨가 고운 데다 부지런해서 마을 사람들에게 사랑을 많이 받았지요.", SoundList.Instance.IntroNarration2),
-                        ("하지만 어느 날, 아버지가 새어머니와 그 딸 팥쥐를 데리고 오면서\n콩쥐의 삶은 달라지기 시작했어요.", SoundList.Instance.IntroNarration3)
+                        ("콩쥐는 어머니를 일찍 여의고 아버지와 단둘이 살았지만, 마음씨가 고운 데다 부지런해서 마을 사람들에게 사랑을 많이 받았지요.", SoundList.Instance.IntroNarration2),
+                        ("하지만 어느 날, 아버지가 새어머니와 그 딸 팥쥐를 데리고 오면서 콩쥐의 삶은 달라지기 시작했어요.", SoundList.Instance.IntroNarration3)
                     })
                 }
             }
@@ -31,13 +31,13 @@ public class DialogScript
                         ("하지만 새어머니의 속마음은 달랐어요.", SoundList.Instance.IntroNarration4) 
                     }),
                     (DialogSpeaker.Stepmother, new (string, AudioClip)[]{ 
-                        ("(혼잣말, 콧방귀) 저 애는 부지런하니,\n집안일은 몽땅 저 애 시키면 되겠네.", SoundList.Instance.IntroStepMother2) 
+                        ("(혼잣말, 콧방귀) 저 애는 부지런하니, 집안일은 몽땅 저 애 시키면 되겠네.", SoundList.Instance.IntroStepMother2) 
                     }),
                     (DialogSpeaker.Patjwi, new (string, AudioClip)[]{ 
-                        ("(새어머니에게 살짝) 엄마, 나는 힘든 거 싫은데~\n콩쥐한테 다 시켜요.", SoundList.Instance.IntroPatjwi1) 
+                        ("(새어머니에게 살짝) 엄마, 나는 힘든 거 싫은데~ 콩쥐한테 다 시켜요.", SoundList.Instance.IntroPatjwi1) 
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip)[]{ 
-                        ("그날부터 새어머니와 팥쥐는 콩쥐에게 힘든 일만 골라 시키며\n괴롭히기 시작했답니다.", SoundList.Instance.IntroNarration5) 
+                        ("그날부터 새어머니와 팥쥐는 콩쥐에게 힘든 일만 골라 시키며 괴롭히기 시작했답니다.", SoundList.Instance.IntroNarration5) 
                     })
                 }
             }
@@ -58,7 +58,7 @@ public class DialogScript
                         ("팥쥐야, 너는 집 앞 작은 밭만 살살 매면 된다.", SoundList.Instance.MoleStepMother2)
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip)[]{ 
-                        ("그러더니 콩쥐에게는 부러지기 쉬운 나무 호미를,\n팥쥐에게는 튼튼한 쇠 호미를 쥐여 주었지요.", SoundList.Instance.MoleNarration2) 
+                        ("그러더니 콩쥐에게는 부러지기 쉬운 나무 호미를, 팥쥐에게는 튼튼한 쇠 호미를 쥐여 주었지요.", SoundList.Instance.MoleNarration2) 
                     })
                 }
             }
@@ -75,7 +75,7 @@ public class DialogScript
                         ("하지만 콩쥐는 산을 넘어 커다란 밭에서 땀을 뻘뻘 흘리며 잡초를 뽑고 있었지요.", SoundList.Instance.MoleNarration4)
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip)[]{ 
-                        ("(헉헉거리며) 이 넓은 밭을 언제 다 매나... 그래도 해야지.", null) 
+                        ("(헉헉거리며) 이 넓은 밭을 언제 다 매나... 그래도 해야지.", SoundList.Instance.MoleKongjwi1) 
                     })
                 }
             }
@@ -88,7 +88,7 @@ public class DialogScript
                         ("그때였어요. \"딱!\" 소리와 함께 나무 호미가 두 동강 나고 말았어요.", SoundList.Instance.MoleNarration5) 
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip)[]{ 
-                        ("(울먹이며) 어떡하지... 호미도 없고, 밭도 아직 반이나 남았는데...", null) 
+                        ("(울먹이며) 어떡하지... 호미도 없고, 밭도 아직 반이나 남았는데...", SoundList.Instance.MoleKongjwi2) 
                     })
                 }
             }
@@ -107,14 +107,14 @@ public class DialogScript
                         ("어디선가 [ 두더지 ]가 나타나 [ 굴착기 ]로 도와주는게 아니겠어요?", SoundList.Instance.MoleNarration7)
                     }),
                     (DialogSpeaker.ExcavatorMole, new (string, AudioClip)[]{ 
-                        ("(헬멧을 고쳐 쓰며) 흐음, 여기서 누가 한숨을 쉬나 했더니 콩쥐구나?", null) 
+                        ("(헬멧을 고쳐 쓰며) 흐음, 여기서 누가 한숨을 쉬나 했더니 콩쥐구나?", SoundList.Instance.MoleMole1) 
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip)[]{ 
-                        ("(깜짝 놀라) 어, 누구세요?", null) 
+                        ("(깜짝 놀라) 어, 누구세요?", SoundList.Instance.MoleKongjwi3) 
                     }),
                     (DialogSpeaker.ExcavatorMole, new (string, AudioClip)[]{
-                        ("나는 땅 파기의 달인, [ 굴착기 두더지 ]다.", null),
-                        ("밭을 매는 건 내가 훨씬 빠르지!", null)
+                        ("나는 땅 파기의 달인, [ 굴착기 두더지 ]다.", SoundList.Instance.MoleMole2),
+                        ("밭을 매는 건 내가 훨씬 빠르지!", SoundList.Instance.MoleMole3)
                     })
                 }
             }
@@ -127,7 +127,7 @@ public class DialogScript
                         ("그러더니 [ 굴착기 두더지 ]는 앞발로 밭을 이리저리 파헤치고 뒤엎으며, 잡초를 몽땅 뿌리째 뽑아 버렸어요.", SoundList.Instance.MoleNarration8),
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip)[]{ 
-                        ("(눈이 동그래져서) 와... 정말 금세 끝났어요! 고마워요, [ 굴착기 두더지 ]님!", null) 
+                        ("(눈이 동그래져서) 와... 정말 금세 끝났어요! 고마워요, [ 굴착기 두더지 ]님!", SoundList.Instance.MoleKongjwi4) 
                     }),
                     (DialogSpeaker.ExcavatorMole, new (string, AudioClip)[]{ 
                         ("(쿡 웃으며) 다음에 또 힘들면 불러. 그럼 난 이만~", null) 
@@ -430,12 +430,12 @@ public class DialogScript
                         ("하늘 위에는 [ 종이접기 나비 요정 ]이 [ 종이 나비들을 흩뿌리며 ] 콩쥐를 축복하고 있었지요.", SoundList.Instance.EndNarration3)
                     }),
                     (DialogSpeaker.Magistrate, new (string, AudioClip)[]{
-                        ("콩쥐, 그대는 힘들었을 텐데도 이렇게 따뜻한 눈을 하고 있구려.", null),
-                        ("나와 함께 이 고을 사람들을 도우며 살겠소?", null)
+                        ("콩쥐, 그대는 힘들었을 텐데도 이렇게 따뜻한 눈을 하고 있구려.", SoundList.Instance.EndMagistrate1),
+                        ("나와 함께 이 고을 사람들을 도우며 살겠소?", SoundList.Instance.EndMagistrate2)
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip)[]{
-                        ("(잠시 고민하다가) 네... 다만, 새어머니와 팥쥐도...", null),
-                        ("언젠가는 함께 웃을 수 있으면 좋겠습니다.", null)
+                        ("(잠시 고민하다가) 네... 다만, 새어머니와 팥쥐도...", SoundList.Instance.EndKongjwi1),
+                        ("언젠가는 함께 웃을 수 있으면 좋겠습니다.", SoundList.Instance.EndKongjwi2)
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip)[]{ 
                         ("그 말을 들은 새어머니와 팥쥐는 얼굴을 붉히며 고개를 숙였어요.", SoundList.Instance.EndNarration4) 

@@ -46,4 +46,20 @@ public class SoundList : SingletonScriptableObject<SoundList>
     public AudioClip IntroPatjwi1;
     public AudioClip MolePatjwi1;
     public AudioClip EndPatjwi1;
+
+    
+    public AudioClip MoleKongjwi1;
+    public AudioClip MoleKongjwi2;
+    public AudioClip MoleKongjwi3;
+    public AudioClip MoleKongjwi4;
+    public AudioClip EndKongjwi1;
+    public AudioClip EndKongjwi2;
+
+    public AudioClip MoleMole1;
+    public AudioClip MoleMole2;
+    public AudioClip MoleMole3;
+    public AudioClip MoleMole4;
+
+    public AudioClip EndMagistrate1;
+    public AudioClip EndMagistrate2;
 }
