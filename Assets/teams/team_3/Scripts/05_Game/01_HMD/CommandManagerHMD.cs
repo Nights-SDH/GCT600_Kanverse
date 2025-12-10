@@ -1,5 +1,3 @@
-using Unity.Services.Lobbies.Models;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CommandManagerHMD: MonoBehaviour
@@ -9,7 +7,7 @@ public class CommandManagerHMD: MonoBehaviour
 
     public void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.Two, ControllerR) || Input.GetKeyDown(KeyCode.Space))
+        if (OVRInput.GetDown(OVRInput.Button.Two, ControllerR))
         {
             if(RatioAlignedCanvas.InstanceWithoutCreate == null)
             {
