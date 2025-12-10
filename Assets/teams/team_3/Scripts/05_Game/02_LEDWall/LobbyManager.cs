@@ -32,12 +32,12 @@ public class LobbyManager: SingletonObject<LobbyManager>
     {
         if(count != participantCount)
         {
-            participantCount = count;
             roomInfoViewer.text = $"RoomId: 1004 ({participantCount}/{MAX_PARTICIPANTS})";   
             for(int i = participantCount; i < count; i++)
             {
                 participantsList[i].SetActive(true);
             }
+            participantCount = count;
         }
     }
 

@@ -102,6 +102,7 @@ public class DialogManager : MonoBehaviour
 
     public void StartDialog(DialogName dialogName)
     {
+        Debug.Log($"[DialogManager] 대사 시작: {dialogName}");
         if (playedDialogs.Contains(dialogName))
         {
             DebugConsole.Warning($"[DialogManager] 이미 재생된 대사: {dialogName}");
