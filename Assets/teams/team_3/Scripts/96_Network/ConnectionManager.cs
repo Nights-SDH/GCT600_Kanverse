@@ -110,10 +110,12 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
         }
     }
 
-    public void SendSpawn3DInfo(ObjectName objectName)
+    public void SendSpawnObjectInfo(ObjectName objectName)
     {
+        Debug.Log("[Net] 3D 오브젝트 생성 명령 전송: " + objectName);
         if (myDeviceType == DeviceType.LED_WALL)
-        {
+        {   
+            Debug.Log("[Net] 3D 오브젝트 생성 명령 진짜 전송함: " + (int)objectName);
             SendJson(new SocketMessageFinal { type = "LET_SPAWN_OBJECT" , object_info = (int)objectName});
         }
     }

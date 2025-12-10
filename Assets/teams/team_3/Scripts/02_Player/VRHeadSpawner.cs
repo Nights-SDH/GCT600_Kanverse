@@ -15,7 +15,7 @@ public class VRHeadSpawner : SingletonObject<VRHeadSpawner>
     public SpawnObjectWithDialogSpeaker[] spawnPrefabs; 
 
     [Tooltip("바닥에서 얼마나 띄울지 (Z-fighting 방지용, 예: 0.01)")]
-    public float floorHoverHeight = 0.01f;
+    public float floorHoverHeight = 0.001f;
 
     private GameObject FindObjectBySpeaker(ObjectName objectName)
     {
