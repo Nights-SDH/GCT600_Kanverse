@@ -21,20 +21,23 @@ public class LobbyManager: SingletonObject<LobbyManager>
     {
         if(participantCount == MAX_PARTICIPANTS) return;
 
-        participantsList[participantCount].SetActive(true); 
         participantCount++;
-        roomInfoViewer.text = $"RoomId: 1004 ({participantCount}/{MAX_PARTICIPANTS})";   
+        UpdateRoomInfo(participantCount);
     }
 
     public void UpdateRoomInfo(int count)
     {
         if(count != participantCount)
         {
-            for(int i = participantCount; i < count; i++)
+            participantCount = count;
+            for(int i = 0; i < participantCount; i++)
             {
                 participantsList[i].SetActive(true);
             }
-            participantCount = count;
+            for (int i = participantCount; i < MAX_PARTICIPANTS; i++)
+            {
+                participantsList[i].SetActive(false);
+            }
             roomInfoViewer.text = $"RoomId: 1004 ({participantCount}/{MAX_PARTICIPANTS})";   
         }
     }
