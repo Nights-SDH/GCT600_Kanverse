@@ -19,12 +19,12 @@ public class CommandManagerHMD: MonoBehaviour
         }
         if(ConnectionManager.Instance.IsHost)
         {
-            if (OVRInput.GetDown(OVRInput.Button.One, ControllerL) || Input.GetKeyDown(KeyCode.N))
+            if (OVRInput.GetDown(OVRInput.Button.One, ControllerL))
             {
                 if(SceneController.Instance.currentScene == SceneName.Lobby_LEDWall) LobbyManager.Instance.OnStartButtonClicked();
                 ConnectionManager.Instance.SendGameStart();
             }
-            else if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, ControllerR) || Input.GetKeyDown(KeyCode.N))
+            else if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, ControllerR))
             {
                 ConnectionManager.Instance.SendNextScenario();
             }
