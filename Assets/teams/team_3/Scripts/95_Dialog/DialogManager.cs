@@ -44,11 +44,6 @@ public class DialogManager : MonoBehaviour
         ConnectionManager.Instance.SendLoadingComplete();
     }
 
-    private void Update()
-    {
-        CommandCheck();
-    }
-
     public void ResetDialogManager()
     {
         playedDialogs.Clear();
