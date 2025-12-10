@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/teams/team_3/Scene/LEDWall/InGame_LEDWall.unity
     guid: e81a20b273e61424c928faeed3dbb1a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/teams/team_3/Scene/UserTest/SampleScene.unity
     guid: ae1ba1fc6bc66ac40921cb0242992b7b
-  - enabled: 1
+  - enabled: 0
     path: Assets/teams/team_3/Scene/HMD/HMD_InGame.unity
     guid: 1764f0be85e596c4fa7a134c4ac4d3d2
   - enabled: 1
