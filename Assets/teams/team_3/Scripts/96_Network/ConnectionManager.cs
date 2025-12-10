@@ -110,11 +110,11 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
         }
     }
 
-    public void SendSpawn3DInfo(DialogSpeaker dialogSpeaker)
+    public void SendSpawn3DInfo(ObjectName objectName)
     {
         if (myDeviceType == DeviceType.HMD && IsHost)
         {
-            SendJson(new SocketMessageFinal { type = "Spawn_3D_Object" , object_info = (int)dialogSpeaker});
+            SendJson(new SocketMessageFinal { type = "Spawn_3D_Object" , object_info = (int)objectName});
         }
     }
 

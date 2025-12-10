@@ -140,12 +140,18 @@ public class DialogManager : MonoBehaviour
         UpdateSpeakerUI();
     }
 
-    private void PlayTTS((string, AudioClip, ObjectName?) lineData)
+    private void CheckAdditionalInfo((string, AudioClip, ObjectName?) lineData)
     {
         var clip = lineData.Item2;
         if (clip != null)
         {
             SoundManager.Instance.SFXPlay(clip);
+        }
+
+        var objName = lineData.Item3;
+        if(objName != null)
+        {
+            ConnectionManager.Instance.SendSpawn3DInfo((ObjectName)objName);
         }
     }
 
@@ -158,7 +164,7 @@ public class DialogManager : MonoBehaviour
         {
             // 같은 화자의 다음 대사
             dialogText.text = lines[lineIndex].Item1;
-            PlayTTS(lines[lineIndex]);
+            CheckAdditionalInfo(lines[lineIndex]);
         }
         else
         {
@@ -184,7 +190,7 @@ public class DialogManager : MonoBehaviour
         UpdateSpeakers(speaker);
 
         dialogText.text = lines[lineIndex].Item1;
-        PlayTTS(lines[lineIndex]);
+        CheckAdditionalInfo(lines[lineIndex]);
 
         // 말하는 사람 강조
         if (speaker == speaker1)
