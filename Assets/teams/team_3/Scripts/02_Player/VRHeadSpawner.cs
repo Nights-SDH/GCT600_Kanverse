@@ -72,7 +72,7 @@ public class VRHeadSpawner : SingletonObject<VRHeadSpawner>
         if (foundPosition)
         {
             GameObject prefabToSpawn = FindObjectBySpeaker(objectName);
-            if (prefabToSpawn != null)
+            if (prefabToSpawn == null)
             {
                 Debug.LogError($"[Spawner] '{objectName}' 프리팹을 찾을 수 없습니다.");
                 return;
