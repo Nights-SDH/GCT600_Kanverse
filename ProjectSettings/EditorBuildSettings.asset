@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/teams/team_3/Scene/LEDWall/Title_LEDWall.unity
     guid: 6e78893ae71cca649b2e269ded1dc1f6
-  - enabled: 1
+  - enabled: 0
     path: Assets/teams/team_3/Scene/LEDWall/InGame_LEDWall.unity
     guid: e81a20b273e61424c928faeed3dbb1a1
   - enabled: 0
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/teams/team_3/Scene/HMD/HMD_InGame.unity
     guid: 1764f0be85e596c4fa7a134c4ac4d3d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/teams/team_3/Scene/LEDWall/Loading.unity
     guid: cb5eebc79c431d44b9366a8f73c667a7
   - enabled: 1
