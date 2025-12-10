@@ -2658,7 +2658,10 @@ MonoBehaviour:
     objectName: 0
   - prefab: {fileID: 4273403287281777647, guid: 6d7857470dc450b4eb6950ab136d22b6, type: 3}
     objectName: 2
-  floorHoverHeight: 0.5
+  floorHoverHeight: 0.4
+  yLookCorrection: 60
+  minObjectDistance: 0.6
+  maxSpawnAttempts: 30
 --- !u!1 &455484473
 GameObject:
   m_ObjectHideFlags: 0

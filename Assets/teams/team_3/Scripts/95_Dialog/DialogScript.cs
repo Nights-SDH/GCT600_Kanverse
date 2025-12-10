@@ -182,7 +182,7 @@ public class DialogScript
                         ("[______1______]이 반짝이며 날아오더니, [______2______]들이 내려오는 게 아니겠어요?", SoundList.Instance.EmptySlot, null)
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{
-                        ("[ 작은 안경 ]이 반짝이며 날아오더니, [ 참새들 ]이 내려오는 게 아니겠어요?", null, ObjectName.GlassesSparrow1)
+                        ("[ 작은 안경 ]이 반짝이며 날아오더니, [ 참새들 ]이 내려오는 게 아니겠어요?", null, ObjectName.GlassesSparrow)
                     }),
                     (DialogSpeaker.GlassesSparrow1, new (string, AudioClip, ObjectName?)[]{ 
                         ("(안경을 고쳐 쓰며) 음, 벼 껍질 작업인가. 통계상 우리 작업 속도가 제일 빠르지.", null, null) 

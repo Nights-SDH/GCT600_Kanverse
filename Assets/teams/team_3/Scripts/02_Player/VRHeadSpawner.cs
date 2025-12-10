@@ -1,5 +1,6 @@
 using UnityEngine;
-using Meta.XR.MRUtilityKit; // MRUK 필수 네임스페이스
+using Meta.XR.MRUtilityKit;
+using System.Collections.Generic; // MRUK 필수 네임스페이스
 
 [System.Serializable] 
 public class SpawnObjectWithDialogSpeaker
@@ -16,6 +17,18 @@ public class VRHeadSpawner : SingletonObject<VRHeadSpawner>
 
     [Tooltip("바닥에서 얼마나 띄울지 (Z-fighting 방지용, 예: 0.01)")]
     public float floorHoverHeight = 0.001f;
+
+    [Range(-180f, 180f)]
+    [Tooltip("나를 바라보는 시선이 안 맞을 때 이 슬라이더를 조절하세요.")]
+    public float yLookCorrection = 45f;
+
+    [Header("거리 유지 설정 (겹침 방지)")]
+    [Tooltip("물체끼리 최소한 이만큼은 떨어져야 함 (미터 단위)")]
+    public float minObjectDistance = 0.5f; // 예: 50cm
+
+    [Tooltip("빈 자리를 찾기 위해 최대 몇 번 시도할지 (너무 적으면 생성 실패, 너무 많으면 렉 유발)")]
+    public int maxSpawnAttempts = 30;
+    private List<Vector3> _spawnedPositions = new List<Vector3>();
 
     private GameObject FindObjectBySpeaker(ObjectName objectName)
     {
@@ -58,54 +71,81 @@ public class VRHeadSpawner : SingletonObject<VRHeadSpawner>
         // 3. 바닥(Floor) 위 무작위 위치 찾기
         // minRadius: 0.2f (가구 사이 너무 좁은 틈에는 생성 안 함)
         // LabelFilter.Floor: 오직 바닥만 타겟팅
-        Vector3 randomPos;
-        Vector3 normal;
-        
-        bool foundPosition = room.GenerateRandomPositionOnSurface(
-            MRUK.SurfaceType.FACING_UP, 
-            0.2f, 
-            new LabelFilter(MRUKAnchor.SceneLabels.FLOOR),
-            out randomPos, 
-            out normal
-        );
+        Vector3 bestPos = Vector3.zero;
+        bool validPositionFound = false;
+        GameObject prefabToSpawn = FindObjectBySpeaker(objectName);
+        if (prefabToSpawn == null) return;
 
-        if (foundPosition)
+        for (int i = 0; i < maxSpawnAttempts; i++)
         {
-            GameObject prefabToSpawn = FindObjectBySpeaker(objectName);
-            if (prefabToSpawn == null)
+            Vector3 randomPos;
+            Vector3 normal;
+
+            // MRUK에게 바닥 위 랜덤 위치 요청
+            bool found = room.GenerateRandomPositionOnSurface(
+                MRUK.SurfaceType.FACING_UP, 
+                0.2f, 
+                new LabelFilter(MRUKAnchor.SceneLabels.FLOOR),
+                out randomPos, 
+                out normal
+            );
+
+            if (found)
             {
-                Debug.LogError($"[Spawner] '{objectName}' 프리팹을 찾을 수 없습니다.");
-                return;
+                // 찾은 위치가 기존 물체들과 충분히 떨어져 있는지 검사
+                if (IsPositionSafe(randomPos))
+                {
+                    bestPos = randomPos;
+                    validPositionFound = true;
+                    break; // 좋은 자리를 찾았으니 반복 종료!
+                }
             }
+        }
 
-            Vector3 spawnPos = randomPos + (Vector3.up * floorHoverHeight);
+        // ================================================================
+        // [생성 로직] 유효한 위치를 찾았을 때만 생성
+        // ================================================================
+        if (validPositionFound)
+        {
+            Vector3 spawnPos = bestPos + (Vector3.up * floorHoverHeight);
 
-            // ================================================================
-            // [핵심 로직] 플레이어를 바라보는 회전값 계산
-            // ================================================================
-            
-            // 1. 플레이어(카메라)의 위치를 가져옵니다.
-            Vector3 playerPos = Camera.main.transform.position;
+            // 1. 플레이어 방향 벡터 계산
+            Vector3 targetPos = Camera.main.transform.position;
+            targetPos.y = spawnPos.y; 
+            Vector3 directionToPlayer = (targetPos - spawnPos).normalized;
 
-            // 2. "생성 위치"에서 "플레이어"로 향하는 방향 벡터를 구합니다.
-            Vector3 directionToPlayer = playerPos - spawnPos;
-
-            // 3. [중요] 높이 차이는 무시합니다 (Y축 0으로 평탄화).
-            // 이걸 안 하면 물체가 하늘을 보려고 뒤로 눕거나 앞으로 쏠립니다.
-            directionToPlayer.y = 0; 
-
-            // 4. 해당 방향을 바라보는 회전값(Quaternion)을 만듭니다.
-            // (만약 프리팹 설정 단계에서 얼굴을 Z축에 안 맞췄다면 여기서 * Quaternion.Euler(0, 90, 0) 등을 해야 해서 복잡해집니다)
+            // 2. 회전 계산 (나를 보기 + 보정값)
             Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+            Quaternion finalRotation = lookRotation * Quaternion.Euler(0, yLookCorrection, 0);
 
-            // 5. 생성 (계산된 회전값 적용)
-            Instantiate(prefabToSpawn, spawnPos, lookRotation);
+            // 3. 생성
+            Instantiate(prefabToSpawn, spawnPos, finalRotation);
+            
+            // 4. [중요] 생성된 위치를 리스트에 기록 (다음 생성 때 피하기 위해)
+            _spawnedPositions.Add(bestPos);
 
-            Debug.Log($"[Spawner] '{prefabToSpawn.name}' created at {spawnPos}");
+            Debug.Log($"[Spawner] Success: '{prefabToSpawn.name}' created.");
         }
         else
         {
-            Debug.LogWarning("[Spawner] 공간 부족");
+            Debug.LogWarning($"[Spawner] {maxSpawnAttempts}번 시도했지만 겹치지 않는 빈 공간을 찾지 못했습니다.");
         }
+    }
+
+    // 위치가 안전한지(다른 물체와 안 겹치는지) 확인하는 함수
+    private bool IsPositionSafe(Vector3 candidatePos)
+    {
+        foreach (Vector3 existingPos in _spawnedPositions)
+        {
+            // 거리 계산 (수평 거리만 따지려면 y를 무시해도 됨, 여기선 3D 거리 사용)
+            float distance = Vector3.Distance(candidatePos, existingPos);
+            
+            // 하나라도 너무 가까우면 실패
+            if (distance < minObjectDistance)
+            {
+                return false; 
+            }
+        }
+        return true; // 모든 물체와 거리가 충분함
     }
 }
