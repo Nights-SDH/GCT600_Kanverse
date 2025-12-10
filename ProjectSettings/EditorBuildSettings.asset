@@ -11,18 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/teams/team_3/Scene/LEDWall/InGame_LEDWall.unity
     guid: e81a20b273e61424c928faeed3dbb1a1
-  - enabled: 0
-    path: Assets/teams/team_3/Scene/UserTest/SampleScene.unity
-    guid: ae1ba1fc6bc66ac40921cb0242992b7b
-  - enabled: 0
-    path: Assets/teams/team_3/Scene/HMD/HMD_InGame.unity
-    guid: 1764f0be85e596c4fa7a134c4ac4d3d2
   - enabled: 1
     path: Assets/teams/team_3/Scene/LEDWall/Loading.unity
     guid: cb5eebc79c431d44b9366a8f73c667a7
   - enabled: 1
     path: Assets/teams/team_3/Scene/LEDWall/Lobby_LEDWall.unity
     guid: 2c393d57f9df57449afb40c10b945288
+  - enabled: 0
+    path: Assets/teams/team_3/Scene/HMD/HMD_InGame.unity
+    guid: 1764f0be85e596c4fa7a134c4ac4d3d2
+  - enabled: 0
+    path: Assets/teams/team_3/Scene/UserTest/SampleScene.unity
+    guid: ae1ba1fc6bc66ac40921cb0242992b7b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 472ef7f1ac4b51549b280886eabfa378, type: 2}
