@@ -216,7 +216,7 @@ public class DialogScript
                 Language.kr, new []{
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{
                         ("이제 남은 건 항아리에 물을 채우는 일이었어요.", null, null),
-                        ("콩쥐는 샘물로 가서 여러 번 물을 길어 와 항아리에 부었습니다.", null, ObjectName.Vase_Shell),
+                        ("콩쥐는 샘물로 가서 여러 번 물을 길어 와 항아리에 부었습니다.", null, null),
                         ("하지만 아무리 부어도 물이 가득 차지 않는 거예요.", null, null)
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip, ObjectName?)[]{ 
@@ -246,7 +246,7 @@ public class DialogScript
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{
                         ("[ 납작한 조개 ]는 항아리 안으로 들어가 껍데기를 쫙 펼쳐", null, null),
-                        ("구멍을 [ 단단히 막아 ] 주었어요.", null, null),
+                        ("구멍을 [ 단단히 막아 ] 주었어요.", null, ObjectName.Vase_Shell),
                         ("이제 물은 더 이상 새어나가지 않고,", null, null),
                         ("콩쥐가 물을 부을 때마다 항아리 안에 차곡차곡 쌓여 갔지요.", null, null)
                     }),
@@ -281,10 +281,10 @@ public class DialogScript
                         ("우와... [ 종이 나비 ] 다...", null, null) 
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{ 
-                        ("그 사이, 종이 나비들 가운데에서 [ 종이접기 나비 요정 ]이 나타났어요.", null, null) 
+                        ("그 사이, 종이 나비들 가운데에서 [ 종이접기 나비 요정 ]이 나타났어요.", null, ObjectName.Fairy) 
                     }),
                     (DialogSpeaker.OrigamiButterflyFairy, new (string, AudioClip, ObjectName?)[]{
-                        ("안녕, 콩쥐야. 너의 부지런함은 여기까지 소문이 났단다.", null, ObjectName.Fairy),
+                        ("안녕, 콩쥐야. 너의 부지런함은 여기까지 소문이 났단다.", null, null),
                         ("이제 잔치에 갈 시간이지?", null, null)
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip, ObjectName?)[]{ 
