@@ -20,7 +20,7 @@ public class DialogManager : MonoBehaviour
     public Sprite defaultSpeakerSprite;
 
     private DialogName currentDialogName;
-    private (DialogSpeaker, (string, AudioClip)[])[] dialogSequence;
+    private (DialogSpeaker, (string, AudioClip, ObjectName?)[])[] dialogSequence;
     private int dialogIndex = 0;
     private int lineIndex = 0;
 
@@ -140,7 +140,7 @@ public class DialogManager : MonoBehaviour
         UpdateSpeakerUI();
     }
 
-    private void PlayTTS((string, AudioClip) lineData)
+    private void PlayTTS((string, AudioClip, ObjectName?) lineData)
     {
         var clip = lineData.Item2;
         if (clip != null)

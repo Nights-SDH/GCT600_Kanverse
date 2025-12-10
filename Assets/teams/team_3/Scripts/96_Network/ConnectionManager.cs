@@ -15,6 +15,7 @@ public class SocketMessageFinal
     public string role;        // ROLE_ASSIGN용
     public int playerCount;    // ROOM_UPDATE용
     public bool isRoomCreated; // ROOM_UPDATE용
+    public int object_info;
 }
 
 public class ConnectionManager : SingletonObject<ConnectionManager>
@@ -109,6 +110,14 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
         }
     }
 
+    public void SendSpawn3DInfo(DialogSpeaker dialogSpeaker)
+    {
+        if (myDeviceType == DeviceType.HMD && IsHost)
+        {
+            SendJson(new SocketMessageFinal { type = "Spawn_3D_Object" , object_info = (int)dialogSpeaker});
+        }
+    }
+
     // --- 수신 루프 및 처리 ---
 
     private async Task ReceiveLoop()
@@ -198,6 +207,14 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
                 if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.InGame_LEDWall)
                 {
                     DialogManager.Instance.CommandCheck();
+                }
+                break;
+
+            case "Spawn_3D_Object":
+                Debug.Log("[Net] 3D 오브젝트 생성 명령 수신.");
+                if(myDeviceType == DeviceType.HMD && SceneController.Instance.currentScene == SceneName.HMD_InGame)
+                {
+                    VRHeadSpawner.Instance.SpawnNextOnFloor((ObjectName)msg.object_info);
                 }
                 break;
         }
