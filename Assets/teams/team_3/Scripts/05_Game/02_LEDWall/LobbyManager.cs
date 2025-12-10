@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class LobbyManager: SingletonObject<LobbyManager>
     void Start()
     {
         startButton.onClick.AddListener(OnStartButtonClicked);
+        ConnectionManager.Instance.SendLoadingComplete();
     }
     public void AddParticipant()
     {

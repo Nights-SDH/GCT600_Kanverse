@@ -49,7 +49,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
         {
             ws = new ClientWebSocket();
             await ws.ConnectAsync(new Uri(NetworkFunctionsProject.serverUrl), cts.Token);
-            Debug.Log("서버 연결됨. 등록 절차 진행...");
+            Debug.Log("[Net] 서버 연결됨. 등록 절차 진행...");
 
             _ = ReceiveLoop();
 
@@ -58,7 +58,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
         }
         catch (Exception e)
         {
-            Debug.LogError($"연결 실패: {e.Message}");
+            Debug.LogError($"[Net] 연결 실패: {e.Message}");
         }
     }
 
@@ -125,6 +125,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
     {
         while (messageQueue.TryDequeue(out string json))
         {
+            Debug.Log($"[Net] 수신된 메시지: {json}");
             ProcessMessage(json);
         }
     }
@@ -137,25 +138,27 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
         {
             case "ROLE_ASSIGN":
                 IsHost = (msg.role == "HOST");
-                Debug.Log($"[내 역할] {msg.role}");
+                Debug.Log($"[Net] [내 역할] {msg.role}");
                 break;
 
             case "ROOM_UPDATE":
                 // LED Wall이 받는 정보 (현재 인원수 등)
-                Debug.Log($"[LED Wall Info] Player Count: {msg.playerCount}, Room Created: {msg.isRoomCreated}");
-                if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.Lobby_LEDWall)
+                Debug.Log($"[Net] [LED Wall Info] Player Count: {msg.playerCount}, Room Created: {msg.isRoomCreated}");
+                if(myDeviceType == DeviceType.LED_WALL)
                 {
-                    if(msg.isRoomCreated && LobbyManager.InstanceWithoutCreate == null)
+                    if(msg.isRoomCreated && SceneController.Instance.currentScene == SceneName.Title_LEDWall && IsHost == false)
                     {
                         TitleManager.Instance.OnStartButtonClicked();
-                        LobbyManager.Instance.UpdateRoomInfo(msg.playerCount); // TODO: 동시성 문제 있을듯
+                    } else if(SceneController.Instance.currentScene == SceneName.Lobby_LEDWall)
+                    {
+                        LobbyManager.Instance.UpdateRoomInfo(msg.playerCount);
                     }
                     
                 }
                 break;
 
             case "GAME_START":
-                Debug.Log("게임 시작! 씬 로딩을 시작합니다...");
+                Debug.Log("[Net] 게임 시작! 씬 로딩을 시작합니다...");
                 if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.Lobby_LEDWall)
                 {
                     LobbyManager.Instance.OnStartButtonClicked();
@@ -163,7 +166,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
                 break;
 
             case "SCENARIO_START":
-                Debug.Log("모든 LED Wall 로딩 완료. 시나리오 시작!");
+                Debug.Log("[Net] 모든 LED Wall 로딩 완료. 시나리오 시작!");
                 if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.InGame_LEDWall)
                 {
                     DialogManager.Instance.StartDialog(DialogName.Scene1_Intro);
@@ -171,7 +174,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
                 break;
 
             case "NEXT_SCENARIO":
-                Debug.Log("다음 시나리오를 재생합니다.");
+                Debug.Log("[Net] 다음 시나리오를 재생합니다.");
                 if(myDeviceType == DeviceType.LED_WALL && SceneController.Instance.currentScene == SceneName.InGame_LEDWall)
                 {
                     DialogManager.Instance.CommandCheck();

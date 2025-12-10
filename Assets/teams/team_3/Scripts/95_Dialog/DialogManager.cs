@@ -41,6 +41,7 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         Initialize();
+        ConnectionManager.Instance.SendLoadingComplete();
     }
 
     private void Update()

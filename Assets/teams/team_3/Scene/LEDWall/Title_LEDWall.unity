@@ -974,7 +974,7 @@ GameObject:
   - component: {fileID: 1070138940}
   - component: {fileID: 1070138943}
   - component: {fileID: 1070138942}
-  - component: {fileID: 1070138941}
+  - component: {fileID: 1070138944}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1041,21 +1041,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPossibleDuplicate: 0
   isDontDestory: 1
---- !u!114 &1070138941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070138935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75d775092542ff941963e62ce2c79e82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPossibleDuplicate: 0
-  isDontDestory: 1
-  IsHost: 1
 --- !u!114 &1070138942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1067,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPossibleDuplicate: 0
   isDontDestory: 1
+--- !u!114 &1070138944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070138935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d1eab7238df86479c223bd327f12cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPossibleDuplicate: 0
+  isDontDestory: 1
+  myDeviceType: 1
 --- !u!1 &1181572858
 GameObject:
   m_ObjectHideFlags: 0

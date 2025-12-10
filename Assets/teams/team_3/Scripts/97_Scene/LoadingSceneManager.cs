@@ -39,17 +39,6 @@ public class LoadingSceneManager : MonoBehaviour
                 {
                     loadingSceneProcess.allowSceneActivation = true;
                     FadeManager.Instance.FadeOutWithSceneTitle();
-                    if(ConnectionManager.Instance.myDeviceType == DeviceType.LED_WALL)
-                    {
-                        switch (SceneController.Instance.currentScene){
-                            case SceneName.InGame_LEDWall:
-                                ConnectionManager.Instance.SendLoadingComplete();
-                                break;
-                            case SceneName.Lobby_LEDWall:
-                                LobbyManager.Instance.AddParticipant();
-                                break;
-                        }
-                    }
                     yield return null;
                 }
             }

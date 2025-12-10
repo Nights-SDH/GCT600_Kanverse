@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,11 @@ public class TitleManager: SingletonObject<TitleManager>
     {
         StartButton.onClick.AddListener(OnStartButtonClicked);
         EndButton.onClick.AddListener(OnEndButtonClicked);
+    }
+
+    public void ChangeButtonName()
+    {
+        StartButton.GetComponentInChildren<TMP_Text>().text = "방 입장";
     }
 
     public void OnStartButtonClicked()
