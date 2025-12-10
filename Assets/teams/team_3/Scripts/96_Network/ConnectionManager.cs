@@ -114,7 +114,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
     {
         if (myDeviceType == DeviceType.LED_WALL)
         {
-            SendJson(new SocketMessageFinal { type = "Spawn_3D_Object" , object_info = (int)objectName});
+            SendJson(new SocketMessageFinal { type = "LET_SPAWN_OBJECT" , object_info = (int)objectName});
         }
     }
 
@@ -210,7 +210,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
                 }
                 break;
 
-            case "Spawn_3D_Object":
+            case "SPAWN_OBJECT":
                 Debug.Log($"[Net] 3D 오브젝트 {msg.object_info} 생성 명령 수신.");
                 if(myDeviceType == DeviceType.HMD && SceneController.Instance.currentScene == SceneName.HMD_InGame)
                 {

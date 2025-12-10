@@ -61,7 +61,7 @@ public class RatioAlignedCanvas : SingletonObject<RatioAlignedCanvas>
     {
         SetXLength(xLength);
         SetYLength(yLength);
-        NetworkManagerPython.Instance.SendCanvasSize();
+        NetworkManagerPython.InstanceWithoutCreate?.SendCanvasSize();
     }
 
     public void SetScales(CanvasSizeSet sizeSet)

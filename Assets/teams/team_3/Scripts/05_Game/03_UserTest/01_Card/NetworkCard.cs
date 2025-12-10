@@ -55,7 +55,7 @@ public class NetworkCard : MonoBehaviour
         SetHighlight(false);
 
         // [추가] 서버에 "나 이거 놨어" 알림
-        if (NetworkManagerPython.Instance != null)
+        if (NetworkManagerPython.InstanceWithoutCreate != null)
         {
             NetworkManagerPython.Instance.SendCardRelease(cardID);
         }

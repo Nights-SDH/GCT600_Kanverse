@@ -114,7 +114,7 @@ public class MRUKLaserInteractor : MonoBehaviour
             // =================================================================
             if (Time.time - lastSendTime > sendInterval)
             {
-                if (NetworkManagerPython.Instance != null)
+                if (NetworkManagerPython.InstanceWithoutCreate != null)
                 {
                     NetworkManagerPython.Instance.SendCardMove(
                         selectedObject.cardID, 
