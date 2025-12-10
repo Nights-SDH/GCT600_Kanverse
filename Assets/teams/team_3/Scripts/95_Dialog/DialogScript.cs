@@ -182,7 +182,7 @@ public class DialogScript
                         ("[______1______]이 반짝이며 날아오더니, [______2______]들이 내려오는 게 아니겠어요?", SoundList.Instance.EmptySlot, null)
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{
-                        ("[ 작은 안경 ]이 반짝이며 날아오더니, [ 참새들 ]이 내려오는 게 아니겠어요?", null, null)
+                        ("[ 작은 안경 ]이 반짝이며 날아오더니, [ 참새들 ]이 내려오는 게 아니겠어요?", null, ObjectName.GlassesSparrow1)
                     }),
                     (DialogSpeaker.GlassesSparrow1, new (string, AudioClip, ObjectName?)[]{ 
                         ("(안경을 고쳐 쓰며) 음, 벼 껍질 작업인가. 통계상 우리 작업 속도가 제일 빠르지.", null, null) 
@@ -216,14 +216,14 @@ public class DialogScript
                 Language.kr, new []{
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{
                         ("이제 남은 건 항아리에 물을 채우는 일이었어요.", null, null),
-                        ("콩쥐는 샘물로 가서 여러 번 물을 길어 와 항아리에 부었습니다.", null, null),
+                        ("콩쥐는 샘물로 가서 여러 번 물을 길어 와 항아리에 부었습니다.", null, ObjectName.Vase_Shell),
                         ("하지만 아무리 부어도 물이 가득 차지 않는 거예요.", null, null)
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip, ObjectName?)[]{ 
                         ("어? 분명히 이렇게 많이 부었는데 왜...?", null, null) 
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{ 
-                        ("가만히 살펴보니, 항아리 바닥에 커다란 구멍이 뻥 뚫려 있었지요.", null, null) 
+                        ("가만히 살펴보니, 항아리 바닥에 커다란 구멍이 뻥 뚫려 있었지요.", null, ObjectName.CrackedClay) 
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip, ObjectName?)[]{ 
                         ("(눈물이 맺혀) 또 혼나겠네... 어떡하지...", null, null) 
@@ -239,8 +239,7 @@ public class DialogScript
                         ("그때 물가에서 햇빛을 받으며 조용히 빛나던 [______1______] 하나가 살며시 움직이더니, [______2______] 도와주겠다는게 아니겠어요?", SoundList.Instance.EmptySlot, null)
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{
-                        ("그때 물가에서 햇빛을 받으며 조용히 빛나던 [ 납작한 조개 ] 하나가", null, null),
-                        ("살며시 움직이더니, 항아리 쪽으로 데굴데굴 굴러오는 게 아니겠어요?", null, null)
+                        ("그때 물가에서 햇빛을 받으며 조용히 빛나던 [ 납작한 조개 ] 하나가 살며시 움직이더니, [ 단단히 막아 ] 도와주겠다는게 아니겠어요?", null, ObjectName.FlatClam),
                     }),
                     (DialogSpeaker.FlatClam, new (string, AudioClip, ObjectName?)[]{ 
                         ("(조용한 목소리로) 구멍이 문제라면, 내가 좀 도와줄 수 있을지도 모르겠네.", null, null) 
@@ -276,7 +275,7 @@ public class DialogScript
                         ("공중에서 [______1______]들이 팔랑팔랑 날아오더니 스스로 [______2______]가 되는 게 아니겠어요?", SoundList.Instance.EmptySlot, null)
                     }),
                     (DialogSpeaker.Narration, new (string, AudioClip, ObjectName?)[]{
-                        ("공중에서 [ 하얀 종이 ]들이 팔랑팔랑 날아오더니 스스로 [ 나비 ]가 되는 게 아니겠어요?", null, null)
+                        ("공중에서 [ 하얀 종이 ]들이 팔랑팔랑 날아오더니 스스로 [ 나비 ]가 되는 게 아니겠어요?", null, ObjectName.OrigamiButterflyFairy)
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip, ObjectName?)[]{ 
                         ("우와... [ 종이 나비 ] 다...", null, null) 
@@ -285,7 +284,7 @@ public class DialogScript
                         ("그 사이, 종이 나비들 가운데에서 [ 종이접기 나비 요정 ]이 나타났어요.", null, null) 
                     }),
                     (DialogSpeaker.OrigamiButterflyFairy, new (string, AudioClip, ObjectName?)[]{
-                        ("안녕, 콩쥐야. 너의 부지런함은 여기까지 소문이 났단다.", null, null),
+                        ("안녕, 콩쥐야. 너의 부지런함은 여기까지 소문이 났단다.", null, ObjectName.Fairy),
                         ("이제 잔치에 갈 시간이지?", null, null)
                     }),
                     (DialogSpeaker.Kongjwi, new (string, AudioClip, ObjectName?)[]{ 

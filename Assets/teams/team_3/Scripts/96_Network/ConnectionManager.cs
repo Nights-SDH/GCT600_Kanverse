@@ -211,7 +211,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
                 break;
 
             case "Spawn_3D_Object":
-                Debug.Log("[Net] 3D 오브젝트 생성 명령 수신.");
+                Debug.Log($"[Net] 3D 오브젝트 {msg.object_info} 생성 명령 수신.");
                 if(myDeviceType == DeviceType.HMD && SceneController.Instance.currentScene == SceneName.HMD_InGame)
                 {
                     VRHeadSpawner.Instance.SpawnNextOnFloor((ObjectName)msg.object_info);
