@@ -71,25 +71,41 @@ public class VRHeadSpawner : SingletonObject<VRHeadSpawner>
 
         if (foundPosition)
         {
-            // 4. 생성할 프리팹 가져오기
             GameObject prefabToSpawn = FindObjectBySpeaker(objectName);
-            if(prefabToSpawn == null)
+            if (prefabToSpawn != null)
             {
-                Debug.LogWarning($"[Spawner] 해당 DialogSpeaker에 매칭된 프리팹이 없습니다: {objectName}");
+                Debug.LogError($"[Spawner] '{objectName}' 프리팹을 찾을 수 없습니다.");
                 return;
             }
 
-            // 5. 위치 보정 (바닥에 딱 붙으면 깜빡거리니 살짝 띄움)
             Vector3 spawnPos = randomPos + (Vector3.up * floorHoverHeight);
 
-            // 6. 오브젝트 생성 (회전은 기본값, 필요시 Random.rotation.y 등 적용 가능)
-            Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+            // ================================================================
+            // [핵심 로직] 플레이어를 바라보는 회전값 계산
+            // ================================================================
+            
+            // 1. 플레이어(카메라)의 위치를 가져옵니다.
+            Vector3 playerPos = Camera.main.transform.position;
+
+            // 2. "생성 위치"에서 "플레이어"로 향하는 방향 벡터를 구합니다.
+            Vector3 directionToPlayer = playerPos - spawnPos;
+
+            // 3. [중요] 높이 차이는 무시합니다 (Y축 0으로 평탄화).
+            // 이걸 안 하면 물체가 하늘을 보려고 뒤로 눕거나 앞으로 쏠립니다.
+            directionToPlayer.y = 0; 
+
+            // 4. 해당 방향을 바라보는 회전값(Quaternion)을 만듭니다.
+            // (만약 프리팹 설정 단계에서 얼굴을 Z축에 안 맞췄다면 여기서 * Quaternion.Euler(0, 90, 0) 등을 해야 해서 복잡해집니다)
+            Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+
+            // 5. 생성 (계산된 회전값 적용)
+            Instantiate(prefabToSpawn, spawnPos, lookRotation);
 
             Debug.Log($"[Spawner] '{prefabToSpawn.name}' created at {spawnPos}");
         }
         else
         {
-            Debug.LogWarning("[Spawner] 바닥에서 물체를 놓을 충분한 빈 공간을 찾지 못했습니다.");
+            Debug.LogWarning("[Spawner] 공간 부족");
         }
     }
 }

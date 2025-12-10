@@ -2644,21 +2644,21 @@ MonoBehaviour:
   isPossibleDuplicate: 0
   isDontDestory: 1
   spawnPrefabs:
-  - prefab: {fileID: 919132149155446097, guid: 9dbae48da9b7cc84d9d7c8bc8ba3e059, type: 3}
+  - prefab: {fileID: 8805519093632654277, guid: 0cb6c8f4537e97b498453d03b8a1d5a6, type: 3}
     objectName: 4
-  - prefab: {fileID: 919132149155446097, guid: 9b4d26a6fd205fe4faf19b89558ac450, type: 3}
+  - prefab: {fileID: 3371779992608756960, guid: f3097cecf20df6f48b030a940ee9f257, type: 3}
     objectName: 3
-  - prefab: {fileID: 919132149155446097, guid: fec6ac336b2a6ed42a8bb088dfa1d78e, type: 3}
+  - prefab: {fileID: 637593508312967938, guid: c69a3e4c9008e864c8a16e29feb6997f, type: 3}
     objectName: 5
-  - prefab: {fileID: 919132149155446097, guid: 59fa3e451c547a345975da2fb8a8490c, type: 3}
+  - prefab: {fileID: 4664056260963094363, guid: 9805884a1b1084a4989524fd6e7c6e4a, type: 3}
     objectName: 1
-  - prefab: {fileID: 919132149155446097, guid: cf99c23a412fe254fb2caea75009a65b, type: 3}
+  - prefab: {fileID: 7718349795232262655, guid: 981425dbe92ebcf47a4665f66bc7cabd, type: 3}
     objectName: 6
-  - prefab: {fileID: 919132149155446097, guid: c7be856b9027e334dabf618b6cf174f6, type: 3}
+  - prefab: {fileID: 9016889851527501807, guid: 668a74f6ce9b9014190b337562929dcb, type: 3}
     objectName: 0
-  - prefab: {fileID: 919132149155446097, guid: 092d146fe57c35a4f9e99857016d4950, type: 3}
+  - prefab: {fileID: 4273403287281777647, guid: 6d7857470dc450b4eb6950ab136d22b6, type: 3}
     objectName: 2
-  floorHoverHeight: 0.01
+  floorHoverHeight: 0
 --- !u!1 &455484473
 GameObject:
   m_ObjectHideFlags: 0
