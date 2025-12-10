@@ -45,7 +45,8 @@ public class MRUKPaintInteractor : SingletonObject<MRUKPaintInteractor>
 
     void HandleRaycastingAndPainting()
     {
-        Ray ray = new Ray(transform.position, standard.transform.position);
+        // 컨트롤러 위치에서, 컨트롤러가 보는 앞 방향으로 발사
+        Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
         bool isHit = Physics.Raycast(ray, out hit, maxDistance, drawingSurfaceLayer);
