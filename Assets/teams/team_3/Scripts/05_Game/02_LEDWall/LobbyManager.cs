@@ -17,7 +17,7 @@ public class LobbyManager: SingletonObject<LobbyManager>
     void Start()
     {
         startButton.onClick.AddListener(OnStartButtonClicked);
-        ConnectionManager.Instance.SendLoadingComplete();
+        ConnectionManager.Instance.SendGetRoomInfo();
     }
     public void AddParticipant()
     {

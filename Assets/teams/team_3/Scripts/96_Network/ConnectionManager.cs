@@ -93,6 +93,14 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
         }
     }
 
+    public void SendGetRoomInfo()
+    {
+        if (myDeviceType == DeviceType.LED_WALL)
+        {
+            SendJson(new SocketMessageFinal { type = "GET_ROOM_INFO" });
+        }
+    }
+
     // 4. 다음 시나리오 (Host만 호출)
     public void SendNextScenario()
     {
@@ -139,6 +147,19 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
             case "ROLE_ASSIGN":
                 IsHost = (msg.role == "HOST");
                 Debug.Log($"[Net] [내 역할] {msg.role}");
+                break;
+
+            case "ROOM_INFO":
+                // LED Wall이 받는 정보 (현재 인원수 등)
+                Debug.Log($"[Net] [LED Wall Info] Player Count: {msg.playerCount}");
+                if(myDeviceType == DeviceType.LED_WALL)
+                {
+                    if(SceneController.Instance.currentScene == SceneName.Lobby_LEDWall)
+                    {
+                        LobbyManager.Instance.UpdateRoomInfo(msg.playerCount);
+                    }
+                    
+                }
                 break;
 
             case "ROOM_UPDATE":
