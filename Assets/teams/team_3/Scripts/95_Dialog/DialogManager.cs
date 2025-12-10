@@ -151,6 +151,7 @@ public class DialogManager : MonoBehaviour
         var objName = lineData.Item3;
         if(objName != null)
         {
+            Debug.Log($"[DialogManager] 3D 오브젝트 생성 명령: {objName}");
             ConnectionManager.Instance.SendSpawn3DInfo((ObjectName)objName);
         }
     }

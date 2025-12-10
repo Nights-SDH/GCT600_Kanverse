@@ -112,7 +112,7 @@ public class ConnectionManager : SingletonObject<ConnectionManager>
 
     public void SendSpawn3DInfo(ObjectName objectName)
     {
-        if (myDeviceType == DeviceType.HMD && IsHost)
+        if (myDeviceType == DeviceType.LED_WALL)
         {
             SendJson(new SocketMessageFinal { type = "Spawn_3D_Object" , object_info = (int)objectName});
         }
